@@ -2,16 +2,16 @@ from enum import Enum
 from carte import Carte
 
 def UpdateTierList(): #Classe le catalogue dans les tiers lists
-    for i in catalogue:
-        tiermob = catalogue[i].GetTier() #Recupère et stock le tier du mob
+    for carte in catalogue:
+        tiermob = carte.GetTier() #Recupère et stock le tier du mob
         if tiermob == 1: #Verifie le tier du mob
-            liste_tier_1.append(catalogue[i]) #Ajoute la mob a la liste correspondante a son tier
+            liste_tier_1.append(carte) #Ajoute la mob a la liste correspondante a son tier
         elif tiermob == 2:
-            liste_tier_2.append(catalogue[i])
+            liste_tier_2.append(carte)
         elif tiermob == 3:
-            liste_tier_3.append(catalogue[i])
+            liste_tier_3.append(carte)
         elif tiermob == 4:
-            liste_tier_4.append(catalogue[i])
+            liste_tier_4.append(carte)
         else: #En cas d'erreur (tier pas dans l'interval [1,4])
             print ("La carte ", i, " du catalogue appartient a un tier non définis (<1 ou >4)")
             exit(1)

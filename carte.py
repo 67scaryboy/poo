@@ -11,7 +11,7 @@ class Carte():
         self.__tier = tier                #Tier de la boutique dans lequel il est achetable
 
     def afficher(self):
-        print(f"{self.__nom}({self.__pv}): {self.__atk} ")
+        print(f"{self.__nom}({self.__pv}): {self.__atk}\n")
 
     def GetTier(self):
         return self.__tier
@@ -23,10 +23,3 @@ class Carte():
     def Meurt(self): #Fait mourir la carte (La retire du terain)
         if self.__pv < 1:
             pass
-    
-    def Vendre(self,main):
-        main.OR += 1
-        self.Meurt()
-
-    def Poser(self):
-        pass

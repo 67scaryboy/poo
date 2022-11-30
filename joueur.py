@@ -11,6 +11,9 @@ class Joueur:
         self.__boutique = boutique.Boutique() #Boutique (propre au joueur)
         self.__combatants = [] #Cartes posées
 
+    def GetBoutique(self):
+        return self.__boutique
+
     def acheter(self, carte):
         cartes_boutiques = boutique.Boutique.get_cartes(self.__boutique)
         if carte in cartes_boutiques:
@@ -32,4 +35,5 @@ class Joueur:
     def RafraichirBoutique(self):
         if self.__argent > 1:
             self.__boutique.rafraichir()
+            self.__argent -= 1
             # Ajouter la fonction "affichage jeu"
