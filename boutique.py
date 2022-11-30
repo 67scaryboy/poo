@@ -1,4 +1,4 @@
-import Ccarte
+import carte
 
 class Boutique:
     def __init__(self):
