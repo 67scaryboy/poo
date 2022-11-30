@@ -27,10 +27,10 @@ class Eeffet(Enum):
     GOBLIN = 2
 """
 
-# [Nom,Attaque,Vie,Prix,Liste d'effet,race,tier]
+# [Nom,Attaque,Vie,Liste d'effet,race,tier]
 Cartes= [
-    ["Geant",3,3,3,[True,False,False,False,False],1,1],
-    ["Mage noir",5,3,4,[False,False,False,False,True],1,2]
+    ["Geant",3,3,[True,False,False,False,False],1,1],
+    ["Mage noir",5,3,[False,False,False,False,True],1,2]
 ]
 # Liste d'effet:
 # [False, False, False, False, True]
