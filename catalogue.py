@@ -1,37 +1,22 @@
-""" A virer dès que plus besoin pour exemple
 from enum import Enum
+from carte import Carte
 
-class Enom(Enum):
-    GEANT = "Géant"
-    MAGE_NOIR = "Mage noir"
-    GOBLIN = "Goblin"
+class Nom(Enum):
+    GEANT = 0
+    MAGE_NOIR = 1
+    GOBELIN = 2
 
-class Eatk(Enum):
-    GEANT = 3
-    MAGE_NOIR = 5
-    GOBLIN = 2
+#Listes de cartes par tier
 
-class Evie(Enum):
-    GEANT = 3
-    MAGE_NOIR = 3
-    GOBLIN = 2
-
-class Eprix(Enum):
-    GEANT = 3
-    MAGE_NOIR = 4
-    GOBLIN = 2
-
-class Eeffet(Enum):
-    GEANT = 3
-    MAGE_NOIR = 3
-    GOBLIN = 2
-"""
-
-# [Nom,Attaque,Vie,Liste d'effet,race,tier]
-Cartes= [
-    ["Geant",3,3,[True,False,False,False,False],1,1],
-    ["Mage noir",5,3,[False,False,False,False,True],1,2]
+#id, nom, pv, atk, effet, race, tier
+catalogue = [
+Carte(0, "Geant", 3, 3, [True,False,False,False,False], 1, 1),
+Carte(1, "Mage noir", 5, 3,[False,False,False,False,True], 1, 1),
+Carte(2, "Gobelin", 2, 4,[False,False,False,False,True], 1, 2)
 ]
+
+print(catalogue[Nom.GEANT.value].nom)
+
 # Liste d'effet:
 # [False, False, False, False, True]
 # Provocation: non
