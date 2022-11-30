@@ -9,3 +9,9 @@ class Main:
     def ajoutcarte(self, p_carte):
         if self.__nbcartes < self.__nbcartesmax:
             self.__cartesdispo.append(p_carte)
+    
+    def get_nbcartes(self):
+        return self.__nbcartes
+    
+    def get_nbcartesmax(self):
+        return self.__nbcartesmax
