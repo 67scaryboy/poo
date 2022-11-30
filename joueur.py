@@ -1,21 +1,24 @@
 import carte, boutique, main
 
 class Joueur:
-    def __init__(self, p_cartesdispo, p_argentmax, p_argent, p_pseudo):
-        self.__pvmax = 20
-        self.__pv = self.__pvmax
-        self.__main = main.Main(p_cartesdispo) #Main du joueur
-        self.__argentmax = p_argentmax #Pièces max disponibles (dépassable, uniquement pour le compte des tours)
-        self.__argent = p_argent #Pièces disponibles
-        self.__pseudo = p_pseudo #Nom du joueur
+    def __init__(self, argent_max, argent, pseudo):
+        self.__pv_max = 20
+        self.__pv = self.__pv_max
+        self.__main = main.Main() #Main du joueur
+        self.__argent_max = argent_max #Pièces max disponibles (dépassable, uniquement pour le compte des tours)
+        self.__argent = argent #Pièces disponibles
+        self.__pseudo = pseudo #Nom du joueur
         self.__boutique = boutique.Boutique() #Boutique (propre au joueur)
         self.__combatants = [] #Cartes posées
 
-    def acheter(self, p_carte):
-        cartesboutiques = boutique.Boutique.get_cartes(self.__boutique)
-        if p_carte in cartesboutiques:
-            if (self.__argent >= 3) and (main.Main.get_nbcartes(self.__main) < main.Main.get_nbcartesmax(self.__main)):
+    def acheter(self, carte):
+        cartes_boutiques = boutique.Boutique.get_cartes(self.__boutique)
+        if carte in cartes_boutiques:
+            if (self.__argent >= 3) and (main.Main.get_nb_cartes(self.__main) < main.Main.get_nb_cartesmax(self.__main)):
                 self.__argent -= 3
-                main.Main.ajoutcarte(self.__main, p_carte)
+                main.Main.ajout_carte(self.__main, carte)
             else:
                 print("Opération impossible")
+
+    def aff_stats(self):
+        print(f"{self.__pseudo}: {self.__pv}/{self.__pv_max}     argent:{self.__argent}/{self.__argent_max}")

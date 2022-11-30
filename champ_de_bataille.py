@@ -5,4 +5,3 @@ class Champ_de_bataille():
         self.joueur = p_joueur
         self.ia = p_ia
     
-    
