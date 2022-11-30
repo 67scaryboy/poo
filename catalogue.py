@@ -35,8 +35,6 @@ liste_tier_2 = []
 liste_tier_3 = []
 liste_tier_4 = []
 
-print(catalogue[Nom.GEANT.value].nom)
-
 # Liste d'effet:
 # [False, False, False, False, True]
 # Provocation: non
