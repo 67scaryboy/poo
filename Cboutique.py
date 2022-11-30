@@ -6,6 +6,12 @@ class Boutique:
         self.__prixupgrade = 5 #le prix pour monter le niveau de la taverne
         self.__cartes = [] #les cartes disponibles à l'achat
     
+    def get_cartes(self):
+        return self.__cartes
+    
+    def set_cartes(self, p_cartes):
+        self.__cartes = p_cartes
+
     def raffraichir(self):
         listecartes = [] #choisir aléatoirement les cartes des tiers
         self.__cartes = listecartes

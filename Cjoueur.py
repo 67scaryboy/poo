@@ -10,3 +10,10 @@ class Joueur:
         self.__pseudo = p_pseudo
         self.__boutique = Cboutique.Boutique()
         self.__combatants = []
+
+    def acheter(self, p_carte):
+        cartesboutiques = Cboutique.Boutique.get_cartes(self.__boutique)
+        if p_carte in cartesboutiques:
+            if self.__argent >= 3:
+                self.__argent -= 3
+                Cmain.Main.ajoutcarte(self.__main, p_carte)
