@@ -15,8 +15,6 @@ Carte(1, "Mage noir", 5, 3,[False,False,False,False,True], 1, 1),
 Carte(2, "Gobelin", 2, 4,[False,False,False,False,True], 1, 2)
 ]
 
-print(catalogue[Nom.GEANT.value].nom)
-
 # Liste d'effet:
 # [False, False, False, False, True]
 # Provocation: non
