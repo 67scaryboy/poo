@@ -1,24 +1,27 @@
 class Carte():
     def __init__(self, id, nom, pv, atk, effet, race, tier):
-        self.id = id                    #id de la carte
-        self.nom = nom                  #nom de la carte
-        self.pv = pv                    #PV de base de la carte
-        self.pv_combat = self.pv        #PV effectifs de la carte
-        self.atk = atk                  #Attaque du perso
-        self.atk_combat = self.atk      #Attaque effective de la carte
-        self.effet = effet              #Effet particulier
-        self.race = race                #Race
-        self.tier = tier                #Tier de la boutique dans lequel il est achetable
+        self.__id = id                    #id de la carte
+        self.__nom = nom                  #nom de la carte
+        self.__pv = pv                    #PV de base de la carte
+        self.__pv_combat = self.__pv        #PV effectifs de la carte
+        self.__atk = atk                  #Attaque du perso
+        self.__atk_combat = self.__atk      #Attaque effective de la carte
+        self.__effet = effet              #Effet particulier
+        self.__race = race                #Race
+        self.__tier = tier                #Tier de la boutique dans lequel il est achetable
+
+    def afficher(self):
+        print(f"{self.__nom}({self.__pv}): {self.__atk} ")
 
     def GetTier(self):
-        return self.tier
+        return self.__tier
 
     def Attaquer(self, adversaire): #Fait attaquer cette carte
-        adversaire.pv_combat -= self.atk_combat #L'adversaire prend les dégats
-        self.pv_combat -= adversaire.atk_combat #L'attaquant prend les dégats aussi
+        adversaire.__pv_combat -= self.__atk_combat #L'adversaire prend les dégats
+        self.__pv_combat -= adversaire.__atk_combat #L'attaquant prend les dégats aussi
 
     def Meurt(self): #Fait mourir la carte (La retire du terain)
-        if self.PV < 1:
+        if self.__pv < 1:
             pass
     
     def Vendre(self,main):
