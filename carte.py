@@ -10,6 +10,9 @@ class Carte():
         self.race = race                #Race
         self.tier = tier                #Tier de la boutique dans lequel il est achetable
 
+    def GetTier(self):
+        return self.tier
+
     def Attaquer(self, adversaire): #Fait attaquer cette carte
         adversaire.pv_combat -= self.atk_combat #L'adversaire prend les dégats
         self.pv_combat -= adversaire.atk_combat #L'attaquant prend les dégats aussi
