@@ -29,6 +29,12 @@ class Carte():
     
     def GetAtkCombat(self):
         return self.__atk_combat
+    
+    def SetAtkCombat(self, valeur):
+        self.__atk_combat = valeur
+    
+    def GetRace(self):
+        return self.__race
 
     #Méthodes------------------------------------------------------------------------------------------
 
@@ -50,9 +56,12 @@ class Carte():
                 adversaire.SetPvCombat(adversaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats
     
     def CriDeGuerre(self,combatants):
-        if self.__effet[4] == True: #si la carte a un cri de guerre
+        if self.__effet['cri de guerre'] == True: #si la carte a un cri de guerre
             if self.__id == 1: #Mage noir
-                pass
+                for mobs in combatants:
+                    if mobs.GetRace() == 3: #tous les humains de l'équipe de combat
+                        mobs.SetAtkCombat(mobs.GetAtkCombat() + 1) #gagnent 1 point d'attaque
+            
         else: #sinon
             pass #rien
     
