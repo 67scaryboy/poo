@@ -5,8 +5,8 @@ import catalogue, os, time
 
 def Principal():
     #Initialise les joueurs avec 1 d'or de plus que le max pour la première initialisation boutique
-    j1 = Joueur(2, 2, "Joueur")
-    ia = Joueur(2, 2, "IA")
+    j1 = Joueur(3, 4, "Joueur")
+    ia = Joueur(3, 4, "IA")
 
     #initialise les listes de cartes
     catalogue.UpdateTierList()
@@ -43,20 +43,36 @@ def Principal():
 
     #Prototype de code:
     while j1.GetPV() > 0 and ia.GetPV() > 0:
+        """"" A déplacer après le combat
         if j1.GetArgentMax() < 10:
             j1.SetArgentMax(j1.GetArgentMax()+1)
         if ia.GetArgentMax() < 10:
             ia.SetArgentMax(ia.GetArgentMax()+1)
         j1.SetArgent(j1.GetArgentMax())
         ia.SetArgent(ia.GetArgentMax())
+        """
         os.system("cls") #Effacte le terminal
         j1.AffStats()
+        j1.GetMain().Afficher()
         ia.AffStats()
         print("Ouvrez la boutique en tappant 'Boutique', ou preparez le combat en tappant 'Combat'")
         entree = input ()
         if entree == "Boutique":
-            print ("a")
-            exit()
+            j1.AffBoutique()
+            print("Vous pouvez quitter la boutique en tappant 'Quitter', la rafraichir avec 'Rafraichir' ou acheter une carte en entrant son numéro")
+            entree = input()
+            if entree == "1":
+                j1.Acheter(1)
+            elif entree == "2":
+                j1.Acheter(2)
+            elif entree == "3":
+                j1.Acheter(3)
+            elif entree =="4":
+                j1.Acheter(4)
+            elif entree == "5":
+                j1.Acheter(5)
+            elif entree == "Rafraichir":
+                j1.RafraichirBoutique()
         elif entree == "Combat":
             print("b")
             exit()
