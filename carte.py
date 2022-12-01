@@ -55,19 +55,19 @@ class Carte():
             else: #sinon
                 adversaire.SetPvCombat(adversaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats
     
-    def CriDeGuerre(self,combatants,argent):
+    def CriDeGuerre(self,joueur):
         if self.__effet['cri de guerre'] == True: #si la carte a un cri de guerre
             if self.__id == 1: #Mage noir
-                for mobs in combatants:
+                for mobs in joueur.GetCombatants():
                     if mobs.GetRace() == 3: #tous les autres humains de l'équipe de combat
                         mobs.SetAtkCombat(mobs.GetAtkCombat() + 1) #gagnent 1 point d'attaque
-                        
+
             elif self.__id == 2: #Gobelin
-                argent += 1 #le joueur gagne une pièce
+                joueur.SetArgent(joueur.GetArgent() +1) #le joueur gagne une pièce--------------------------------------------à corriger
 
             elif self.__id == 9: #Tortue Géante
-                for mobs in combatants: #tous les autres combatants
-                    obs.SetPvCombat(mobs.GetPvCombat + 1) #gagnent 1 Pv
+                for mobs in joueur.GetCombatants(): #tous les autres combatants
+                    mobs.SetPvCombat(mobs.GetPvCombat() + 1) #gagnent 1 Pv
 
         else: #sinon
             pass #rien
