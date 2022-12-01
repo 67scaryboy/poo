@@ -32,7 +32,7 @@ class Champ_de_bataille():
                     nb_atq = 0
                
                 else:# gestion du windfurry ici-----------------------------------------------------------------------------
-                    if (team_j[attaquant_j].GetEffet[3] == True) and (nb_atq == 0): #si la carte a furie des vents et attaqué une seule fois
+                    if (team_j[attaquant_j].GetEffet()[3] == True) and (nb_atq == 0): #si la carte a furie des vents et attaqué une seule fois
                         relais = relais + 1 % 2 #empecher le changement de joueur
                         nb_atq = 1 #et empecher une troisième attaque
                     else:    
