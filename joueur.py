@@ -46,3 +46,10 @@ class Joueur:
             self.__boutique.Rafraichir()
             self.__argent -= 1
             # Ajouter la fonction "affichage jeu"
+    
+    def PoserCarte(self,numcarte):
+        if numcarte > self.__main.__nb_cartes:
+            print ("La carte que tu essaie de poser n'existe pas")
+            exit(2)
+        self.__combatants.append(self.__main.__cartes_en_main[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
+        del self.__main.__cartes_en_main[numcarte-1] #Retire la carte choisie de la main
