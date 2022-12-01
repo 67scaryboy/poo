@@ -30,7 +30,7 @@ class Joueur:
         cartes_boutiques = boutique.Boutique.GetCartes(self.__boutique)
         if (self.__argent >= 3) and (main.Main.GetNbCartes(self.__main) < main.Main.GetNbCartesmax(self.__main)):
             self.__argent -= 3
-            self.__main.Ajout_carte(cartes_boutiques[numcarte])
+            self.__main.Ajout_carte(cartes_boutiques[numcarte-1])
             self.__boutique.DelCartes(numcarte)
         else:
             print("Opération impossible")
