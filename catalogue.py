@@ -22,6 +22,12 @@ class Races(Enum):
     ANIMEAUX=2
     HUMAINS=3
 
+idcartes = {
+    "GEANT": 0, "MAGENOIR": 1, "GOBELIN": 2 ,"LOUP" : 3 , "FEUFOLLET" : 4 , "GARDE" : 5 ,
+    "ASSASSIN" : 6 , "PRETRE" : 7 , "FANTOME" : 8 , "TORTUE" : 9 , "DRAGON" : 10 ,
+    "HEROS" : 11 , "ROIDEMON" : 12
+    }
+
 #Listes de cartes par tier
 
 #id, nom, pv, atk, effet, race, tier
