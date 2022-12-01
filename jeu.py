@@ -29,10 +29,9 @@ def Principal():
     ia.PoserCarte(1)
     print("=============")
 
-    for i in range (0,len(ia.GetCombatants())-1): 
-        ia.GetCombatants()[i].Afficher()
-    for i in range (0,len(j1.GetCombatants())-1): 
-        j1.GetCombatants()[i].Afficher()
+    ia.AffCombatants()
+
+    j1.AffCombatants()
 
     terrain.LancerCombat()
 """

@@ -11,6 +11,13 @@ class Joueur:
         self.__boutique = boutique.Boutique() #Boutique (propre au joueur)
         self.__combatants = [] #Cartes posées
 
+    def AffCombatants(self):
+        print(f"    Combatants {self.__pseudo}:")
+        print("    ", end="")
+        for carte in self.__combatants:
+            carte.Afficher()
+        print('\n')
+
     def AffBoutique(self):
         print(f"    Boutique {self.__pseudo}:")
         print("    ", end="")
