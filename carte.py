@@ -1,5 +1,7 @@
 import random
 
+PRIX_CARTE = 3
+
 class Carte():
     def __init__(self, id, nom, pv, atk, effet, race, tier):
         self.__id = id                    #id de la carte
