@@ -13,6 +13,18 @@ class Joueur:
 
     #Geteurs et Seteurs---------------------------------------------------------------------
 
+    def SetArgentMax(self, valeur):
+        self.__argent_max = valeur
+    
+    def GetArgentMax(self):
+        return self.__argent_max
+
+    def SetArgent(self, valeur):
+        self.__argent = valeur
+
+    def GetArgent(self):
+        return self.__argent
+
     def GetBoutique(self):
         return self.__boutique
 
