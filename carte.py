@@ -11,7 +11,7 @@ class Carte():
         self.__tier = tier                #Tier de la boutique dans lequel il est achetable
 
     def afficher(self):
-        print(f"{self.__nom}({self.__pv}): {self.__atk}\n")
+        print(f"{self.__nom}\n PV: {self.__pv} / ATK: {self.__atk}\n")
 
     def GetTier(self):
         return self.__tier
