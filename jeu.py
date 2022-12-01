@@ -61,18 +61,14 @@ def Principal():
             j1.AffBoutique()
             print("Vous pouvez quitter la boutique en tappant 'Quitter', la rafraichir avec 'Rafraichir' ou acheter une carte en entrant son numéro")
             entree = input()
-            if entree == "1":
-                j1.Acheter(1)
-            elif entree == "2":
-                j1.Acheter(2)
-            elif entree == "3":
-                j1.Acheter(3)
-            elif entree =="4":
-                j1.Acheter(4)
-            elif entree == "5":
-                j1.Acheter(5)
+
+            #achat de carte avec son numéro
+            if int(entree) in range (1, len(j1.GetBoutique().GetCartes()) +1):
+                j1.Acheter(int(entree))
+
             elif entree == "Rafraichir":
                 j1.RafraichirBoutique()
+
         elif entree == "Combat":
             print("b")
             exit()
