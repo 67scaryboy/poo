@@ -70,8 +70,42 @@ def Principal():
                 j1.RafraichirBoutique()
 
         elif entree == "Combat":
-            print("b")
-            exit()
+            print("Vous pouvez poser des cartes avec 'Poser' et démarrer le combat avec 'Combat'")
+            entree = input()
+            if entree == "Poser":
+                print ("Choisissez le numéro de la carte que vous souhaitez poser, ou tappez autre chose pour quitter\n\n")
+                print("Les cartes dans votre main:\n")
+                j1.GetMain().Afficher()
+                print ("\nVos cartes sur le terrain:\n")
+                for i in j1.GetCombatants():
+                    i.Afficher()
+                entree = input()
+                if entree == "1":
+                    j1.PoserCarte(1)
+                elif entree == "2":
+                    j1.PoserCarte(2)
+                elif entree == "3":
+                    j1.PoserCarte(3)
+                elif entree == "4":
+                    j1.PoserCarte(4)
+                elif entree == "5":
+                    j1.PoserCarte(5)
+                elif entree == "6":
+                    j1.PoserCarte(6)
+            elif entree == "Combat":
+                #IA Qui se créer son deck
+                while ia.GetMain().GetNbCartes() < 6 and ia.GetArgent() > 3:
+                    ia.Acheter(1)
+                while len(ia.GetCombatants()) < 4 and ia.GetMain().GetNbCartes() > 0:
+                    ia.Poser(1)
+                terrain.LancerCombat()
+                if j1.GetArgentMax() < 10:
+                    j1.SetArgentMax(j1.GetArgentMax()+1)
+                if ia.GetArgentMax() < 10:
+                    ia.SetArgentMax(ia.GetArgentMax()+1)
+                j1.SetArgent(j1.GetArgentMax())
+                ia.SetArgent(ia.GetArgentMax())
+                
         else:
             print ("Commande inconnue")
         time.sleep(1)
