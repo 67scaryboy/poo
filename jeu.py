@@ -22,11 +22,19 @@ def Principal():
 
     #actions en jeu
     j1.Acheter(1)
-
+    ia.Acheter(1)
+    j1.PoserCarte(1)
+    ia.PoserCarte(1)
+    print(j1.GetCombatants()[0])
+    print(ia.GetCombatants()[0])
+    terrain.LancerCombat()
+"""
+    print("_______________")
     j1.AffBoutique()
 
     j1.AffMain()
 
     j1.AffStats()
+    """
 
 Principal()
