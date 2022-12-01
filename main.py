@@ -7,11 +7,8 @@ class Main:
         self.__NbCartes = 0
         self.__NbCartesMax = 6
     
-    def Ajout_carte(self, carte):
-        if self.__NbCartes < self.__NbCartesMax:
-            self.__Cartes.append(deepcopy(carte))
-            self.__NbCartes += 1
-    
+    #Geteurs et Seteurs-----------------------------------------------------------------------------
+
     def GetNbCartes(self):
         return self.__NbCartes
     
@@ -23,6 +20,15 @@ class Main:
     
     def GetCartesEnMain(self):
         return self.__Cartes
+    
+    #Méthodes----------------------------------------------------------------------------------------
+
+    def Ajout_carte(self, carte):
+        if self.__NbCartes < self.__NbCartesMax:
+            self.__Cartes.append(deepcopy(carte))
+            self.__NbCartes += 1
+
+    #Méthodes liées à l'affichage---------------------------------------------------------------------
 
     def Afficher(self):
         for carte in self.__Cartes:

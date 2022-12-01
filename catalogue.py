@@ -44,8 +44,9 @@ Carte(8, "Fantome", 4, 4,{'provocation': False, 'bouclier divin': False, 'toxici
 Carte(9, "Tortue géante", 7, 2,{'provocation': True, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 2, 3),
 Carte(10, "Dragon sauvage", 6, 7,{'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False}, 1, 4),
 Carte(11, "Héros", 7, 5,{'provocation': False, 'bouclier divin': True, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 3, 4),
-Carte(12, "Roi démon", 8, 8,{'provocation': True, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 2, 4),
-Carte(13, "Virus", 1, 1,{'provocation': False, 'bouclier divin': True, 'toxicite': True, 'furie des vents': True, 'cri de guerre': False}, 0, 4)
+Carte(12, "Roi démon", 8, 8,{'provocation': True, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 1, 4),
+Carte(13, "Virus", 1, 1,{'provocation': False, 'bouclier divin': True, 'toxicite': True, 'furie des vents': True, 'cri de guerre': False}, 0, 4),
+Carte(14, "Sanglier", 3, 5, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': True, 'cri de guerre': True}, 2, 3)
 ]
 
 # Liste d'effet:

@@ -36,13 +36,14 @@ def Principal():
     j1.AffCombatants()
 
     terrain.LancerCombat()
-"""
-    print("_______________")
-    j1.AffBoutique()
-
-    j1.AffMain()
 
     j1.AffStats()
+    ia.AffStats()
+
+"""
+    #Prototype de code:
+    while j1.GetPV() > 0 and ia.GetPV >0:
+         
     """
 
 Principal()
