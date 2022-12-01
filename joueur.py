@@ -13,6 +13,9 @@ class Joueur:
 
     def GetBoutique(self):
         return self.__boutique
+
+    def GetMain(self):
+        return self.__main
     
     def GetCombatants(self):
         return self.__combatants
@@ -23,14 +26,14 @@ class Joueur:
     def SetPV(self, nouveauxpv):
         self.__pv = nouveauxpv
 
-    def Acheter(self, carte):
-        cartes_boutiques = boutique.Boutique.get_cartes(self.__boutique)
-        if carte in cartes_boutiques:
-            if (self.__argent >= 3) and (main.Main.get_nb_cartes(self.__main) < main.Main.get_nb_cartesmax(self.__main)):
-                self.__argent -= 3
-                main.Main.ajout_carte(self.__main, carte)
-            else:
-                print("Opération impossible")
+    def Acheter(self, numcarte):
+        cartes_boutiques = boutique.Boutique.GetCartes(self.__boutique)
+        if (self.__argent >= 3) and (main.Main.GetNbCartes(self.__main) < main.Main.GetNbCartesmax(self.__main)):
+            self.__argent -= 3
+            self.__main.Ajout_carte(cartes_boutiques[numcarte])
+            self.__boutique.DelCartes(numcarte)
+        else:
+            print("Opération impossible")
 
     def AffStats(self):
         print(f"{self.__pseudo}: {self.__pv}/{self.__pv_max}     argent:{self.__argent}/{self.__argent_max}")
