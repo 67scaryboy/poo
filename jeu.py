@@ -4,17 +4,23 @@ import catalogue
 
 
 def Principal():
-    j1 = Joueur(3, 4, "bob") #Initialise le joueur avec 1 d'or de plus que le max pour la première initialisation boutique
-    ia = Joueur(3, 4, "IA") #Pareil, mais avec l'ia
+    #Initialise les joueurs avec 1 d'or de plus que le max pour la première initialisation boutique
+    j1 = Joueur(3, 4, "bob")
+    ia = Joueur(3, 4, "IA")
+
+    #initialise les listes de cartes
+    catalogue.UpdateTierList()
+
     terrain = Champ_de_bataille(j1,ia)
 
-    catalogue.UpdateTierList() #initialise les listes de cartes
     j1.RafraichirBoutique()
     ia.RafraichirBoutique()
-    j1.AffStats()
 
-    for carte in j1.GetBoutique().GetCartes():
-        carte.Afficher()
+    #affichage environnement j1
+    j1.AffStats()
+    j1.AffBoutique()
+
+    #actions en jeu
     j1.Acheter(1)
     ia.Acheter(1)
     j1.PoserCarte(1)
@@ -24,10 +30,11 @@ def Principal():
     terrain.LancerCombat()
 """
     print("_______________")
-    for carte in j1.GetBoutique().GetCartes():
-        carte.Afficher()
+    j1.AffBoutique()
+
     print("_______________")
-    j1.GetMain().GetCartesEnMain()[0].Afficher()
+    j1.AffMain()
+
     print("____________")
     j1.AffStats()
     """

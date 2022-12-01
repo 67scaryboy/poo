@@ -11,6 +11,14 @@ class Joueur:
         self.__boutique = boutique.Boutique() #Boutique (propre au joueur)
         self.__combatants = [] #Cartes posées
 
+    def AffBoutique(self):
+        for carte in self.__boutique.GetCartes():
+            carte.Afficher()
+
+    def AffMain(self):
+        for carte in self.__main.GetCartes():
+            carte.Afficher()
+
     def GetBoutique(self):
         return self.__boutique
 

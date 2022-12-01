@@ -11,13 +11,16 @@ class Carte():
         self.__tier = tier                #Tier de la boutique dans lequel il est achetable
 
     def Afficher(self):
-        print(f"{self.__nom}\n PV: {self.__pv} / ATK: {self.__atk}\n")
+        print(f"{self.__nom}\n PV: {self.__pv} / ATK: {self.__atk}")
 
     def GetTier(self):
         return self.__tier
     
     def GetEffet(self):
         return self.__effet
+    
+    def SetEffet(self,num,valeur):
+        self.__effet[num] = valeur
     
     def GetPvCombat(self):
         return self.__pv_combat
@@ -29,5 +32,18 @@ class Carte():
         return self.__atk_combat
 
     def Attaquer(self, adversaire): #Fait attaquer cette carte
-        adversaire.SetPvCombat(advarsaire.GetPvCombat() - self.__atk_combat) #L'adversaire prend les dégats
-        self.__pv_combat -= adversaire.GetAtkCombat() #L'attaquant prend les dégats aussi
+        if self.__effet[1] == True: #si l'attaquant a bouclier divin
+            self.__effet[1] = False #l'enlever
+        else: #sinon
+            if adversaire.GetEffet()[2] == True: #si la cible a toxicité
+                self.__pv_combat = 0 #mourir
+            else: #sinon
+                self.__pv_combat -= adversaire.GetAtkCombat() #prendre des dégats
+        
+        if adversaire.GetEffet()[1] == True: #si la cible a bouclier divin
+            adversaire.SetEffet(1,False) #l'enlever
+        else: #sinon
+            if self.__effet[2] == True: #si l'attaquant a toxicité
+                adversaire.SetPvCombat(0)  #tuer la cible
+            else: #sinon
+                adversaire.SetPvCombat(advarsaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats
