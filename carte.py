@@ -10,8 +10,12 @@ class Carte():
         self.__race = race                #Race
         self.__tier = tier                #Tier de la boutique dans lequel il est achetable
 
+<<<<<<< HEAD
     def Afficher(self):
         print(f"({self.__nom} {self.__pv_combat}PV {self.__atk_combat}ATK) | ", end='' )   
+=======
+    #Geteurs et Seteurs-----------------------------------------------------------------------
+>>>>>>> 9bc4e0bea6c075941c0aed3315a43199f56d1fe1
 
     def GetTier(self):
         return self.__tier
@@ -31,6 +35,8 @@ class Carte():
     def GetAtkCombat(self):
         return self.__atk_combat
 
+    #Méthodes------------------------------------------------------------------------------------------
+
     def Attaquer(self, adversaire): #Fait attaquer cette carte
         if self.__effet[1] == True: #si l'attaquant a bouclier divin
             self.__effet[1] = False #l'enlever
@@ -47,3 +53,8 @@ class Carte():
                 adversaire.SetPvCombat(0)  #tuer la cible
             else: #sinon
                 adversaire.SetPvCombat(adversaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats
+    
+    #Méthodes liées à l'affichage-------------------------------------------------------------------
+
+    def Afficher(self):
+        print(f"({self.__nom} {self.__pv_combat}PV {self.__atk_combat}ATK) | ", end='')   

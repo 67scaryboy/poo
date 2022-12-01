@@ -6,11 +6,15 @@ class Boutique:
         self.__prix_upgrade = 5 #le prix pour monter le niveau de la taverne
         self.__cartes = [] #les cartes disponibles à l'achat
     
+    #Geteurs et seteurs-------------------------------------------------------------------------------
+
     def GetCartes(self):
         return self.__cartes
     
     def SetCartes(self, cartes):
         self.__cartes = cartes
+
+    #Méthodes------------------------------------------------------------------------------------------
     
     def GetPrixUpgrade(self):
         return self.__prix_upgrade
