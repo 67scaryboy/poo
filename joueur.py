@@ -72,7 +72,7 @@ class Joueur:
             # Ajouter la fonction "afficher jeu"
     
     def RafraichirBoutique(self):
-        if self.__argent > 1:
+        if self.__argent > 0:
             self.__boutique.Rafraichir()
             self.__argent -= 1
         else:

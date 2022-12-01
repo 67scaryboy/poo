@@ -93,10 +93,19 @@ def Principal():
                 elif entree == "6":
                     j1.PoserCarte(6)
             elif entree == "Combat":
+                ia.RafraichirBoutique()
                 #IA Qui se créer son deck
-                while ia.main.nb_cartes < 6 and ia.argent > 3:
+                if ia.GetArgent() >= ia.GetBoutique().GetPrixUpgrade():
+                    ia.UpBoutique() #Bug possible: Si boutique LV MAX, message d'erreur, mais pas de plantage
+                while ia.main.nb_cartes < 6 and ia.argent >= 3 and len(ia.GetCombatants()) < 4:
+                    print("Carte achetée et poser")
                     ia.Acheter(1)
-                while len(ia.combatants) < 4 and ia.main.nb_cartes > 0:
+                    ia.PoserCarte(1)
+                """ MODIFIER ICI QUAN FONCTION VENTE
+                if len(ia.GetCombatants()) == 4 and ia.GetMain().GetNbCartes() < 6 and ia.GetArgent() >= 3: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
+                    ia. ####Ajouter la mathode de vente ici et vendre la 1er carte
+                    ia.Acheter(1)
+                while len(ia.GetCombatants()) < 4 and ia.GetMain().GetNbCartes() > 0:
                     ia.Poser(1)
                 terrain.LancerCombat()
                 if j1.argent_max < 10:
