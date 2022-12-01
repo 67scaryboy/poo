@@ -16,6 +16,9 @@ class Carte():
     def GetTier(self):
         return self.__tier
     
+    def GetEffet(self):
+        return self.__effet
+    
     def GetPvCombat(self):
         return self.__pv_combat
 
