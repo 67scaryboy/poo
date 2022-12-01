@@ -22,5 +22,8 @@ def Principal():
         carte.Afficher()
     print("_______________")
     print (j1.GetMain().GetCartesEnMain()[0])
+    j1.GetMain().GetCartesEnMain()[0].Afficher()
+    print("____________")
+    j1.AffStats()
 
 Principal()
