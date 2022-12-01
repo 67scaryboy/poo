@@ -44,8 +44,9 @@ Carte(8, "Fantome", 4, 4,[False,False,False,True,False], 1, 3),
 Carte(9, "Tortue géante", 7, 2,[True,False,False,False,True], 2, 3),
 Carte(10, "Dragon sauvage", 6, 7,[False,False,False,False,False], 1, 4),
 Carte(11, "Héros", 7, 5,[False,True,False,False,True], 3, 4),
-Carte(12, "Roi démon", 8, 8,[True,False,False,False,True], 2, 4),
-Carte(13, "Virus", 1, 1,[False,True,True,True,False], 0, 4)
+Carte(12, "Roi démon", 8, 8,[True,False,False,False,True], 1, 4),
+Carte(13, "Virus", 1, 1,[False,True,True,True,False], 0, 4),
+Carte(14, "Sanglier", 3, 5, [False,False,False,True,True], 2, 3)
 ]
 # Liste d'effet:
 # [False, False, False, False, True]

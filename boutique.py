@@ -6,7 +6,7 @@ class Boutique:
         self.__prix_upgrade = 5 #le prix pour monter le niveau de la taverne
         self.__cartes = [] #les cartes disponibles à l'achat
     
-    #Geteurs et seteurs-------------------------------------------------------------------------------
+    #Getteurs et setteurs-------------------------------------------------------------------------------
 
     def GetCartes(self):
         return self.__cartes
@@ -19,7 +19,7 @@ class Boutique:
     def DelCartes(self,numcarte): #Retire une carte de la boutique en fonction de sa position
         del self.__cartes[numcarte-1]
 
-    def Rafraichir(self):
+    def Rafraichir(self): #Changer les cartes proposées en boutique
         self.__cartes = []
         for i in range (0,5,1):
             if self.__tier == 1:
@@ -51,4 +51,3 @@ class Boutique:
     def Ameliorer(self):
         if self.__tier < 5:
             self.__tier +=1
-        #retirer l'argent du joueur
