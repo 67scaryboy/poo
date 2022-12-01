@@ -16,7 +16,7 @@ class Champ_de_bataille():
         while (len(team_j) > 0) and (len(team_ia) > 0):
             place = -1
             if relais == 1: #tour du joueur
-                for i in len(team_ia):
+                for i in range(0,len(team_ia)):
                     if team_ia[i].GetEffet()[0] == True: #si la carte a provocation
                         place = i #elle devient la cible prioritaire
                 if place == -1: #si aucune carte n'a provocation
@@ -39,7 +39,7 @@ class Champ_de_bataille():
                             attaquant_ia = 0
             
             else: #tour de l'ia
-                for j in len(team_j):
+                for j in range(0,len(team_j)):
                     if team_j[j].GetEffet()[0] == True: #si la carte a provocation
                         place = j #elle devient la cible prioritaire
                 if place == -1: #si aucune carte n'a provocation
