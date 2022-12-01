@@ -24,8 +24,8 @@ class Carte():
     def GetEffet(self):
         return self.__effet
     
-    def SetEffet(self,num,valeur):
-        self.__effet[num] = valeur
+    def SetEffet(self,name,valeur):
+        self.__effet[name] = valeur
 
     effet = property(GetEffet, SetEffet)
     
@@ -70,39 +70,36 @@ class Carte():
                 adversaire.SetPvCombat(adversaire.pv_combat - self.__atk_combat) #lui faire prendre des dégats
     
     def CriDeGuerre(self,joueur):
-        combatants = joueur.GetCombatants()
+        combatants = joueur.combatants
         if self.__effet['cri de guerre'] == True: #si la carte a un cri de guerre
             if self.__id == 1: #Mage noir
-                for mobs in combatants:
-                    if mobs.GetRace() == 3: #tous les autres humains de l'équipe de combat
-                        mobs.SetAtkCombat(mobs.GetAtkCombat() + 1) #gagnent 1 point d'attaque
+                for mob in combatants:
+                    if mob.race == 3: #tous les autres humains de l'équipe de combat
+                        mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
 
             elif self.__id == 2: #Gobelin
-                joueur.SetArgent(joueur.argent +1) #le joueur gagne une pièce
+                joueur.argent = joueur.argent +1 #le joueur gagne une pièce
             
             elif self.__id == 3: #Loup
-                for mobs in combatants:
-                    if mobs.GetRace() == 2: #tous les autres bêtes de l'équipe de combat
-                        mobs.SetAtkCombat(mobs.GetAtkCombat() + 1) #gagnent 1 point d'attaque
+                for mob in combatants:
+                    if mob.race == 2: #tous les autres bêtes de l'équipe de combat
+                        mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
 
             elif self.__id == 9: #Tortue Géante
-                for mobs in combatants: #tous les autres combatants
-                    mobs.SetPvCombat(mobs.GetPvCombat() + 1) #gagnent 1 Pv
+                for mob in combatants: #tous les autres combatants
+                    mob.pv_combat = mob.pv_combat + 1 #gagnent 1 Pv
             
             elif self.__id == 11: #Heros
                 if len(combatants) > 0:
                     n = random.randint(0,len(combatants)-1)
-                    combatants[n].SetEffet(1,True) #donne bouclier divin à un random
+                    combatants[n].__effet['bouclier divin'] = True #donne bouclier divin à un random
             
             elif self.__id == 11: #Roi Démon
                 if len(combatants) > 0:
                     n = random.randint(0,len(combatants)-1)
-                    combatants[n].SetEffet(2,True) #donne toxicité à un random
-
-        else: #sinon
-            pass #rien
+                    combatants[n].__effet['toxicite'] = True #donne toxicité à un random
     
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
     def Afficher(self):
-        print(f"({self.__nom} {self.__pv_combat}PV {self.__atk_combat}ATK) | ", end='')   
+        print(f"({self.__nom} {self.__pv_combat}PV {self.__atk_combat}ATK) | ", end='')

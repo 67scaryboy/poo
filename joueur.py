@@ -57,12 +57,14 @@ class Joueur:
 
     def Acheter(self, numcarte):
         cartes_boutiques = self.__boutique.cartes
-        if (self.__argent >= 3) and (main.Main.GetNbCartes(self.__main) < main.Main.GetNbCartesmax(self.__main)):
+        if (self.__argent >= 3) and (len(self.__main.cartes) < self.__main.nb_cartes_max):
             self.__argent -= 3
             self.__main.Ajout_carte(cartes_boutiques[numcarte-1])
             self.__boutique.DelCartes(numcarte)
-        elif (main.Main.GetNbCartes(self.__main) == main.Main.GetNbCartesmax(self.__main)):
+
+        elif (len(self.__main.cartes) == self.__main.nb_cartes_max):
             aff_msg("Opération impossible, main pleine (6 cartes maximum !")
+
         elif (self.__argent >= 3):
             aff_msg("Opération impossible, argent insuffisant (3 pour un achat !)")
 
@@ -84,12 +86,14 @@ class Joueur:
             # Ajouter la fonction "affichage jeu"
     
     def PoserCarte(self,numcarte):
-        if numcarte > self.main.nb_cartes:
+        if numcarte > len(self.main.cartes) or numcarte < 0:
             aff_msg ("La carte que tu essaie de poser n'existe pas")
             exit(2)
-        if len(self.combatants)==4:
+
+        if len(self.combatants) == 4:
             aff_msg("Opération impossible, nombre maximum de sbire atteint (4 max !)")
-            return 
+            return
+            
         self.main.cartes[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
         self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
         del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
@@ -108,9 +112,9 @@ class Joueur:
         try:
             nb = int(entree)
         except:
-            if entree == "Rafraichir":
+            if entree == 'r':
                 self.RafraichirBoutique()
-            elif entree == "Upgrade":
+            elif entree == 'u':
                 self.UpBoutique()
         else:
             if nb in range (1, len(self.boutique.cartes) + 1):
@@ -130,8 +134,10 @@ class Joueur:
 
     def AffPoser(self):
         print ("Choisissez le numéro de la carte que vous souhaitez poser, ou tapez autre chose pour quitter\n\n")
+
         print("Les cartes dans votre main:\n")
         self.main.Afficher()
+
         print ("\nVos cartes sur le terrain:\n")
         for carte in self.combatants:
             carte.Afficher()
@@ -149,7 +155,7 @@ class Joueur:
         for carte in self.__boutique.cartes:
             carte.Afficher()
         print('\n')
-        print("Vous pouvez quitter la boutique en tappant 'Quitter', l'upgrade avec 'Upgrade', la rafraichir avec 'Rafraichir' ou acheter une carte en entrant son numéro")
+        print("Vous pouvez quitter la boutique en tappant 'q', l'upgrade avec 'u', la rafraichir avec 'r' ou acheter une carte en entrant son numéro")
 
     def AffMain(self):
         print(f"    Main {self.__pseudo}:")

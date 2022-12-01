@@ -9,19 +9,71 @@ class Champ_de_bataille():
     
     #Méthodes-----------------------------------------------------------------------------------------
 
+    def MajBoutique(self):
+        if self.__joueur.boutique.prix_upgrade > 1:
+            self.__joueur.boutique.prix_upgrade -= 1
+        if self.__ia.boutique.prix_upgrade > 1:
+            self.__ia.boutique.prix_upgrade -= 1
+
+    def MajArgent(self):
+        if self.__joueur.argent_max < 10:
+            self.__joueur.argent_max = self.__joueur.argent_max + 1
+        if self.__ia.argent_max < 10:
+            self.__ia.argent_max = self.__ia.argent_max + 1
+
+        self.__joueur.argent = self.__joueur.argent_max
+        self.__ia.argent = self.__ia.argent_max
+
+    def AffCombat(self, team_j, team_ia):   
+        print("Mobs coté joueur:")
+        for mobs in team_j:
+            mobs.Afficher()
+        print("\n")
+        print("Mobs coté IA:")
+        for mobs in team_ia:
+            mobs.Afficher()
+        print("\n")
+
+    def DegatsPerdant(self, team_j, team_ia):
+        degats = 0
+        
+        if len(team_j) > 0: #victoire joueur
+            for carte in team_j:
+                degats += carte.atk_combat
+
+            self.__ia.pv -= degats
+
+        elif len(team_ia) > 0: #victoire IA
+            for carte in team_ia:
+                degats += carte.atk_combat
+
+            self.__joueur.pv -= degats
+        else:
+            pass #draw
+
     def LancerCombat(self):
-        team_j = copy.copy(self.__joueur.combatants)
-        team_ia = copy.copy(self.__ia.combatants)
+        team_j = copy.deepcopy(self.__joueur.combatants)
+        team_ia = copy.deepcopy(self.__ia.combatants)
+
         tour_du_joueur = random.randint(0,1)
+
         attaquant_j = 0
         attaquant_ia = 0
+
         nb_atq = 0 #pour gerer la furie des vents
+
         while (team_j and team_ia):
             place = -1
-            if tour_du_joueur == True: #tour du joueur
+
+            print("---===  [COMBAT]  ===---")
+            self.AffCombat(team_j, team_ia)
+
+            if tour_du_joueur:
+
                 for i in range(0,len(team_ia)):
                     if team_ia[i].effet['provocation'] == True: # la carte a provocation
                         place = i #elle devient la cible prioritaire
+
                 if place == -1: #si aucune carte n'a provocation
                     place = random.randint(0,len(team_ia) -1) #une carte est choisie aléatoirement
                 
@@ -79,25 +131,7 @@ class Champ_de_bataille():
 
             tour_du_joueur = tour_du_joueur + 1 % 2 #Changement de joueur
             
-            #Affichage zbeule, a faire propre
-            print("\n---===[COMBAT]===---")
-            print("Mobs coté IA:")
-            for mobs in team_ia:
-                mobs.Afficher()
-            print("\nMobs coté joueur:")
-            for mobs in team_j:
-                mobs.Afficher()
+            print("---===  [RESULTAT]  ===---")
+            self.AffCombat(team_j, team_ia)
 
-        degats = 0
-        
-        if len(team_j) > 0: #victoire joueur
-            for carte in team_j:
-                degats += carte.GetAtkCombat()
-            self.__ia.SetPV(self.__ia.pv - degats)
-
-        elif len(team_ia) > 0: #victoire IA
-            for carte in team_ia:
-                degats += carte.GetAtkCombat()
-            self.__joueur.SetPV(self.__joueur.pv - degats)
-        else:
-            pass #draw     
+        self.DegatsPerdant(team_j, team_ia)

@@ -1,20 +1,24 @@
 from joueur import *
 from champ_de_bataille import *
 from message import *
+from ia import *
 import catalogue, os
 
 def Principal():
-    #Initialise les joueurs avec 1 d'or de plus que le max pour la première initialisation boutique
-    j1 = Joueur(3, 4, "Joueur")
-    ia = Joueur(3, 4, "IA")
+    #Initialise les joueurs
+    j1 = Joueur(3, 3, "Joueur")
+    ia1 = IA(3, 3, "IA")
 
     #initialise les listes de cartes
     catalogue.UpdateTierList()
 
-    terrain = Champ_de_bataille(j1,ia)
+    #Affrontement j1 contre ia
+    terrain = Champ_de_bataille(j1,ia1)
 
-    j1.RafraichirBoutique()
-    ia.RafraichirBoutique()
+    #initialise les boutiques
+    j1.boutique.Rafraichir()
+    ia1.boutique.Rafraichir()
+
     """
     #affichage environnement j1
     j1.AffStats()
@@ -42,7 +46,7 @@ def Principal():
     """
 
     #Prototype de code:
-    while j1.pv > 0 and ia.pv > 0:
+    while j1.pv > 0 and ia1.pv > 0:
         """"" A déplacer après le combat
         if j1.argent_max < 10:
             j1.SetArgentMax(j1.argent_max+1)
@@ -51,52 +55,40 @@ def Principal():
         j1.SetArgent(j1.argent_max)
         ia.SetArgent(ia.argent_max)
         """
-        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n") #Clear de l'écran sauvage, pratique si le clear dessous marche pas
-        os.system("cls||clear") #Effacte le terminal
+        print("\n" * 100) #Clear de l'écran sauvage, pratique si le clear dessous marche pas
+        os.system("cls||clear") #Efface le terminal
+
         j1.AffStats()
-        j1.main.Afficher()
-        print("\n")
-        ia.AffStats()
-        print("Ouvrez la boutique en tappant 'Boutique', posez des cartes avec 'Poser', vendez avec 'Vendre' et démarrez le combat avec 'Combat'")
-        entree = input ()
-        if entree == "Boutique":
+        ia1.AffStats()
+
+        entree = input("b) Ouvrir la boutique\np) Poser des cartes\nv) Vendre\nc) Combatre\nq) Quitter\n--> ")
+
+        if entree == 'b':
             j1.AffBoutique()
             j1.ActionBoutique()
 
-        if entree == "Poser":
+        elif entree == 'p':
             j1.AffPoser()
             j1.ActionPoser()
             
-        elif entree == "Combat":
-            ia.RafraichirBoutique()
-            #IA Qui se créer son deck
-            if ia.argent >= ia.boutique.prix_upgrade:
-                ia.UpBoutique #Bug possible: Si boutique LV MAX, message d'erreur, mais pas de plantage
+        elif entree == 'c':
+            ia1.preparation()
 
-            while ia.argent >= carte.PRIX_CARTE and len(ia.GetCombatants()) < 4:
-                print("Carte acheter et poser")
-                ia.Acheter(1)
-                ia.PoserCarte(1)
-            if len(ia.GetCombatants()) == 4 and ia.GetMain().GetNbCartes() < 6 and ia.GetArgent() >= 3: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
-                ia.VendreCarte(1) 
-                ia.Acheter(1)
-                ia.PoserCarte(1)
-            if ia.argent > 0:
-                ia.RafraichirBoutique()
+            #---- combat ----
+
             terrain.LancerCombat()
 
-            if j1.argent_max < 10:
-                j1.SetArgentMax(j1.argent_max+1)
-            if ia.argent_max < 10:
-                ia.SetArgentMax(ia.argent_max+1)
-            j1.SetArgent(j1.argent_max)
-            ia.SetArgent(ia.argent_max)
-            if j1.boutique.prix_upgrade > 1:
-                j1.boutique.prix_upgrade += -1
-            if ia.boutique.prix_upgrade > 1:
-                ia.boutique.prix_upgrade += -1
-            time.sleep(5)
-        elif entree == "Vendre":
+            #---- après le combat ----
+
+            #mise à jour de l'argent
+            terrain.MajArgent()
+
+            #mise à jour du prix d'upgrade des boutiques
+            terrain.MajBoutique()
+
+            input("--------- appuyez pour passer ---------")
+
+        elif entree == 'v':
             print ("Choisissez le numéro de la carte que vous souhaitez vendre, ou tapez autre chose pour quitter\n\n")
             print("Les cartes dans votre main:\n")
             j1.main.Afficher()
@@ -112,5 +104,8 @@ def Principal():
                 j1.VendreCarte(3)
             elif entree == "4" and len(j1.combatants) > 3:
                 j1.VendreCarte(4)
+
+        elif entree == 'q':
+            return
 
 Principal()
