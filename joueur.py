@@ -11,7 +11,7 @@ class Joueur:
         self.__boutique = boutique.Boutique() #Boutique (propre au joueur)
         self.__combatants = [] #Cartes posées
 
-    #Geteurs et Seteurs
+    #Geteurs et Seteurs---------------------------------------------------------------------
 
     def GetBoutique(self):
         return self.__boutique

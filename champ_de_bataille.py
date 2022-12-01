@@ -7,6 +7,8 @@ class Champ_de_bataille():
         self.__joueur = joueur
         self.__ia = ia
     
+    #Méthodes-----------------------------------------------------------------------------------------
+
     def LancerCombat(self):
         team_j = list(self.__joueur.GetCombatants())
         team_ia = list(self.__ia.GetCombatants())
