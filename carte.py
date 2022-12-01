@@ -31,7 +31,3 @@ class Carte():
     def Attaquer(self, adversaire): #Fait attaquer cette carte
         adversaire.SetPvCombat(advarsaire.GetPvCombat() - self.__atk_combat) #L'adversaire prend les dégats
         self.__pv_combat -= adversaire.GetAtkCombat() #L'attaquant prend les dégats aussi
-
-    def Meurt(self): #Fait mourir la carte (La retire du terain)
-        if self.__pv < 1:
-            pass
