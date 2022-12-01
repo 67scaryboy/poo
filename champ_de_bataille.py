@@ -8,8 +8,8 @@ class Champ_de_bataille():
         self.__ia = ia
     
     def LancerCombat(self):
-        team_j = self.__joueur.GetCombatants()
-        team_ia = self.__ia.GetCombatants()
+        team_j = list(self.__joueur.GetCombatants())
+        team_ia = list(self.__ia.GetCombatants())
         relais = random.randint(0,1)
         attaquant_j = 0
         attaquant_ia = 0
@@ -43,15 +43,15 @@ class Champ_de_bataille():
                     if team_j[j].GetEffet()[0] == True: #si la carte a provocation
                         place = j #elle devient la cible prioritaire
                 if place == -1: #si aucune carte n'a provocation
-                    place = random.randint(0,len(team_ia) -1) #une carte est choisie aléatoirement
+                    place = random.randint(0,len(team_j) -1) #une carte est choisie aléatoirement
                 
                 team_ia[attaquant_ia].Attaquer(team_j[place]) #la carte attaque     
                 
                 if team_ia[attaquant_ia].GetPvCombat() <= 0:
                     del team_ia[attaquant_ia] #enlever si elle est morte
-               
                 else:# gestion du windfurry ici-----------------------------------------------------------------------------
                     attaquant_ia = attaquant_ia + 1 % len(team_ia) #selection du prochain attaquant enemi
+                
                 if team_j[place].GetPvCombat() <= 0:
                     del team_j[place] #enlever la carte alliée si elle est morte
                     
@@ -61,6 +61,7 @@ class Champ_de_bataille():
                         if place >= len(team_j):
                             attaquant_ia = 0
             relais = relais + 1 % 2 #Changement de joueur
+            
             #Affichage zbeule, a faire propre
             print("\n---===[COMBAT]===---")
             print("Mobs coté IA:")
@@ -69,6 +70,7 @@ class Champ_de_bataille():
             print("\nMobs coté joueur:")
             for mobs in team_j:
                 mobs.Afficher()
+
         degats = 0
         if len(team_j) > 0: #victoire joueur
             for carte in team_j:
