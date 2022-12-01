@@ -3,93 +3,106 @@ from message import *
 
 class Joueur:
     def __init__(self, argent_max, argent, pseudo):
-        self.__pv_max = 20
-        self.__pv = self.__pv_max
-        self.__main = main.Main() #Main du joueur
-        self.__argent_max = argent_max #Pièces max disponibles (dépassable, uniquement pour le compte des tours)
-        self.__argent = argent #Pièces disponibles
-        self.__pseudo = pseudo #Nom du joueur
-        self.__boutique = boutique.Boutique() #Boutique (propre au joueur)
-        self.__combatants = [] #Cartes posées
-        self.__num_attaquant = 0
+        self._pv_max = 20
+        self._pv = self._pv_max
+        self._main = main.Main() #Main du joueur
+        self._argent_max = argent_max #Pièces max disponibles (dépassable, uniquement pour le compte des tours)
+        self._argent = argent #Pièces disponibles
+        self._pseudo = pseudo #Nom du joueur
+        self._boutique = boutique.Boutique() #Boutique (propre au joueur)
+        self._combatants = [] #Cartes posées
+        self._num_attaquant = 0
 
     #Geteurs et Seteurs---------------------------------------------------------------------
 
     def SetNumAttaquant(self, valeur):
-        self.__num_attaquant = valeur
+        self._num_attaquant = valeur
     
     def GetNumAttaquant(self):
-        return self.__num_attaquant
+        return self._num_attaquant
 
     num_attaquant = property(GetNumAttaquant, SetNumAttaquant)
 
     def SetArgentMax(self, valeur):
-        self.__argent_max = valeur
+        self._argent_max = valeur
     
     def GetArgentMax(self):
-        return self.__argent_max
+        return self._argent_max
 
     argent_max = property(GetArgentMax, SetArgentMax)
 
     def SetArgent(self, valeur):
-        self.__argent = valeur
+        self._argent = valeur
 
     def GetArgent(self):
-        return self.__argent
+        return self._argent
 
     argent = property(GetArgent, SetArgent)
 
     def GetBoutique(self):
-        return self.__boutique
+        return self._boutique
 
     boutique = property(GetBoutique)
 
     def GetMain(self):
-        return self.__main
+        return self._main
 
     main = property(GetMain)
     
     def GetCombatants(self):
-        return self.__combatants
+        return self._combatants
 
     combatants = property(GetCombatants)
     
     def GetPV(self):
-        return self.__pv
+        return self._pv
     
-    def SetPV(self, nouveauxpv):
-        self.__pv = nouveauxpv
+    def SetPV(self, nouveaux_pv):
+        self._pv = nouveaux_pv
 
     pv = property(GetPV, SetPV)
+
+    def GetPVMax(self):
+        return self._pv_max
+
+    def SetPVMax(self, nouveaux_pv_max):
+        self._pv_max = nouveaux_pv_max
+
+    pv_max = property(GetPVMax, SetPVMax)
+
+    def GetPseudo(self):
+        return self._pseudo
+
+    pseudo = property(GetPseudo)
 
     #Méthodes---------------------------------------------------------------------------------------------------------
 
     def Acheter(self, numcarte):
-        cartes_boutiques = self.__boutique.cartes
-        if (self.__argent >= 3) and (len(self.__main.cartes) < self.__main.nb_cartes_max):
-            self.__argent -= 3
-            self.__main.Ajout_carte(cartes_boutiques[numcarte-1])
-            self.__boutique.DelCartes(numcarte)
+        cartes_boutiques = self.boutique.cartes
+        if (self.argent >= 3) and (len(self.main.cartes) < self.main.nb_cartes_max):
+            self.argent -= 3
+            self.main.Ajout_carte(cartes_boutiques[numcarte-1])
+            self.boutique.DelCartes(numcarte)
 
-        elif (len(self.__main.cartes) == self.__main.nb_cartes_max):
+        elif (len(self.main.cartes) == self.main.nb_cartes_max):
             aff_msg("Opération impossible, main pleine (6 cartes maximum !")
 
-        elif (self.__argent >= 3):
+        elif (self.argent >= 3):
             aff_msg("Opération impossible, argent insuffisant (3 pour un achat !)")
 
     def UpBoutique(self):
-        if self.__argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max:
-            self.__argent -= self.boutique.prix_upgrade
+        if self.argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max:
+            self.argent -= self.boutique.prix_upgrade
             self.boutique.Ameliorer()
-            self.__boutique.Rafraichir()
+            self.boutique.Rafraichir()
         else:
             aff_msg("Opération impossible")
             # Ajouter la fonction "afficher jeu"
     
     def RafraichirBoutique(self):
-        if self.__argent > 0:
-            self.__boutique.Rafraichir()
-            self.__argent -= 1
+        if self.argent > 0:
+            self.boutique.Rafraichir()
+            self.argent -= 1
         else:
             aff_msg("Opération impossible")
             # Ajouter la fonction "affichage jeu"
@@ -152,26 +165,26 @@ class Joueur:
             carte.Afficher()
 
     def AffCombatants(self):
-        print(f"    Combatants {self.__pseudo}:")
+        print(f"    Combatants {self.pseudo}:")
         print("    ", end="")
-        for carte in self.__combatants:
+        for carte in self.combatants:
             carte.Afficher()
         print('\n')
 
     def AffBoutique(self):
-        print(f"    Boutique tier {self.boutique.tier} {self.__pseudo} ({self.boutique.prix_upgrade} pour upgrade)")
+        print(f"    Boutique tier {self.boutique.tier} {self.pseudo} ({self.boutique.prix_upgrade} pour upgrade)")
         print("    ", end="")
-        for carte in self.__boutique.cartes:
+        for carte in self.boutique.cartes:
             carte.Afficher()
         print('\n')
         print("Vous pouvez quitter la boutique en tappant 'q', l'upgrade avec 'u', la rafraichir avec 'r' ou acheter une carte en entrant son numéro")
 
     def AffMain(self):
-        print(f"    Main {self.__pseudo}:")
+        print(f"    Main {self.pseudo}:")
         print("    ", end="")
-        for carte in self.__main.cartes:
+        for carte in self.main.cartes:
             carte.Afficher()
         print('\n')
     
     def AffStats(self):
-        print(f"{self.__pseudo}({self.__pv}/{self.__pv_max}) argent:{self.__argent}/{self.__argent_max}\n")
+        print(f"{self.pseudo}({self.pv}/{self.pv_max}) argent:{self.argent}/{self.argent_max}\n")

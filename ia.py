@@ -7,8 +7,10 @@ class IA(Joueur):
     def preparation(self):
         self.RafraichirBoutique()
         #IA Qui se créer son deck
-        if self.argent >= self.boutique.prix_upgrade:
-            self.UpBoutique #Bug possible: Si boutique LV MAX, message d'erreur, mais pas de plantage
+        if self.argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max:
+            self.argent -= self.boutique.prix_upgrade
+            self.boutique.Ameliorer()
+            self.boutique.Rafraichir()
 
         while self.argent >= carte.PRIX_CARTE and len(self.combatants) < 4:
             self.Acheter(1)
