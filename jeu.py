@@ -15,5 +15,12 @@ def Principal():
 
     for carte in j1.GetBoutique().GetCartes():
         carte.Afficher()
+    j1.Acheter(1)
+
+    print("_______________")
+    for carte in j1.GetBoutique().GetCartes():
+        carte.Afficher()
+    print("_______________")
+    print (j1.GetMain().GetCartesEnMain()[0])
 
 Principal()
