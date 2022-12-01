@@ -61,9 +61,15 @@ class Champ_de_bataille():
                         if place >= len(team_j):
                             attaquant_ia = 0
             relais = relais + 1 % 2 #Changement de joueur
-        if len(team_j) > 0:
-            pass #victoire joueur
-        elif len(team_ia) > 0:
-            pass #victoire ia
+        dégats = 0
+        if len(team_j) > 0: #victoire joueur
+            for carte in team_j:
+                dégats += carte.GetAtkCombat
+            self.__ia.SetPV(self.__ia.GetPV() - dégats)
+
+        elif len(team_ia) > 0: #victoire IA
+            for carte in team_ia:
+                dégats += carte.GetAtkCombat
+            self.__joueur.SetPV(self.__joueur.GetPV() - dégats)
         else:
             pass #draw     
