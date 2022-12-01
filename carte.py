@@ -46,4 +46,4 @@ class Carte():
             if self.__effet[2] == True: #si l'attaquant a toxicité
                 adversaire.SetPvCombat(0)  #tuer la cible
             else: #sinon
-                adversaire.SetPvCombat(advarsaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats
+                adversaire.SetPvCombat(adversaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats
