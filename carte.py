@@ -10,7 +10,12 @@ class Carte():
         self.__race = race                #Race
         self.__tier = tier                #Tier de la boutique dans lequel il est achetable
 
+<<<<<<< HEAD
+    def Afficher(self):
+        print(f"({self.__nom} {self.__pv_combat}PV {self.__atk_combat}ATK) | ", end='' )   
+=======
     #Geteurs et Seteurs-----------------------------------------------------------------------
+>>>>>>> 9bc4e0bea6c075941c0aed3315a43199f56d1fe1
 
     def GetTier(self):
         return self.__tier
