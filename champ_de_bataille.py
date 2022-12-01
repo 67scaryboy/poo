@@ -62,17 +62,17 @@ class Champ_de_bataille():
                             attaquant_ia = 0
             relais = relais + 1 % 2 #Changement de joueur
             #Affichage zbeule, a faire propre
-            print("---===[COMBAT]===---")
+            print("\n---===[COMBAT]===---")
             print("Mobs coté IA:")
             for mobs in team_ia:
                 mobs.Afficher()
-            print("\n\Mobs coté joueur:")
+            print("\nMobs coté joueur:")
             for mobs in team_j:
                 mobs.Afficher()
-        dégats = 0
+        degats = 0
         if len(team_j) > 0: #victoire joueur
             for carte in team_j:
-                degats += carte.GetAtkCombat
+                degats += carte.GetAtkCombat()
             self.__ia.SetPV(self.__ia.GetPV() - degats)
 
         elif len(team_ia) > 0: #victoire IA

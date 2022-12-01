@@ -22,17 +22,21 @@ def Principal():
 
     #actions en jeu
     j1.Acheter(1)
-    j1.Acheter(1)
+    j1.Acheter(2)
     ia.Acheter(1)
-    ia.Acheter(1)
+    ia.Acheter(2)
+    j1.PoserCarte(1)
     j1.PoserCarte(1)
     ia.PoserCarte(1)
+    ia.PoserCarte(1)
     print("=============")
-
-    for i in range (0,len(ia.GetCombatants())-1): 
+    for i in range (0,len(ia.GetCombatants())): 
         ia.GetCombatants()[i].Afficher()
-    for i in range (0,len(j1.GetCombatants())-1): 
+        print("\n")
+    print("''''''")
+    for i in range (0,len(j1.GetCombatants())): 
         j1.GetCombatants()[i].Afficher()
+        print("\n")
 
     terrain.LancerCombat()
 """
