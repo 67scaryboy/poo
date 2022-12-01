@@ -61,6 +61,14 @@ class Champ_de_bataille():
                         if place >= len(team_j):
                             attaquant_ia = 0
             relais = relais + 1 % 2 #Changement de joueur
+            #Affichage zbeule, a faire propre
+            print("---===[COMBAT]===---")
+            print("Mobs coté IA:")
+            for mobs in team_ia:
+                team_ia.Afficher()
+            print("\n\Mobs coté joueur:")
+            for mobs in team_j:
+                team_j.Afficher()
         dégats = 0
         if len(team_j) > 0: #victoire joueur
             for carte in team_j:

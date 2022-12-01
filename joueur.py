@@ -11,6 +11,14 @@ class Joueur:
         self.__boutique = boutique.Boutique() #Boutique (propre au joueur)
         self.__combatants = [] #Cartes posées
 
+    def AffBoutique(self):
+        for carte in self.__boutique.GetCartes():
+            carte.Afficher()
+
+    def AffMain(self):
+        for carte in self.__main.GetCartes():
+            carte.Afficher()
+
     def GetBoutique(self):
         return self.__boutique
 
@@ -51,8 +59,8 @@ class Joueur:
             # Ajouter la fonction "affichage jeu"
     
     def PoserCarte(self,numcarte):
-        if numcarte > self.__main.__nb_cartes:
+        if numcarte > self.GetMain().GetNbCartes():
             print ("La carte que tu essaie de poser n'existe pas")
             exit(2)
-        self.__combatants.append(self.__main.__cartes_en_main[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
-        del self.__main.__cartes_en_main[numcarte-1] #Retire la carte choisie de la main
+        self.GetCombatants().append(self.GetMain().GetCartesEnMain()[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
+        del self.GetMain().GetCartesEnMain()[numcarte-1] #Retire la carte choisie de la main
