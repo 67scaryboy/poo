@@ -19,20 +19,30 @@ class Joueur:
     def GetArgentMax(self):
         return self.__argent_max
 
+    argent_max = property(GetArgentMax, SetArgentMax)
+
     def SetArgent(self, valeur):
         self.__argent = valeur
 
     def GetArgent(self):
         return self.__argent
 
+    argent = property(GetArgent, SetArgent)
+
     def GetBoutique(self):
         return self.__boutique
 
+    boutique = property(GetBoutique)
+
     def GetMain(self):
         return self.__main
+
+    main = property(GetMain)
     
     def GetCombatants(self):
         return self.__combatants
+
+    combatants = property(GetCombatants)
     
     def GetPV(self):
         return self.__pv
@@ -40,10 +50,12 @@ class Joueur:
     def SetPV(self, nouveauxpv):
         self.__pv = nouveauxpv
 
+    pv = property(GetPV, SetPV)
+
     #Méthodes---------------------------------------------------------------------------------------------------------
 
     def Acheter(self, numcarte):
-        cartes_boutiques = boutique.Boutique.GetCartes(self.__boutique)
+        cartes_boutiques = self.__boutique.cartes
         if (self.__argent >= 3) and (main.Main.GetNbCartes(self.__main) < main.Main.GetNbCartesmax(self.__main)):
             self.__argent -= 3
             self.__main.Ajout_carte(cartes_boutiques[numcarte-1])
@@ -52,9 +64,9 @@ class Joueur:
             print("Opération impossible")
 
     def UpBoutique(self):
-        if self.__argent > self.GetBoutique().GetPrixUpgrade(): #Verification de tier deja effectuée dans boutique.ameliorer
-            self.__argent-= self.GetBoutique().GetPrixUpgrade()
-            self.GetBoutique().Ameliorer()
+        if self.__argent > self.boutique.GetPrixUpgrade(): #Verification de tier deja effectuée dans boutique.ameliorer
+            self.__argent-= self.boutique.GetPrixUpgrade()
+            self.boutique.Ameliorer()
         else:
             print("Opération impossible")
             # Ajouter la fonction "afficher jeu"
@@ -68,12 +80,12 @@ class Joueur:
             # Ajouter la fonction "affichage jeu"
     
     def PoserCarte(self,numcarte):
-        if numcarte > self.GetMain().GetNbCartes():
+        if numcarte > self.main.nb_cartes:
             print ("La carte que tu essaie de poser n'existe pas")
             exit(2)
-        self.GetMain().GetCartes()[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
-        self.GetCombatants().append(self.GetMain().GetCartes()[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
-        del self.GetMain().GetCartes()[numcarte-1] #Retire la carte choisie de la main
+        self.main.cartes[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
+        self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
+        del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
     
     #Méthodes liées à l'affichage---------------------------------------------------------------------------------------------
 
@@ -87,14 +99,14 @@ class Joueur:
     def AffBoutique(self):
         print(f"    Boutique {self.__pseudo}:")
         print("    ", end="")
-        for carte in self.__boutique.GetCartes():
+        for carte in self.__boutique.cartes:
             carte.Afficher()
         print('\n')
 
     def AffMain(self):
         print(f"    Main {self.__pseudo}:")
         print("    ", end="")
-        for carte in self.__main.GetCartes():
+        for carte in self.__main.cartes:
             carte.Afficher()
         print('\n')
     

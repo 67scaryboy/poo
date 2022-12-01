@@ -42,18 +42,18 @@ def Principal():
     """
 
     #Prototype de code:
-    while j1.GetPV() > 0 and ia.GetPV() > 0:
+    while j1.pv > 0 and ia.pv > 0:
         """"" A déplacer après le combat
-        if j1.GetArgentMax() < 10:
-            j1.SetArgentMax(j1.GetArgentMax()+1)
-        if ia.GetArgentMax() < 10:
-            ia.SetArgentMax(ia.GetArgentMax()+1)
-        j1.SetArgent(j1.GetArgentMax())
-        ia.SetArgent(ia.GetArgentMax())
+        if j1.argent_max < 10:
+            j1.SetArgentMax(j1.argent_max+1)
+        if ia.argent_max < 10:
+            ia.SetArgentMax(ia.argent_max+1)
+        j1.SetArgent(j1.argent_max)
+        ia.SetArgent(ia.argent_max)
         """
         os.system("cls||clear") #Effacte le terminal
         j1.AffStats()
-        j1.GetMain().Afficher()
+        j1.main.Afficher()
         ia.AffStats()
         print("Ouvrez la boutique en tappant 'Boutique', ou preparez le combat en tappant 'Combat'")
         entree = input ()
@@ -61,27 +61,23 @@ def Principal():
             j1.AffBoutique()
             print("Vous pouvez quitter la boutique en tappant 'Quitter', la rafraichir avec 'Rafraichir' ou acheter une carte en entrant son numéro")
             entree = input()
-            if entree == "1":
-                j1.Acheter(1)
-            elif entree == "2":
-                j1.Acheter(2)
-            elif entree == "3":
-                j1.Acheter(3)
-            elif entree =="4":
-                j1.Acheter(4)
-            elif entree == "5":
-                j1.Acheter(5)
+
+            #achat de carte avec son numéro
+            if int(entree) in range (1, len(j1.boutique.cartes) +1):
+                j1.Acheter(int(entree))
+
             elif entree == "Rafraichir":
                 j1.RafraichirBoutique()
+
         elif entree == "Combat":
             print("Vous pouvez poser des cartes avec 'Poser' et démarrer le combat avec 'Combat'")
             entree = input()
             if entree == "Poser":
                 print ("Choisissez le numéro de la carte que vous souhaitez poser, ou tappez autre chose pour quitter\n\n")
                 print("Les cartes dans votre main:\n")
-                j1.GetMain().Afficher()
+                j1.main.Afficher()
                 print ("\nVos cartes sur le terrain:\n")
-                for i in j1.GetCombatants():
+                for i in j1.combatants:
                     i.Afficher()
                 entree = input()
                 if entree == "1":
@@ -101,7 +97,7 @@ def Principal():
                 #IA Qui se créer son deck
                 if ia.GetArgent() >= ia.GetBoutique().GetPrixUpgrade():
                     ia.UpBoutique() #Bug possible: Si boutique LV MAX, message d'erreur, mais pas de plantage
-                while ia.GetMain().GetNbCartes() < 6 and ia.GetArgent() >= 3 and len(ia.GetCombatants()) < 4:
+                while ia.main.nb_cartes < 6 and ia.argent >= 3 and len(ia.GetCombatants()) < 4:
                     print("Carte achetée et poser")
                     ia.Acheter(1)
                     ia.PoserCarte(1)
@@ -109,15 +105,15 @@ def Principal():
                 if len(ia.GetCombatants()) == 4 and ia.GetMain().GetNbCartes() < 6 and ia.GetArgent() >= 3: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
                     ia. ####Ajouter la mathode de vente ici et vendre la 1er carte
                     ia.Acheter(1)
-                    ia.PoserCarte(1)
-                """
+                while len(ia.GetCombatants()) < 4 and ia.GetMain().GetNbCartes() > 0:
+                    ia.Poser(1)
                 terrain.LancerCombat()
-                if j1.GetArgentMax() < 10:
-                    j1.SetArgentMax(j1.GetArgentMax()+1)
-                if ia.GetArgentMax() < 10:
-                    ia.SetArgentMax(ia.GetArgentMax()+1)
-                j1.SetArgent(j1.GetArgentMax())
-                ia.SetArgent(ia.GetArgentMax())
+                if j1.argent_max < 10:
+                    j1.SetArgentMax(j1.argent_max+1)
+                if ia.argent_max < 10:
+                    ia.SetArgentMax(ia.argent_max+1)
+                j1.SetArgent(j1.argent_max)
+                ia.SetArgent(ia.argent_max)
                 
         else:
             print ("Commande inconnue")
