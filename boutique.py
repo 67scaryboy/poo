@@ -1,7 +1,7 @@
 import carte, random, catalogue
 
 class Boutique:
-    def __init__(self)
+    def __init__(self):
         self.__tier = 4 #le tiers maximal des cartes dans la taverne
         self.__prix_upgrade = 5 #le prix pour monter le niveau de la taverne
         self.__cartes = [] #les cartes disponibles à l'achat
