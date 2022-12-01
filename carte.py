@@ -10,11 +10,26 @@ class Carte():
         self.__race = race                #Race
         self.__tier = tier                #Tier de la boutique dans lequel il est achetable
 
+<<<<<<< HEAD
     def afficher(self):
         print(f"{self.__nom}\n PV: {self.__pv} / ATK: {self.__atk}\n")
 
+=======
+>>>>>>> c86c691b9b2df5376462e295f9e8bf68525a17bb
     def GetTier(self):
         return self.__tier
+    
+    def GetPvCombat(self):
+        return self.__pv_combat
+
+    def SetPvCombat(self, valeur):  
+        self.__pv_combat = valeur
+    
+    def GetAtkCombat(self):
+        return self.__atk_combat
+    
+    def Afficher(self):
+        print(f"{self.__nom}({self.__pv}): {self.__atk}\n")
 
     def Attaquer(self, adversaire): #Fait attaquer cette carte
         adversaire.__pv_combat -= self.__atk_combat #L'adversaire prend les dégats

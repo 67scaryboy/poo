@@ -6,13 +6,13 @@ class Boutique:
         self.__prix_upgrade = 5 #le prix pour monter le niveau de la taverne
         self.__cartes = [] #les cartes disponibles à l'achat
     
-    def get_cartes(self):
+    def GetCartes(self):
         return self.__cartes
     
-    def set_cartes(self, cartes):
+    def SetCartes(self, cartes):
         self.__cartes = cartes
 
-    def rafraichir(self):
+    def Rafraichir(self):
         self.__cartes = []
         for i in range (0,5,1):
             if self.__tier == 1:
@@ -41,7 +41,7 @@ class Boutique:
                 else: 
                     self.__cartes.append(catalogue.liste_tier_4[random.randint(0,len(catalogue.liste_tier_4)-1)])
     
-    def ameliorer(self):
+    def Ameliorer(self):
         if self.__tier < 5:
             self.__tier +=1
         #retirer l'argent du joueur

@@ -6,13 +6,13 @@ class Main:
         self.__nb_cartes = 0
         self.__nb_cartes_max = 6
     
-    def ajout_carte(self, carte):
+    def Ajout_carte(self, carte):
         if self.__nb_cartes < self.__nb_cartes_max:
             self.__cartes_en_main.append(carte)
             self.__nb_cartes += 1
     
-    def get_nb_cartes(self):
+    def GetNbCartes(self):
         return self.__nb_cartes
     
-    def get_nb_cartesmax(self):
+    def GetNbCartesmax(self):
         return self.__nb_cartes_max

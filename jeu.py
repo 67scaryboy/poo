@@ -1,14 +1,14 @@
 from joueur import *
 import catalogue
 
-def principal():
+def Principal():
     j1 = Joueur(3, 3, "bob")
-    j1.aff_stats()
+    j1.AffStats()
 
     catalogue.UpdateTierList() #initialise les listes de cartes
     j1.RafraichirBoutique()
 
-    for carte in j1.GetBoutique().get_cartes():
-        carte.afficher()
+    for carte in j1.GetBoutique().GetCartes():
+        carte.Afficher()
 
-principal()
+Principal()
