@@ -42,18 +42,18 @@ def Principal():
     """
 
     #Prototype de code:
-    while j1.GetPV() > 0 and ia.GetPV() > 0:
+    while j1.pv > 0 and ia.pv > 0:
         """"" A déplacer après le combat
-        if j1.GetArgentMax() < 10:
-            j1.SetArgentMax(j1.GetArgentMax()+1)
-        if ia.GetArgentMax() < 10:
-            ia.SetArgentMax(ia.GetArgentMax()+1)
-        j1.SetArgent(j1.GetArgentMax())
-        ia.SetArgent(ia.GetArgentMax())
+        if j1.argent_max < 10:
+            j1.SetArgentMax(j1.argent_max+1)
+        if ia.argent_max < 10:
+            ia.SetArgentMax(ia.argent_max+1)
+        j1.SetArgent(j1.argent_max)
+        ia.SetArgent(ia.argent_max)
         """
         os.system("cls||clear") #Effacte le terminal
         j1.AffStats()
-        j1.GetMain().Afficher()
+        j1.main.Afficher()
         ia.AffStats()
         print("Ouvrez la boutique en tappant 'Boutique', ou preparez le combat en tappant 'Combat'")
         entree = input ()
@@ -63,7 +63,7 @@ def Principal():
             entree = input()
 
             #achat de carte avec son numéro
-            if int(entree) in range (1, len(j1.GetBoutique().GetCartes()) +1):
+            if int(entree) in range (1, len(j1.boutique.cartes) +1):
                 j1.Acheter(int(entree))
 
             elif entree == "Rafraichir":
@@ -75,9 +75,9 @@ def Principal():
             if entree == "Poser":
                 print ("Choisissez le numéro de la carte que vous souhaitez poser, ou tappez autre chose pour quitter\n\n")
                 print("Les cartes dans votre main:\n")
-                j1.GetMain().Afficher()
+                j1.main.Afficher()
                 print ("\nVos cartes sur le terrain:\n")
-                for i in j1.GetCombatants():
+                for i in j1.combatants:
                     i.Afficher()
                 entree = input()
                 if entree == "1":
@@ -94,17 +94,17 @@ def Principal():
                     j1.PoserCarte(6)
             elif entree == "Combat":
                 #IA Qui se créer son deck
-                while ia.GetMain().GetNbCartes() < 6 and ia.GetArgent() > 3:
+                while ia.main.nb_cartes < 6 and ia.argent > 3:
                     ia.Acheter(1)
-                while len(ia.GetCombatants()) < 4 and ia.GetMain().GetNbCartes() > 0:
+                while len(ia.combatants) < 4 and ia.main.nb_cartes > 0:
                     ia.Poser(1)
                 terrain.LancerCombat()
-                if j1.GetArgentMax() < 10:
-                    j1.SetArgentMax(j1.GetArgentMax()+1)
-                if ia.GetArgentMax() < 10:
-                    ia.SetArgentMax(ia.GetArgentMax()+1)
-                j1.SetArgent(j1.GetArgentMax())
-                ia.SetArgent(ia.GetArgentMax())
+                if j1.argent_max < 10:
+                    j1.SetArgentMax(j1.argent_max+1)
+                if ia.argent_max < 10:
+                    ia.SetArgentMax(ia.argent_max+1)
+                j1.SetArgent(j1.argent_max)
+                ia.SetArgent(ia.argent_max)
                 
         else:
             print ("Commande inconnue")

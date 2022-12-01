@@ -14,6 +14,8 @@ class Boutique:
     def SetCartes(self, cartes):
         self.__cartes = cartes
 
+    cartes = property(GetCartes, SetCartes)
+
     #Méthodes------------------------------------------------------------------------------------------
     
     def GetPrixUpgrade(self):
@@ -32,7 +34,7 @@ class Boutique:
         for i in range (0,5,1):
             #randomisation du tier de la carte à tirer
             temp = random.randint(0,self.__tier - 1)
-            
+
             #choix aléatoire de la carte du tier donné
             self.__cartes.append(catalogue.liste_tiers[temp][random.randint(0,len(catalogue.liste_tiers[temp])-1)])
     

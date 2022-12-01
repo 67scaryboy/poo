@@ -11,13 +11,19 @@ class Main:
 
     def GetNbCartes(self):
         return self.__NbCartes
+
+    nb_cartes = property(GetNbCartes)
     
     def GetNbCartesmax(self):
         return self.__NbCartesMax
 
+    nb_cartes_max = property(GetNbCartesmax)
+
     def GetCartes(self):
         return self.__Cartes
     
+    cartes = property(GetCartes)
+
     #Méthodes----------------------------------------------------------------------------------------
 
     def Ajout_carte(self, carte):

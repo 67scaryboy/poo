@@ -1,9 +1,15 @@
 from enum import Enum
 from carte import Carte
 
+class Races(Enum):
+    NONDEFINIS=0
+    MONSTRES=1
+    ANIMEAUX=2
+    HUMAINS=3
+
 def UpdateTierList(): #Classe le catalogue dans les tiers lists
     for carte in catalogue:
-        tiermob = carte.GetTier() #Recupère et stock le tier du mob
+        tiermob = carte.tier #Recupère et stock le tier du mob
         if tiermob == 1: #Verifie le tier du mob
             liste_tier_1.append(carte) #Ajoute la mob a la liste correspondante a son tier
         elif tiermob == 2:
@@ -15,12 +21,6 @@ def UpdateTierList(): #Classe le catalogue dans les tiers lists
         else: #En cas d'erreur (tier pas dans l'interval [1,4])
             print ("La carte ", carte, " du catalogue appartient a un tier non définis (<1 ou >4)")
             exit(1)
-
-class Races(Enum):
-    NONDEFINIS=0
-    MONSTRES=1
-    ANIMEAUX=2
-    HUMAINS=3
 
 idcartes = {
     "GEANT": 0, "MAGENOIR": 1, "GOBELIN": 2 ,"LOUP" : 3 , "FEUFOLLET" : 4 , "GARDE" : 5 ,
