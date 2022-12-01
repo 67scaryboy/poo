@@ -55,20 +55,24 @@ class Joueur:
         if self.__argent > self.GetBoutique().GetPrixUpgrade(): #Verification de tier deja effectuée dans boutique.ameliorer
             self.__argent-= self.GetBoutique().GetPrixUpgrade()
             self.GetBoutique().Ameliorer()
+        else:
+            print("Opération impossible")
             # Ajouter la fonction "afficher jeu"
     
     def RafraichirBoutique(self):
         if self.__argent > 1:
             self.__boutique.Rafraichir()
             self.__argent -= 1
+        else:
+            print("Opération impossible")
             # Ajouter la fonction "affichage jeu"
     
     def PoserCarte(self,numcarte):
         if numcarte > self.GetMain().GetNbCartes():
             print ("La carte que tu essaie de poser n'existe pas")
             exit(2)
-        self.GetCombatants().append(self.GetMain().GetCartesEnMain()[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
-        del self.GetMain().GetCartesEnMain()[numcarte-1] #Retire la carte choisie de la main
+        self.GetCombatants().append(self.GetMain().GetCartes()[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
+        del self.GetMain().GetCartes()[numcarte-1] #Retire la carte choisie de la main
     
     #Méthodes liées à l'affichage---------------------------------------------------------------------------------------------
 

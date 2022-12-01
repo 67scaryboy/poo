@@ -18,9 +18,6 @@ class Main:
     def GetCartes(self):
         return self.__Cartes
     
-    def GetCartesEnMain(self):
-        return self.__Cartes
-    
     #Méthodes----------------------------------------------------------------------------------------
 
     def Ajout_carte(self, carte):
