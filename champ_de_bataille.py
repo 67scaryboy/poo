@@ -59,8 +59,6 @@ class Champ_de_bataille():
 
         if place == -1: #si aucune carte n'a provocation
                 place = random.randint(0,len(team_def) -1) #une carte est choisie aléatoirement
-        
-        print(j_atk.num_attaquant, "/", len(team_atk), "et", place, "/", len(team_def)) # BUG PARFOIS
 
         team_atk[j_atk.num_attaquant].Attaquer(team_def[place]) #la carte attaque
         
