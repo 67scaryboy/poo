@@ -32,8 +32,8 @@ class Champ_de_bataille():
                     nb_atq = 0
                
                 else:# gestion du windfurry ici-----------------------------------------------------------------------------
-                    if (team_j[attaquant_j].GetEffet()[3] == True) and (nb_atq == 0): #si la carte a furie des vents et attaqué une seule fois
-                        relais = relais + 1 % 2 #empecher le changement de joueur
+                    if (team_j[attaquant_j].GetEffet()['furie des vents'] == True) and (nb_atq == 0): #si la carte a furie des vents et attaqué une seule fois
+                        tour_du_joueur = tour_du_joueur + 1 % 2 #empecher le changement de joueur
                         nb_atq = 1 #et empecher une troisième attaque
                     else:    
                         attaquant_j = attaquant_j + 1 % len(team_j) #selection du prochain attaquant allié
@@ -61,8 +61,8 @@ class Champ_de_bataille():
                     nb_atq = 0
                     
                 else:# gestion du windfurry ici-----------------------------------------------------------------------------
-                    if (team_ia[attaquant_ia].GetEffet()[3] == True) and (nb_atq == 0): #si l'ennemi a furie des vent et attaqué une seule fois
-                        relais = relais + 1 % 2 #empecher le changement de joueur
+                    if (team_ia[attaquant_ia].GetEffet()['furie des vents'] == True) and (nb_atq == 0): #si l'ennemi a furie des vent et attaqué une seule fois
+                        tour_du_joueur = tour_du_joueur + 1 % 2 #empecher le changement de joueur
                         nb_atq = 1 #et empecher une troisième attaque
                     else:    
                         attaquant_ia = attaquant_ia + 1 % len(team_ia) #selection du prochain attaquant ennemi
