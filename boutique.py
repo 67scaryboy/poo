@@ -11,6 +11,9 @@ class Boutique:
     
     def SetCartes(self, cartes):
         self.__cartes = cartes
+    
+    def DelCartes(self,numcarte): #Retire une carte de la boutique en fonction de sa position
+        del self.__cartes[numcarte-1]
 
     def Rafraichir(self):
         self.__cartes = []
