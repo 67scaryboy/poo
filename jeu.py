@@ -63,11 +63,14 @@ def Principal():
             entree = input()
 
             #achat de carte avec son numéro
-            if int(entree) in range (1, len(j1.boutique.cartes) +1):
-                j1.Acheter(int(entree))
-
-            elif entree == "Rafraichir":
-                j1.RafraichirBoutique()
+            try:
+                nb = int(entree)
+            except:
+                if entree == "Rafraichir":
+                    j1.RafraichirBoutique()
+            else:
+                if nb in range (1, len(j1.boutique.cartes) +1):
+                    j1.Acheter(nb)
 
         elif entree == "Combat":
             print("Vous pouvez poser des cartes avec 'Poser' et démarrer le combat avec 'Combat'")
@@ -105,8 +108,8 @@ def Principal():
                 if len(ia.GetCombatants()) == 4 and ia.GetMain().GetNbCartes() < 6 and ia.GetArgent() >= 3: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
                     ia. ####Ajouter la mathode de vente ici et vendre la 1er carte
                     ia.Acheter(1)
-                while len(ia.GetCombatants()) < 4 and ia.GetMain().GetNbCartes() > 0:
-                    ia.Poser(1)
+                    ia.PoserCarte(1)
+                """
                 terrain.LancerCombat()
                 if j1.argent_max < 10:
                     j1.SetArgentMax(j1.argent_max+1)
