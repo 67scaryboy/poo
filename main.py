@@ -16,3 +16,6 @@ class Main:
     
     def GetNbCartesmax(self):
         return self.__nb_cartes_max
+
+    def GetCartesEnMain(self):
+        return self.__cartes_en_main
