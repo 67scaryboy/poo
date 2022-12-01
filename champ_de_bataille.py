@@ -58,8 +58,10 @@ class Champ_de_bataille():
                 place = i #elle devient la cible prioritaire
 
         if place == -1: #si aucune carte n'a provocation
-            place = random.randint(0,len(team_def) -1) #une carte est choisie aléatoirement
+                place = random.randint(0,len(team_def) -1) #une carte est choisie aléatoirement
         
+        print(j_atk.num_attaquant, "/", len(team_atk), "et", place, "/", len(team_def)) # BUG PARFOIS
+
         team_atk[j_atk.num_attaquant].Attaquer(team_def[place]) #la carte attaque
         
         if team_def[place].pv_combat <= 0:
@@ -73,14 +75,17 @@ class Champ_de_bataille():
 
         if team_atk[j_atk.num_attaquant].pv_combat <= 0:
             del team_atk[j_atk.num_attaquant] #enlever si elle est morte
+            if team_atk:
+                j_atk.num_attaquant %= len(team_atk)
+            
             deuxieme_att = 0
         
         else:# gestion du windfurry ici-----------------------------------------------------------------------------
             if (team_atk[j_atk.num_attaquant].effet['furie des vents'] == True) and (deuxieme_att == 0): #si la carte a furie des vents et attaqué une seule fois
-                tour_du_joueur = tour_du_joueur + 1 % 2 #empecher le changement de joueur
+                tour_du_joueur = (tour_du_joueur + 1) % 2 #empecher le changement de joueur
                 deuxieme_att = 1 #et empecher une troisième attaque
             else:    
-                j_atk.num_attaquant = j_atk.num_attaquant + 1 % len(team_atk) #selection du prochain attaquant allié
+                j_atk.num_attaquant = (j_atk.num_attaquant + 1) % len(team_atk) #selection du prochain attaquant allié
 
         return (deuxieme_att, tour_du_joueur)
 
@@ -103,7 +108,7 @@ class Champ_de_bataille():
             else: #tour de l'ia
                 deuxieme_att, tour_du_joueur = self.LancerAttaque(self.__ia, self.__joueur, team_ia, team_j, deuxieme_att, tour_du_joueur)
 
-            tour_du_joueur = tour_du_joueur + 1 % 2 #Changement de joueur
+            tour_du_joueur = (tour_du_joueur + 1) % 2 #Changement de joueur
             
             print("---===  [RESULTAT]  ===---")
             self.AffCombat(team_j, team_ia)

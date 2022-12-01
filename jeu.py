@@ -89,21 +89,8 @@ def Principal():
             input("--------- appuyez pour passer ---------")
 
         elif entree == 'v':
-            print ("Choisissez le numéro de la carte que vous souhaitez vendre, ou tapez autre chose pour quitter\n\n")
-            print("Les cartes dans votre main:\n")
-            j1.main.Afficher()
-            print ("\nVos cartes sur le terrain:\n")
-            for i in j1.combatants:
-                i.Afficher()
-            entree = input()
-            if entree == "1" and len(j1.combatants) > 0:
-                j1.VendreCarte(1)
-            elif entree == "2" and len(j1.combatants) > 1:
-                j1.VendreCarte(2)
-            elif entree == "3" and len(j1.combatants) > 2:
-                j1.VendreCarte(3)
-            elif entree == "4" and len(j1.combatants) > 3:
-                j1.VendreCarte(4)
+            j1.AffVendre()
+            j1.ActionVendre()
 
         elif entree == 'q':
             return

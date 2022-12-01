@@ -110,15 +110,14 @@ class Joueur:
     def PoserCarte(self,numcarte):
         if numcarte > len(self.main.cartes) or numcarte < 0:
             aff_msg ("La carte que tu essaie de poser n'existe pas")
-            exit(2)
 
-        if len(self.combatants) == 4:
+        elif len(self.combatants) == 4:
             aff_msg("Opération impossible, nombre maximum de sbire atteint (4 max !)")
-            return
-            
-        self.main.cartes[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
-        self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
-        del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
+        
+        else:
+            self.main.cartes[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
+            self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
+            del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
     
     def VendreCarte(self, numcarte):
         if numcarte > len(self.combatants):
@@ -151,6 +150,17 @@ class Joueur:
             pass
         else:
             self.PoserCarte(nb)
+
+    def ActionVendre(self):
+        entree = input()
+
+        try:
+            nb = int(entree)
+        except:
+            pass
+        else:
+            if nb > 0 and len(self.combatants) > nb - 1:
+                self.VendreCarte(nb)
     
     #Méthodes liées à l'affichage---------------------------------------------------------------------------------------------
 
@@ -185,6 +195,14 @@ class Joueur:
         for carte in self.main.cartes:
             carte.Afficher()
         print('\n')
+
+    def AffVendre(self):
+        print ("Choisissez le numéro de la carte que vous souhaitez vendre, ou tapez autre chose pour quitter\n\n")
+        print("Les cartes dans votre main:\n")
+        self.main.Afficher()
+        print ("\nVos cartes sur le terrain:\n")
+        for carte in self.combatants:
+            carte.Afficher()
     
     def AffStats(self):
         print(f"{self.pseudo}({self.pv}/{self.pv_max}) argent:{self.argent}/{self.argent_max}\n")
