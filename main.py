@@ -19,6 +19,9 @@ class Main:
 
     def GetCartes(self):
         return self.__Cartes
+    
+    def GetCartesEnMain(self):
+        return self.__Cartes
 
     def Afficher(self):
         for carte in self.__Cartes:
