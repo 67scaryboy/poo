@@ -71,7 +71,7 @@ class Joueur:
         if numcarte > self.GetMain().GetNbCartes():
             print ("La carte que tu essaie de poser n'existe pas")
             exit(2)
-        self.GetMain().GetCartes()[numcarte-1].CriDeGuerre(self.__combatants, self.__argent) #lancer le cri de guerre 
+        self.GetMain().GetCartes()[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
         self.GetCombatants().append(self.GetMain().GetCartes()[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
         del self.GetMain().GetCartes()[numcarte-1] #Retire la carte choisie de la main
     
