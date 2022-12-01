@@ -5,8 +5,8 @@ import catalogue
 
 def Principal():
     #Initialise les joueurs avec 1 d'or de plus que le max pour la première initialisation boutique
-    j1 = Joueur(3, 4, "bob")
-    ia = Joueur(3, 4, "IA")
+    j1 = Joueur(3, 10, "bob")
+    ia = Joueur(3, 10, "IA")
 
     #initialise les listes de cartes
     catalogue.UpdateTierList()
@@ -22,11 +22,18 @@ def Principal():
 
     #actions en jeu
     j1.Acheter(1)
+    j1.Acheter(1)
+    ia.Acheter(1)
     ia.Acheter(1)
     j1.PoserCarte(1)
     ia.PoserCarte(1)
-    print(j1.GetCombatants()[0])
-    print(ia.GetCombatants()[0])
+    print("=============")
+
+    for i in range (0,len(ia.GetCombatants())-1): 
+        ia.GetCombatants()[i].Afficher()
+    for i in range (0,len(j1.GetCombatants())-1): 
+        j1.GetCombatants()[i].Afficher()
+
     terrain.LancerCombat()
 """
     print("_______________")

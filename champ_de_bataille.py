@@ -65,19 +65,19 @@ class Champ_de_bataille():
             print("---===[COMBAT]===---")
             print("Mobs coté IA:")
             for mobs in team_ia:
-                team_ia.Afficher()
+                mobs.Afficher()
             print("\n\Mobs coté joueur:")
             for mobs in team_j:
-                team_j.Afficher()
+                mobs.Afficher()
         dégats = 0
         if len(team_j) > 0: #victoire joueur
             for carte in team_j:
-                dégats += carte.GetAtkCombat
+                dégats += carte.GetAtkCombat()
             self.__ia.SetPV(self.__ia.GetPV() - dégats)
 
         elif len(team_ia) > 0: #victoire IA
             for carte in team_ia:
-                dégats += carte.GetAtkCombat
+                dégats += carte.GetAtkCombat()
             self.__joueur.SetPV(self.__joueur.GetPV() - dégats)
         else:
             pass #draw     
