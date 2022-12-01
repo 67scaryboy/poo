@@ -87,6 +87,13 @@ class Joueur:
         self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
         del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
     
+    def VendreCarte(self, numcarte):
+        if numcarte > len(self.combatants):
+            print ("La carte que tu essaie de poser n'existe pas")
+            exit(2)
+        del self.combatants[numcarte - 1]
+        self.argent = self.argent + 1
+    
     #Méthodes liées à l'affichage---------------------------------------------------------------------------------------------
 
     def AffCombatants(self):
