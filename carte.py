@@ -49,6 +49,13 @@ class Carte():
             else: #sinon
                 adversaire.SetPvCombat(adversaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats
     
+    def CriDeGuerre(self,combatants):
+        if self.__effet[4] == True: #si la carte a un cri de guerre
+            if self.__id == 1: #Mage noir
+                pass
+        else: #sinon
+            pass #rien
+    
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
     def Afficher(self):
