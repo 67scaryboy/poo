@@ -1,4 +1,4 @@
-import joueur, carte
+import joueur, carte, copy
 import random, math
 from catalogue import *
 
@@ -10,8 +10,8 @@ class Champ_de_bataille():
     #Méthodes-----------------------------------------------------------------------------------------
 
     def LancerCombat(self):
-        team_j = list(self.__joueur.combatants)
-        team_ia = list(self.__ia.combatants)
+        team_j = copy.copy(self.__joueur.combatants)
+        team_ia = copy.copy(self.__ia.combatants)
         tour_du_joueur = random.randint(0,1)
         attaquant_j = 0
         attaquant_ia = 0
