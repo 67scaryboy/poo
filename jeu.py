@@ -16,7 +16,13 @@ def Principal():
     for carte in j1.GetBoutique().GetCartes():
         carte.Afficher()
     j1.Acheter(1)
-
+    ia.Acheter(1)
+    j1.PoserCarte(1)
+    ia.PoserCarte(1)
+    print(j1.GetCombatants()[0])
+    print(ia.GetCombatants()[0])
+    terrain.LancerCombat()
+"""
     print("_______________")
     for carte in j1.GetBoutique().GetCartes():
         carte.Afficher()
@@ -24,5 +30,6 @@ def Principal():
     j1.GetMain().GetCartesEnMain()[0].Afficher()
     print("____________")
     j1.AffStats()
+    """
 
 Principal()
