@@ -67,7 +67,7 @@ class Carte():
 
             elif self.__id == 9: #Tortue Géante
                 for mobs in combatants: #tous les autres combatants
-                    obs.SetPvCombat(mobs.GetPvCombat + 1) #gagnent 1 Pv
+                    mobs.SetPvCombat(mobs.GetPvCombat() + 1) #gagnent 1 Pv
 
         else: #sinon
             pass #rien

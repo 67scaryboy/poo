@@ -5,7 +5,7 @@ import catalogue, os, time
 
 def Principal():
     #Initialise les joueurs avec 1 d'or de plus que le max pour la première initialisation boutique
-    j1 = Joueur(3, 15, "Joueur")
+    j1 = Joueur(3, 4, "Joueur")
     ia = Joueur(3, 4, "IA")
 
     #initialise les listes de cartes
@@ -96,6 +96,20 @@ def Principal():
                     j1.PoserCarte(5)
                 elif entree == "6":
                     j1.PoserCarte(6)
+            elif entree == "Combat":
+                #IA Qui se créer son deck
+                while ia.GetMain().GetNbCartes() < 6 and ia.GetArgent() > 3:
+                    ia.Acheter(1)
+                while len(ia.GetCombatants()) < 4 and ia.GetMain().GetNbCartes() > 0:
+                    ia.Poser(1)
+                terrain.LancerCombat()
+                if j1.GetArgentMax() < 10:
+                    j1.SetArgentMax(j1.GetArgentMax()+1)
+                if ia.GetArgentMax() < 10:
+                    ia.SetArgentMax(ia.GetArgentMax()+1)
+                j1.SetArgent(j1.GetArgentMax())
+                ia.SetArgent(ia.GetArgentMax())
+                
         else:
             print ("Commande inconnue")
         time.sleep(1)
