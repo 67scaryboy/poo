@@ -109,8 +109,26 @@ class Joueur:
         else:
             if nb in range (1, len(self.boutique.cartes) + 1):
                 self.Acheter(nb)
+
+    def ActionPoser(self):
+        entree = input()
+
+        try:
+            nb = int(entree)
+        except:
+            pass
+        else:
+            self.PoserCarte(nb)
     
     #Méthodes liées à l'affichage---------------------------------------------------------------------------------------------
+
+    def AffPoser(self):
+        print ("Choisissez le numéro de la carte que vous souhaitez poser, ou tapez autre chose pour quitter\n\n")
+        print("Les cartes dans votre main:\n")
+        self.main.Afficher()
+        print ("\nVos cartes sur le terrain:\n")
+        for carte in self.combatants:
+            carte.Afficher()
 
     def AffCombatants(self):
         print(f"    Combatants {self.__pseudo}:")
