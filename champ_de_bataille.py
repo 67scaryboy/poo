@@ -1,6 +1,6 @@
 import joueur, carte
-
 import random, math
+from catalogue import *
 
 class Champ_de_bataille():
     def __init__(self, joueur, ia):
@@ -12,14 +12,15 @@ class Champ_de_bataille():
     def LancerCombat(self):
         team_j = list(self.__joueur.GetCombatants())
         team_ia = list(self.__ia.GetCombatants())
-        relais = random.randint(0,1)
+        tour_du_joueur = random.randint(0,1)
         attaquant_j = 0
         attaquant_ia = 0
-        while (len(team_j) > 0) and (len(team_ia) > 0):
+        nb_atq = 0 #pour gerer la furie des vents
+        while (team_j and team_ia):
             place = -1
-            if relais == 1: #tour du joueur
+            if tour_du_joueur == True: #tour du joueur
                 for i in range(0,len(team_ia)):
-                    if team_ia[i].GetEffet()[0] == True: #si la carte a provocation
+                    if team_ia[i].GetEffet()['provocation'] == True: # la carte a provocation
                         place = i #elle devient la cible prioritaire
                 if place == -1: #si aucune carte n'a provocation
                     place = random.randint(0,len(team_ia) -1) #une carte est choisie aléatoirement
@@ -28,12 +29,18 @@ class Champ_de_bataille():
                 
                 if team_j[attaquant_j].GetPvCombat() <= 0:
                     del team_j[attaquant_j] #enlever si elle est morte
+                    nb_atq = 0
                
                 else:# gestion du windfurry ici-----------------------------------------------------------------------------
-                    attaquant_j = attaquant_j + 1 % len(team_j) #selection du prochain attaquant allié
+                    if (team_j[attaquant_j].GetEffet()['furie des vents'] == True) and (nb_atq == 0): #si la carte a furie des vents et attaqué une seule fois
+                        tour_du_joueur = tour_du_joueur + 1 % 2 #empecher le changement de joueur
+                        nb_atq = 1 #et empecher une troisième attaque
+                    else:    
+                        attaquant_j = attaquant_j + 1 % len(team_j) #selection du prochain attaquant allié
+                
                 if team_ia[place].GetPvCombat() <= 0:
                     del team_ia[place] #enlever la carte ennemi si elle est morte
-                    
+
                     if place < attaquant_ia: #réajustement de l'attaquant enemi
                         attaquant_ia -= 1 
                     elif place == attaquant_ia:
@@ -42,7 +49,7 @@ class Champ_de_bataille():
             
             else: #tour de l'ia
                 for j in range(0,len(team_j)):
-                    if team_j[j].GetEffet()[0] == True: #si la carte a provocation
+                    if team_j[j].GetEffet()['provocation'] == True: #si la carte a provocation
                         place = j #elle devient la cible prioritaire
                 if place == -1: #si aucune carte n'a provocation
                     place = random.randint(0,len(team_j) -1) #une carte est choisie aléatoirement
@@ -51,8 +58,15 @@ class Champ_de_bataille():
                 
                 if team_ia[attaquant_ia].GetPvCombat() <= 0:
                     del team_ia[attaquant_ia] #enlever si elle est morte
+                    nb_atq = 0
+                    
                 else:# gestion du windfurry ici-----------------------------------------------------------------------------
-                    attaquant_ia = attaquant_ia + 1 % len(team_ia) #selection du prochain attaquant enemi
+                    if (team_ia[attaquant_ia].GetEffet()['furie des vents'] == True) and (nb_atq == 0): #si l'ennemi a furie des vent et attaqué une seule fois
+                        tour_du_joueur = tour_du_joueur + 1 % 2 #empecher le changement de joueur
+                        nb_atq = 1 #et empecher une troisième attaque
+                    else:    
+                        attaquant_ia = attaquant_ia + 1 % len(team_ia) #selection du prochain attaquant ennemi
+                        nb_atk = 0
                 
                 if team_j[place].GetPvCombat() <= 0:
                     del team_j[place] #enlever la carte alliée si elle est morte
@@ -62,7 +76,8 @@ class Champ_de_bataille():
                     elif place == attaquant_j:
                         if place >= len(team_j):
                             attaquant_ia = 0
-            relais = relais + 1 % 2 #Changement de joueur
+
+            tour_du_joueur = tour_du_joueur + 1 % 2 #Changement de joueur
             
             #Affichage zbeule, a faire propre
             print("\n---===[COMBAT]===---")
@@ -74,6 +89,7 @@ class Champ_de_bataille():
                 mobs.Afficher()
 
         degats = 0
+        
         if len(team_j) > 0: #victoire joueur
             for carte in team_j:
                 degats += carte.GetAtkCombat()
