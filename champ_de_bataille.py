@@ -72,12 +72,12 @@ class Champ_de_bataille():
         dégats = 0
         if len(team_j) > 0: #victoire joueur
             for carte in team_j:
-                dégats += carte.GetAtkCombat()
-            self.__ia.SetPV(self.__ia.GetPV() - dégats)
+                degats += carte.GetAtkCombat
+            self.__ia.SetPV(self.__ia.GetPV() - degats)
 
         elif len(team_ia) > 0: #victoire IA
             for carte in team_ia:
-                dégats += carte.GetAtkCombat()
-            self.__joueur.SetPV(self.__joueur.GetPV() - dégats)
+                degats += carte.GetAtkCombat()
+            self.__joueur.SetPV(self.__joueur.GetPV() - degats)
         else:
             pass #draw     

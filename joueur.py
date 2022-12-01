@@ -12,12 +12,18 @@ class Joueur:
         self.__combatants = [] #Cartes posées
 
     def AffBoutique(self):
+        print(f"    Boutique {self.__pseudo}:")
+        print("    ", end="")
         for carte in self.__boutique.GetCartes():
             carte.Afficher()
+        print('\n')
 
     def AffMain(self):
+        print(f"    Main {self.__pseudo}:")
+        print("    ", end="")
         for carte in self.__main.GetCartes():
             carte.Afficher()
+        print('\n')
 
     def GetBoutique(self):
         return self.__boutique
@@ -44,7 +50,7 @@ class Joueur:
             print("Opération impossible")
 
     def AffStats(self):
-        print(f"{self.__pseudo}: {self.__pv}/{self.__pv_max}     argent:{self.__argent}/{self.__argent_max}")
+        print(f"{self.__pseudo}({self.__pv}/{self.__pv_max}) argent:{self.__argent}/{self.__argent_max}\n")
 
     def UpBoutique(self):
         if self.__boutique.__tier < 5 and self.__argent > self.__boutique.__prixupgrade:

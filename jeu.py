@@ -39,10 +39,8 @@ def Principal():
     print("_______________")
     j1.AffBoutique()
 
-    print("_______________")
     j1.AffMain()
 
-    print("____________")
     j1.AffStats()
     """
 
