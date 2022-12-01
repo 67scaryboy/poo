@@ -10,7 +10,7 @@ class Carte():
         self.__race = race                #Race
         self.__tier = tier                #Tier de la boutique dans lequel il est achetable
 
-    def afficher(self):
+    def Afficher(self):
         print(f"{self.__nom}({self.__pv}): {self.__atk}\n")
 
     def GetTier(self):

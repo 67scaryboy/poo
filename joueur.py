@@ -13,8 +13,17 @@ class Joueur:
 
     def GetBoutique(self):
         return self.__boutique
+    
+    def GetCombatants(self):
+        return self.__combatants
+    
+    def GetPV(self):
+        return self.__pv
+    
+    def SetPV(self, nouveauxpv):
+        self.__pv = nouveauxpv
 
-    def acheter(self, carte):
+    def Acheter(self, carte):
         cartes_boutiques = boutique.Boutique.get_cartes(self.__boutique)
         if carte in cartes_boutiques:
             if (self.__argent >= 3) and (main.Main.get_nb_cartes(self.__main) < main.Main.get_nb_cartesmax(self.__main)):
@@ -23,7 +32,7 @@ class Joueur:
             else:
                 print("Opération impossible")
 
-    def aff_stats(self):
+    def AffStats(self):
         print(f"{self.__pseudo}: {self.__pv}/{self.__pv_max}     argent:{self.__argent}/{self.__argent_max}")
 
     def UpBoutique(self):
@@ -34,6 +43,6 @@ class Joueur:
     
     def RafraichirBoutique(self):
         if self.__argent > 1:
-            self.__boutique.rafraichir()
+            self.__boutique.Rafraichir()
             self.__argent -= 1
             # Ajouter la fonction "affichage jeu"
