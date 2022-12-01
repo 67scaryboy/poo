@@ -25,7 +25,7 @@ class Races(Enum):
 idcartes = {
     "GEANT": 0, "MAGENOIR": 1, "GOBELIN": 2 ,"LOUP" : 3 , "FEUFOLLET" : 4 , "GARDE" : 5 ,
     "ASSASSIN" : 6 , "PRETRE" : 7 , "FANTOME" : 8 , "TORTUE" : 9 , "DRAGON" : 10 ,
-    "HEROS" : 11 , "ROIDEMON" : 12
+    "HEROS" : 11 , "ROIDEMON" : 12, "VIRUS" : 13
     }
 
 #Listes de cartes par tier
