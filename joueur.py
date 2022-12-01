@@ -60,9 +60,9 @@ class Joueur:
         print(f"{self.__pseudo}({self.__pv}/{self.__pv_max}) argent:{self.__argent}/{self.__argent_max}\n")
 
     def UpBoutique(self):
-        if self.__boutique.__tier < 5 and self.__argent > self.__boutique.__prixupgrade:
-            self.__argent-= self.__boutique.__prixupgrade
-            self.__boutique.__tier +=1
+        if self.__argent > self.GetBoutique().GetPrixUpgrade(): #Verification de tier deja effectuée dans boutique.ameliorer
+            self.__argent-= self.GetBoutique().GetPrixUpgrade()
+            self.GetBoutique().Ameliorer()
             # Ajouter la fonction "afficher jeu"
     
     def RafraichirBoutique(self):
