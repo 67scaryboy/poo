@@ -11,8 +11,17 @@ class Joueur:
         self.__pseudo = pseudo #Nom du joueur
         self.__boutique = boutique.Boutique() #Boutique (propre au joueur)
         self.__combatants = [] #Cartes posées
+        self.__num_attaquant = 0
 
     #Geteurs et Seteurs---------------------------------------------------------------------
+
+    def SetNumAttaquant(self, valeur):
+        self.__num_attaquant = valeur
+    
+    def GetNumAttaquant(self):
+        return self.__num_attaquant
+
+    num_attaquant = property(GetNumAttaquant, SetNumAttaquant)
 
     def SetArgentMax(self, valeur):
         self.__argent_max = valeur
