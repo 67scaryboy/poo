@@ -52,6 +52,7 @@ class Boutique:
                     self.__cartes.append(catalogue.liste_tier_4[random.randint(0,len(catalogue.liste_tier_4)-1)])
     
     def Ameliorer(self):
-        if self.__tier < 5:
-            self.__tier +=1
+        if self.__tier < 4:
+            self.__tier += 1
+            self.__prix_upgrade = 5
         #retirer l'argent du joueur
