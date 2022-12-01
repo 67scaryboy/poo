@@ -51,7 +51,7 @@ def Principal():
         j1.SetArgent(j1.GetArgentMax())
         ia.SetArgent(ia.GetArgentMax())
         """
-        os.system("cls") #Effacte le terminal
+        os.system("cls||clear") #Effacte le terminal
         j1.AffStats()
         j1.GetMain().Afficher()
         ia.AffStats()
