@@ -33,18 +33,18 @@ class Carte():
     #Méthodes------------------------------------------------------------------------------------------
 
     def Attaquer(self, adversaire): #Fait attaquer cette carte
-        if self.__effet[1] == True: #si l'attaquant a bouclier divin
-            self.__effet[1] = False #l'enlever
+        if self.__effet['bouclier divin'] == True: #si l'attaquant a bouclier divin
+            self.__effet['bouclier divin'] = False #l'enlever
         else: #sinon
-            if adversaire.GetEffet()[2] == True: #si la cible a toxicité
+            if adversaire.GetEffet()['toxicite'] == True: #si la cible a toxicité
                 self.__pv_combat = 0 #mourir
             else: #sinon
                 self.__pv_combat -= adversaire.GetAtkCombat() #prendre des dégats
         
-        if adversaire.GetEffet()[1] == True: #si la cible a bouclier divin
+        if adversaire.GetEffet()['bouclier divin'] == True: #si la cible a bouclier divin
             adversaire.SetEffet(1,False) #l'enlever
         else: #sinon
-            if self.__effet[2] == True: #si l'attaquant a toxicité
+            if self.__effet['toxicite'] == True: #si l'attaquant a toxicité
                 adversaire.SetPvCombat(0)  #tuer la cible
             else: #sinon
                 adversaire.SetPvCombat(adversaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats
