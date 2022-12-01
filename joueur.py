@@ -64,9 +64,10 @@ class Joueur:
             print("Opération impossible")
 
     def UpBoutique(self):
-        if self.__argent > self.boutique.GetPrixUpgrade(): #Verification de tier deja effectuée dans boutique.ameliorer
-            self.__argent-= self.boutique.GetPrixUpgrade()
+        if self.__argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max:
+            self.__argent -= self.boutique.prix_upgrade
             self.boutique.Ameliorer()
+            self.__boutique.Rafraichir()
         else:
             print("Opération impossible")
             # Ajouter la fonction "afficher jeu"
@@ -93,6 +94,21 @@ class Joueur:
             exit(2)
         del self.combatants[numcarte - 1]
         self.argent = self.argent + 1
+
+    def ActionBoutique(self):
+        entree = input()
+
+        #achat de carte avec son numéro
+        try:
+            nb = int(entree)
+        except:
+            if entree == "Rafraichir":
+                self.RafraichirBoutique()
+            elif entree == "Upgrade":
+                self.UpBoutique()
+        else:
+            if nb in range (1, len(self.boutique.cartes) + 1):
+                self.Acheter(nb)
     
     #Méthodes liées à l'affichage---------------------------------------------------------------------------------------------
 
@@ -104,11 +120,12 @@ class Joueur:
         print('\n')
 
     def AffBoutique(self):
-        print(f"    Boutique {self.__pseudo}:")
+        print(f"    Boutique tier {self.boutique.tier} {self.__pseudo} ({self.boutique.prix_upgrade} pour upgrade)")
         print("    ", end="")
         for carte in self.__boutique.cartes:
             carte.Afficher()
         print('\n')
+        print("Vous pouvez quitter la boutique en tappant 'Quitter', l'upgrade avec 'Upgrade', la rafraichir avec 'Rafraichir' ou acheter une carte en entrant son numéro")
 
     def AffMain(self):
         print(f"    Main {self.__pseudo}:")

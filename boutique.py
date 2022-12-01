@@ -2,7 +2,8 @@ import carte, random, catalogue
 
 class Boutique:
     def __init__(self):
-        self.__tier = 1 #le tiers maximal des cartes dans la taverne
+        self.__tier = 1 #le tier maximal des cartes dans la taverne
+        self.__tier_max = 5 #le tier maximal de la boutique
         self.__prix_upgrade = 5 #le prix pour monter le niveau de la taverne
         self.__cartes = [] #les cartes disponibles à l'achat
     
@@ -16,14 +17,30 @@ class Boutique:
 
     cartes = property(GetCartes, SetCartes)
 
-    #Méthodes------------------------------------------------------------------------------------------
-    
     def GetPrixUpgrade(self):
         return self.__prix_upgrade
-    
-    def SetPrixUpgrade(self,prix):
-        if prix > 0:
+
+    def SetPrixUpgrade(self, prix):
+        if prix > 0 and prix < 6:
             self.__prix_upgrade = prix
+    
+    prix_upgrade = property(GetPrixUpgrade, SetPrixUpgrade)
+
+    def GetTier(self):
+        return self.__tier
+
+    def SetTier(self, nb):
+        if nb > 1 and nb < self.tier_max:
+            self.__tier = nb
+
+    tier = property(GetTier, SetTier)
+
+    def GetTierMax(self):
+        return self.__tier_max
+
+    tier_max = property(GetTierMax)
+
+    #Méthodes------------------------------------------------------------------------------------------
     
     def DelCartes(self,numcarte): #Retire une carte de la boutique en fonction de sa position
         del self.__cartes[numcarte-1]
@@ -39,7 +56,5 @@ class Boutique:
             self.__cartes.append(catalogue.liste_tiers[temp][random.randint(0,len(catalogue.liste_tiers[temp])-1)])
     
     def Ameliorer(self):
-        if self.__tier < 4:
-            self.__tier += 1
-            self.__prix_upgrade = 5
-        #retirer l'argent du joueur
+        self.tier += 1
+        self.prix_upgrade = 5

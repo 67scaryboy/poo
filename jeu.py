@@ -59,29 +59,19 @@ def Principal():
         entree = input ()
         if entree == "Boutique":
             j1.AffBoutique()
-            print("Vous pouvez quitter la boutique en tappant 'Quitter', la rafraichir avec 'Rafraichir' ou acheter une carte en entrant son numéro")
-            entree = input()
-
-            #achat de carte avec son numéro
-            try:
-                nb = int(entree)
-            except:
-                if entree == "Rafraichir":
-                    j1.RafraichirBoutique()
-            else:
-                if nb in range (1, len(j1.boutique.cartes) +1):
-                    j1.Acheter(nb)
+            j1.ActionBoutique()
 
         elif entree == "Combat":
             print("Vous pouvez poser des cartes avec 'Poser' et démarrer le combat avec 'Combat'")
             entree = input()
             if entree == "Poser":
-                print ("Choisissez le numéro de la carte que vous souhaitez poser, ou tappez autre chose pour quitter\n\n")
+                print ("Choisissez le numéro de la carte que vous souhaitez poser, ou tapez autre chose pour quitter\n\n")
                 print("Les cartes dans votre main:\n")
                 j1.main.Afficher()
                 print ("\nVos cartes sur le terrain:\n")
                 for i in j1.combatants:
                     i.Afficher()
+                
                 entree = input()
                 if entree == "1":
                     j1.PoserCarte(1)
@@ -98,7 +88,7 @@ def Principal():
             elif entree == "Combat":
                 ia.RafraichirBoutique()
                 #IA Qui se créer son deck
-                if ia.GetArgent() >= ia.GetBoutique().GetPrixUpgrade():
+                if ia.GetArgent() >= ia.GetBoutique().prix_upgrade:
                     ia.UpBoutique() #Bug possible: Si boutique LV MAX, message d'erreur, mais pas de plantage
                 while ia.main.nb_cartes < 6 and ia.argent >= 3 and len(ia.GetCombatants()) < 4:
                     print("Carte achetée et poser")
