@@ -1,4 +1,5 @@
 import carte
+from copy import deepcopy
 
 class Main:
     def __init__(self):
@@ -8,7 +9,7 @@ class Main:
     
     def Ajout_carte(self, carte):
         if self.__NbCartes < self.__NbCartesMax:
-            self.__Cartes.append(carte)
+            self.__Cartes.append(deepcopy(carte))
             self.__NbCartes += 1
     
     def GetNbCartes(self):
