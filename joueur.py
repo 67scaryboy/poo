@@ -61,8 +61,10 @@ class Joueur:
             self.__argent -= 3
             self.__main.Ajout_carte(cartes_boutiques[numcarte-1])
             self.__boutique.DelCartes(numcarte)
-        else:
-            aff_msg("Opération impossible")
+        elif (main.Main.GetNbCartes(self.__main) == main.Main.GetNbCartesmax(self.__main)):
+            aff_msg("Opération impossible, main pleine (6 cartes maximum !")
+        elif (self.__argent >= 3):
+            aff_msg("Opération impossible, argent insuffisant (3 pour un achat !)")
 
     def UpBoutique(self):
         if self.__argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max:
@@ -85,6 +87,9 @@ class Joueur:
         if numcarte > self.main.nb_cartes:
             aff_msg ("La carte que tu essaie de poser n'existe pas")
             exit(2)
+        if len(self.combatants)==4:
+            aff_msg("Opération impossible, nombre maximum de sbire atteint (4 max !)")
+            return 
         self.main.cartes[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
         self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
         del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
