@@ -1,7 +1,7 @@
 from joueur import *
 from champ_de_bataille import *
-import catalogue, os, time
-
+from message import *
+import catalogue, os
 
 def Principal():
     #Initialise les joueurs avec 1 d'or de plus que le max pour la première initialisation boutique
@@ -71,19 +71,21 @@ def Principal():
             elif entree == "Combat":
                 ia.RafraichirBoutique()
                 #IA Qui se créer son deck
-                if ia.GetArgent() >= ia.GetBoutique().prix_upgrade:
-                    ia.UpBoutique() #Bug possible: Si boutique LV MAX, message d'erreur, mais pas de plantage
-                while ia.main.nb_cartes < 6 and ia.argent >= 3 and len(ia.GetCombatants()) < 4:
-                    print("Carte achetée et poser")
+                if ia.argent >= ia.boutique.prix_upgrade:
+                    ia.UpBoutique #Bug possible: Si boutique LV MAX, message d'erreur, mais pas de plantage
+
+                while ia.argent >= carte.PRIX_CARTE and len(ia.GetCombatants()) < 4:
+                    print("Carte acheter et poser")
                     ia.Acheter(1)
                     ia.PoserCarte(1)
-                """ MODIFIER ICI QUAN FONCTION VENTE
+                """ MODIFIER ICI QUAND FONCTION VENTE
                 if len(ia.GetCombatants()) == 4 and ia.GetMain().GetNbCartes() < 6 and ia.GetArgent() >= 3: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
                     ia. ####Ajouter la mathode de vente ici et vendre la 1er carte
                     ia.Acheter(1)
                     ia.PoserCarte(1)
                 """
                 terrain.LancerCombat()
+
                 if j1.argent_max < 10:
                     j1.SetArgentMax(j1.argent_max+1)
                 if ia.argent_max < 10:
@@ -92,7 +94,6 @@ def Principal():
                 ia.SetArgent(ia.argent_max)
                 
         else:
-            print ("Commande inconnue")
-        time.sleep(1)
+            aff_msg("Commande inconnue")
 
 Principal()

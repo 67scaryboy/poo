@@ -1,4 +1,5 @@
 import carte, boutique, main
+from message import *
 
 class Joueur:
     def __init__(self, argent_max, argent, pseudo):
@@ -61,7 +62,7 @@ class Joueur:
             self.__main.Ajout_carte(cartes_boutiques[numcarte-1])
             self.__boutique.DelCartes(numcarte)
         else:
-            print("Opération impossible")
+            aff_msg("Opération impossible")
 
     def UpBoutique(self):
         if self.__argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max:
@@ -69,7 +70,7 @@ class Joueur:
             self.boutique.Ameliorer()
             self.__boutique.Rafraichir()
         else:
-            print("Opération impossible")
+            aff_msg("Opération impossible")
             # Ajouter la fonction "afficher jeu"
     
     def RafraichirBoutique(self):
@@ -77,12 +78,12 @@ class Joueur:
             self.__boutique.Rafraichir()
             self.__argent -= 1
         else:
-            print("Opération impossible")
+            aff_msg("Opération impossible")
             # Ajouter la fonction "affichage jeu"
     
     def PoserCarte(self,numcarte):
         if numcarte > self.main.nb_cartes:
-            print ("La carte que tu essaie de poser n'existe pas")
+            aff_msg ("La carte que tu essaie de poser n'existe pas")
             exit(2)
         self.main.cartes[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
         self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
@@ -90,7 +91,7 @@ class Joueur:
     
     def VendreCarte(self, numcarte):
         if numcarte > len(self.combatants):
-            print ("La carte que tu essaie de poser n'existe pas")
+            aff_msg ("La carte que tu essaie de poser n'existe pas")
             exit(2)
         del self.combatants[numcarte - 1]
         self.argent = self.argent + 1
