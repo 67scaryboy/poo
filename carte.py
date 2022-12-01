@@ -11,7 +11,7 @@ class Carte():
         self.__tier = tier                #Tier de la boutique dans lequel il est achetable
 
     def Afficher(self):
-        print(f"{self.__nom}\n PV: {self.__pv} / ATK: {self.__atk}")
+        print(f"({self.__nom} {self.__pv}PV {self.__atk}ATK) | ", end='')   
 
     def GetTier(self):
         return self.__tier
@@ -46,4 +46,4 @@ class Carte():
             if self.__effet[2] == True: #si l'attaquant a toxicité
                 adversaire.SetPvCombat(0)  #tuer la cible
             else: #sinon
-                adversaire.SetPvCombat(advarsaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats
+                adversaire.SetPvCombat(adversaire.GetPvCombat() - self.__atk_combat) #lui faire prendre des dégats

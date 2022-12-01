@@ -23,13 +23,10 @@ def Principal():
     #actions en jeu
     j1.Acheter(1)
 
-    print("_______________")
     j1.AffBoutique()
 
-    print("_______________")
     j1.AffMain()
 
-    print("____________")
     j1.AffStats()
 
 Principal()
