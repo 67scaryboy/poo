@@ -27,9 +27,6 @@ class Carte():
     
     def GetAtkCombat(self):
         return self.__atk_combat
-    
-    def Afficher(self):
-        print(f"{self.__nom}({self.__pv}): {self.__atk}\n")
 
     def Attaquer(self, adversaire): #Fait attaquer cette carte
         adversaire.SetPvCombat(advarsaire.GetPvCombat() - self.__atk_combat) #L'adversaire prend les dégats
