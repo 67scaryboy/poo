@@ -5,7 +5,6 @@ class IA(Joueur):
         super().__init__(argent_max, argent, pseudo)
 
     def preparation(self):
-        self.RafraichirBoutique()
         #IA Qui se créer son deck
         if self.argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max:
             self.argent -= self.boutique.prix_upgrade
@@ -16,7 +15,7 @@ class IA(Joueur):
             self.Acheter(1)
             self.PoserCarte(1)
 
-        if len(self.combatants) == 4 and len(self.main.cartes) < 6 and self.argent >= 3: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
+        if len(self.combatants) == 4 and len(self.main.cartes) < 6 and self.argent >= carte.PRIX_CARTE: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
             self.VendreCarte(1) 
             self.Acheter(1)
             self.PoserCarte(1)
