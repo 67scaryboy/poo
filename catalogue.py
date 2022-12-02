@@ -41,7 +41,8 @@ Carte(14, "Sanglier", 3, 3, {'provocation': False, 'bouclier divin': False, 'tox
 Carte(15, "Scorpion", 2, 1, {'provocation': False, 'bouclier divin': False, 'toxicite': True, 'furie des vents': False, 'cri de guerre': False}, 2, 2),
 Carte(16, "T-Rex", 10, 6, {'provocation': True, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False}, 2, 4),
 Carte(17, "Paysan", 2, 1, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 3, 1),
-Carte(18, "Métamorphe", 1, 1, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 0, 2)
+Carte(18, "Métamorphe", 1, 1, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 0, 2),
+Carte(19, "Mangouste", 2, 3, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False}, 2, 2)
 ]
 
 def UpdateTierList(): #Classe le catalogue dans les tiers lists
