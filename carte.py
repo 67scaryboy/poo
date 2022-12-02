@@ -47,8 +47,11 @@ class Carte():
     
     def GetRace(self):
         return self.__race
+    
+    def SetRace(self, valeur):
+        self.__race = valeur
 
-    race = property(GetRace)
+    race = property(GetRace, SetRace)
 
     #Méthodes------------------------------------------------------------------------------------------
 
@@ -109,6 +112,18 @@ class Carte():
                     if mob.id == 17: #tous les paysans de l'équipe de combat
                         mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
                         mob.pv_combat = mob.pv_combat + 1 # et un point de Pv
+            
+            elif self.__id == 18: #Métamorphe
+                if len(combatants) > 0: #si il y a d'autres serviteurs
+                    n = len(combatants) - 1
+                    liste_effets = combatants[n].GetEffet()
+                    self.atk_combat  = combatants[n].atk_combat
+                    self.SetEffet('provocation', liste_effets['provocation'])
+                    self.SetEffet('bouclier divin', liste_effets['bouclier divin'])
+                    self.SetEffet('toxicite', liste_effets['toxicite'])
+                    self.SetEffet('furie des vents', liste_effets['furie des vents'])
+                    self.race = combatants[n].race
+                    self.pv_combat = combatants[n].pv_combat #devient la copie conforme du serviteur à sa gauche 
     
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 

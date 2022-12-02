@@ -17,7 +17,7 @@ idcartes = {
     "GNOLL": 0, "MAGENOIR": 1, "GOBELIN": 2 ,"LOUP" : 3 , "FEUFOLLET" : 4 , "GARDE" : 5 ,
     "ASSASSIN" : 6 , "PRETRE" : 7 , "FANTOME" : 8 , "TORTUE" : 9 , "DRAGON" : 10 ,
     "HEROS" : 11 , "ROIDEMON" : 12, "VIRUS" : 13,  "SANGLIER" : 14, "SCORPION" : 15, 
-    "T-REX" : 16, "PAYSAN" : 17
+    "T-REX" : 16, "PAYSAN" : 17, "METAMORPHE" : 18
     }
 
 #Listes de cartes par tier
@@ -40,7 +40,8 @@ Carte(13, "Virus", 1, 1,{'provocation': False, 'bouclier divin': True, 'toxicite
 Carte(14, "Sanglier", 3, 5, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': True, 'cri de guerre': False}, 2, 3),
 Carte(15, "Scorpion", 2, 1, {'provocation': False, 'bouclier divin': False, 'toxicite': True, 'furie des vents': False, 'cri de guerre': False}, 2, 2),
 Carte(16, "T-Rex", 10, 6, {'provocation': True, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False}, 2, 4),
-Carte(17, "Paysan", 2, 1, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 3, 1)
+Carte(17, "Paysan", 2, 1, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 3, 1),
+Carte(18, "Métamorphe", 1, 1, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 0, 2)
 ]
 
 def UpdateTierList(): #Classe le catalogue dans les tiers lists
