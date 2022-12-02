@@ -110,7 +110,7 @@ class Carte():
             elif self.__id == 3: #Loup
                 for mob in combatants:
                     if mob.race == 2: #tous les autres bêtes de l'équipe de combat
-                        mob.atk_combat = mob.atk_combat + 2 #gagnent 2 point d'attaque
+                        mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
 
             elif self.__id == 7: #Haut prêtre
                 for mob in combatants:
@@ -119,7 +119,7 @@ class Carte():
 
             elif self.__id == 9: #Tortue Géante
                 for mob in combatants: #tous les autres combatants
-                    mob.pv_combat = mob.pv_combat + 1 #gagnent 1 Pv
+                    mob.pv_combat = mob.pv_combat + 2 #gagnent 2 Pv
             
             elif self.__id == 11: #Heros
                 if len(combatants) > 0:
@@ -159,7 +159,7 @@ class Carte():
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
     def Afficher(self):
-        rouge = '\033[91m'
+        rouge = '\033[91m' #codes couleurs
         vert = '\033[92m'
         jaune = '\033[93m'
         gris = '\033[0m'
@@ -171,7 +171,7 @@ class Carte():
         fury = gris
         cdg = ''
         repre = ''
-        if self.__effet['provocation']:
+        if self.__effet['provocation']: #application des codes couleurs en fonction  des effets des cartes 
             provoc = rouge
         if self.__effet['bouclier divin']:
             shield = jaune

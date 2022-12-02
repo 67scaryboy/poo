@@ -74,6 +74,7 @@ def Principal():
 
         #affichage des statistiques des joueurs
         j1.AffStats()
+
         ia1.AffStats()
 
         #infos joueur

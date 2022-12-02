@@ -52,3 +52,85 @@ def UpdateTierList(): #Classe le catalogue dans les tiers lists
         except:
             print ("La carte ", carte, " du catalogue appartient a un tier non définis (<1 ou >4)")
             exit(1)
+
+def Visualiser(carte):
+    rouge = '\033[91m' #codes couleurs
+    vert = '\033[92m'
+    jaune = '\033[93m'
+    gris = '\033[0m'
+    bleu = '\033[34m'
+    violet = '\033[35m'
+
+    name = carte.nom
+    liste_effets = carte.effet
+    atk = jaune + str(carte.atk_combat) + gris
+    pv = rouge + str(carte.pv_combat) + gris
+
+    print(f"╔═{name:═<16}╗")
+    print("║                 ║")
+    if liste_effets['provocation']:
+        print(f"║ {rouge}Provocation{gris}     ║")
+    else:
+        print("║                 ║")
+
+    if liste_effets['toxicite']:
+
+        print(f"║ {vert}Toxicité{gris}         ║")
+    else:
+        print("║                 ║")
+
+    if liste_effets['bouclier divin']:
+        print(f"║ {jaune}Bouclier Divin{gris}  ║")
+    else:
+        print("║                 ║")
+
+    if liste_effets['furie des vents']:
+        print(f"║ {bleu}Furie des vents{gris} ║")
+    else:
+        print("║                 ║")
+
+    if liste_effets['represailles']:
+        print(f"║ {violet}Représailles{gris}    ║")
+    else:
+        print("║                 ║")    
+
+    if liste_effets['cri de guerre']:
+        print("║ Cri de guerre : ║")
+    else:
+        print("║                 ║")
+
+    if carte.id == 1: #Mage noir
+        print("║ Humains +1 Atq  ║")
+    elif carte.id == 2: #Gobelin
+        print("║ Joueur +1 Or    ║")
+    elif carte.id == 3: #Loup
+        print("║ Bêtes +1 Atq    ║")
+    elif carte.id == 7: #Haut prêtre
+        print("║ Humains +2 Pv   ║")
+    elif carte.id == 9: #Tortue Géante
+        print("║ Tous +2 Pv      ║")
+    elif carte.id == 11: #Héros
+        print("║ Hazard Bouclier ║")
+    elif carte.id == 12: #Roi démon
+        print("║ Hazard Toxicité ║")
+    elif carte.id == 14: #Sanglier
+        print("║ Invoque Sanglier║")
+    elif carte.id == 17: #Paysans
+        print("║ Paysans +1/+1   ║")
+    elif carte.id == 19:
+        print("║ Copie gauche    ║")
+
+    else:
+        print("║                 ║")
+
+    #Indicateur de la Race
+    if carte.race == 0:
+        print(f"╚{atk:═<11}═════════════{pv:═>11}╝")
+    elif carte.race == 1:
+        print(f"╚{atk:═<11}═══Monstre═══{pv:═>11}╝")
+    elif carte.race == 2:
+        print(f"╚{atk:═<11}════Bêtes════{pv:═>11}╝")
+    elif carte.race == 3:
+        print(f"╚{atk:═<11}═══Humains═══{pv:═>11}╝")
+    
+        
