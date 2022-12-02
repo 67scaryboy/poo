@@ -39,13 +39,13 @@ class Champ_de_bataille():
         
         if len(team_j) > 0: #victoire joueur
             for carte in team_j:
-                degats += carte.atk_combat
+                degats += carte.tier
 
             self.__ia.pv -= degats
 
         elif len(team_ia) > 0: #victoire IA
             for carte in team_ia:
-                degats += carte.atk_combat
+                degats += carte.tier
 
             self.__joueur.pv -= degats
         else:
