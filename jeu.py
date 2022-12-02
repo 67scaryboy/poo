@@ -19,42 +19,8 @@ def Principal():
     j1.boutique.Rafraichir()
     ia1.boutique.Rafraichir()
 
-    """
-    #affichage environnement j1
-    j1.AffStats()
-    j1.AffBoutique()
-
-    #actions en jeu
-    j1.Acheter(1)
-    j1.Acheter(2)
-    ia.Acheter(1)
-    ia.Acheter(2)
-    j1.PoserCarte(1)
-    j1.PoserCarte(1)
-    ia.PoserCarte(1)
-    ia.PoserCarte(1)
-    print("=============")
-
-    ia.AffCombatants()
-
-    j1.AffCombatants()
-
-    terrain.LancerCombat()
-
-    j1.AffStats()
-    ia.AffStats()
-    """
-
     #Prototype de code:
     while j1.pv > 0 and ia1.pv > 0:
-        """"" A déplacer après le combat
-        if j1.argent_max < 10:
-            j1.SetArgentMax(j1.argent_max+1)
-        if ia.argent_max < 10:
-            ia.SetArgentMax(ia.argent_max+1)
-        j1.SetArgent(j1.argent_max)
-        ia.SetArgent(ia.argent_max)
-        """
         print("\n" * 100) #Clear de l'écran sauvage, pratique si le clear dessous marche pas
         os.system("cls||clear") #Efface le terminal
 
@@ -94,5 +60,19 @@ def Principal():
 
         elif entree == 'q':
             return
+    os.system("cls||clear")
+    if j1.pv > 0:
+        print("             ╔════VAINQUEUR════════════════════════════════════════════╗ ")
+        print("             ║Le Joueur gagne !                                        ║")
+        print(f"             ║Il lui reste {j1.pv} PV                                       ║")
+        print(f"             ║Sa boutique est tier {j1.boutique.tier} !                                 ║")
+        print("             ╚═════════════════════════════════════════════════════════╝\n\n")
+    else:
+        print("             ╔════VAINQUEUR════════════════════════════════════════════╗ ")
+        print("             ║L'IA gagne !                                             ║")
+        print(f"             ║Il lui reste {ia1.pv} PV                                       ║")
+        print(f"             ║Sa boutique est tier {ia1.boutique.tier} !                                 ║")
+        print("             ╚═════════════════════════════════════════════════════════╝\n\n")
+
 
 Principal()

@@ -47,8 +47,11 @@ class Carte():
     
     def GetRace(self):
         return self.__race
+    
+    def SetRace(self, valeur):
+        self.__race = valeur
 
-    race = property(GetRace)
+    race = property(GetRace, SetRace)
 
     #Méthodes------------------------------------------------------------------------------------------
 
@@ -83,7 +86,12 @@ class Carte():
             elif self.__id == 3: #Loup
                 for mob in combatants:
                     if mob.race == 2: #tous les autres bêtes de l'équipe de combat
-                        mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
+                        mob.atk_combat = mob.atk_combat + 2 #gagnent 2 point d'attaque
+
+            elif self.__id == 7: #Haut prêtre
+                for mob in combatants:
+                    if mob.race == 3: #tous les autres humains de l'équipe de combat
+                        mob.atk_combat = mob.pv_combat + 2 #gagnent 2 Pv
 
             elif self.__id == 9: #Tortue Géante
                 for mob in combatants: #tous les autres combatants
@@ -94,10 +102,28 @@ class Carte():
                     n = random.randint(0,len(combatants)-1)
                     combatants[n].__effet['bouclier divin'] = True #donne bouclier divin à un random
             
-            elif self.__id == 11: #Roi Démon
+            elif self.__id == 12: #Roi Démon
                 if len(combatants) > 0:
                     n = random.randint(0,len(combatants)-1)
                     combatants[n].__effet['toxicite'] = True #donne toxicité à un random
+            
+            elif self.__id == 17: #Paysan
+                for mob in combatants:
+                    if mob.id == 17: #tous les paysans de l'équipe de combat
+                        mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
+                        mob.pv_combat = mob.pv_combat + 1 # et un point de Pv
+            
+            elif self.__id == 18: #Métamorphe
+                if len(combatants) > 0: #si il y a d'autres serviteurs
+                    n = len(combatants) - 1
+                    liste_effets = combatants[n].GetEffet()
+                    self.atk_combat  = combatants[n].atk_combat
+                    self.SetEffet('provocation', liste_effets['provocation'])
+                    self.SetEffet('bouclier divin', liste_effets['bouclier divin'])
+                    self.SetEffet('toxicite', liste_effets['toxicite'])
+                    self.SetEffet('furie des vents', liste_effets['furie des vents'])
+                    self.race = combatants[n].race
+                    self.pv_combat = combatants[n].pv_combat #devient la copie conforme du serviteur à sa gauche 
     
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
