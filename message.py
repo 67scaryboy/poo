@@ -53,6 +53,8 @@ def Info(): #Manuel utilisateur en jeu
     print("    - Furie des vents : Le mot ATK de la carte apparait en bleu.")
     print("    - Cri de guerre : Un symbole spécial apparait sur la carte (✜).")
     print("    - Représailles : Ajout d’un crâne précédant le nom.")
+    print("    - Cri de guerre : Un symbole spécial apparait sur la carte (✜ ).")
+    print("    - Représailles : Ajout d’un crâne précédant le nom (☠ ).")
 
 def AfficherVainqueur(j1, ia1):
     os.system("cls||clear")
