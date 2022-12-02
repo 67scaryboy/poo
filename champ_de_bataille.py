@@ -53,7 +53,7 @@ class Champ_de_bataille():
 
     def LancerAttaque(self, j_atk, j_deff, team_atk, team_def, deuxieme_att, tour_du_joueur):
         place = -1
-        for i in range(0,len(team_def)):
+        for i in range(len(team_def)):
             if team_def[i].effet['provocation'] == True: # la carte a provocation
                 place = i #elle devient la cible prioritaire
 
