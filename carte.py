@@ -128,4 +128,22 @@ class Carte():
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
     def Afficher(self):
-        print(f"({self.__nom} {self.__pv_combat}PV {self.__atk_combat}ATK) | ", end='')
+        rouge = '\033[91m'
+        vert = '\033[92m'
+        jaune = '\033[93m'
+        gris = '\033[0m'
+        bleu = '\033[34m'
+        provoc = gris
+        shield = gris
+        toxi = gris
+        fury = gris
+        cdg = ' '
+        if self.__effet['provocation'] == True:
+            provoc = rouge
+        if self.__effet['bouclier divin'] == True:
+            shield = jaune
+        if self.__effet['toxicite'] == True:
+            toxi = vert
+        if self.__effet['furie des vents'] == True:
+            fury = bleu
+        print(f"{shield}({gris}{provoc}{self.__nom}{gris} {self.__pv_combat}PV {toxi}{self.__atk_combat}{gris}{fury}ATK{gris}{shield}){gris} | ", end='')
