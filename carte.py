@@ -53,6 +53,11 @@ class Carte():
 
     race = property(GetRace, SetRace)
 
+    def GetId(self):
+        return self.__id
+    
+    id = property(GetId)
+
     #Méthodes------------------------------------------------------------------------------------------
 
     def Attaquer(self, adversaire): #Fait attaquer cette carte
