@@ -137,7 +137,7 @@ class Carte():
         shield = gris
         toxi = gris
         fury = gris
-        cdg = ' '
+        cdg = ''
         if self.__effet['provocation'] == True:
             provoc = rouge
         if self.__effet['bouclier divin'] == True:
@@ -146,4 +146,6 @@ class Carte():
             toxi = vert
         if self.__effet['furie des vents'] == True:
             fury = bleu
-        print(f"{shield}({gris}{provoc}{self.__nom}{gris} {self.__pv_combat}PV {toxi}{self.__atk_combat}{gris}{fury}ATK{gris}{shield}){gris} | ", end='')
+        if self.__effet['cri de guerre'] == True:
+            cdg = '✜'
+        print(f"{shield}({gris}{provoc}{self.__nom}{gris}{cdg} {self.__pv_combat}PV {toxi}{self.__atk_combat}{gris}{fury}ATK{gris}{shield}){gris} | ", end='')
