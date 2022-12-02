@@ -11,7 +11,7 @@ class Joueur:
         self._pseudo = pseudo #Nom du joueur
         self._boutique = boutique.Boutique() #Boutique (propre au joueur)
         self._combatants = [] #Cartes posées
-        self._num_attaquant = 0
+        self._num_attaquant = 0 #Index du combatant en train d'attaquer (utile pour le combat)
 
     #Geteurs et Seteurs---------------------------------------------------------------------
 
@@ -77,9 +77,9 @@ class Joueur:
 
     #Méthodes---------------------------------------------------------------------------------------------------------
 
-    def Acheter(self, numcarte):
+    def Acheter(self, numcarte): #Acheter une carte
         cartes_boutiques = self.boutique.cartes
-        if (self.argent >= 3) and (len(self.main.cartes) < self.main.nb_cartes_max):
+        if (self.argent >= 3) and (len(self.main.cartes) < self.main.nb_cartes_max): #Si assez d'argent et de la place en main
             self.argent -= 3
             self.main.Ajout_carte(cartes_boutiques[numcarte-1])
             self.boutique.DelCartes(numcarte)
@@ -90,24 +90,23 @@ class Joueur:
         elif (self.argent >= 3):
             aff_msg("Opération impossible, argent insuffisant (3 pour un achat !)")
 
-    def UpBoutique(self):
+    def UpBoutique(self): #Amélioration de la boutique
         if self.argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max - 1:
             self.argent -= self.boutique.prix_upgrade
             self.boutique.Ameliorer()
             self.boutique.Rafraichir()
         else:
             aff_msg("Opération impossible")
-            # Ajouter la fonction "afficher jeu"
     
-    def RafraichirBoutique(self):
+    def RafraichirBoutique(self):  #Rafraichissement de la boutique
         if self.argent > 0:
             self.boutique.Rafraichir()
             self.argent -= 1
         else:
             aff_msg("Opération impossible")
-            # Ajouter la fonction "affichage jeu"
+
     
-    def PoserCarte(self,numcarte):
+    def PoserCarte(self,numcarte): #PAsser une carte de la main aux combattant
         if numcarte > len(self.main.cartes) or numcarte <= 0:
             aff_msg ("La carte que tu essaie de poser n'existe pas")
 
@@ -119,14 +118,14 @@ class Joueur:
             self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
             del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
     
-    def VendreCarte(self, numcarte):
+    def VendreCarte(self, numcarte): #Vendre une carte depuis le terrain
         if numcarte > len(self.combatants):
             aff_msg ("La carte que tu essaie de poser n'existe pas")
             exit(2)
         del self.combatants[numcarte - 1]
         self.argent = self.argent + 1
 
-    def ActionBoutique(self):
+    def ActionBoutique(self): 
         entree = input()
 
         #achat de carte avec son numéro
@@ -174,32 +173,32 @@ class Joueur:
         for carte in self.combatants:
             carte.Afficher()
 
-    def AffCombatants(self):
+    def AffCombatants(self): #Fonction affichage combatants
         print(f"    Combatants {self.pseudo}:")
         print("    ", end="")
         for carte in self.combatants:
-            carte.Afficher()
+            carte.Afficher() #Affiche la carte combatant en question
         print('\n')
 
-    def AffBoutique(self):
+    def AffBoutique(self): #Fonction assichage boutique
         print(f"    Boutique tier {self.boutique.tier} {self.pseudo} ({self.boutique.prix_upgrade} pour upgrade)")
         print("    ", end="")
         numero = 1
         for carte in self.boutique.cartes:
-            print(f"{numero} ", end="")
-            carte.Afficher()
+            print(f"{numero} ", end="") #Affiche le numéro de carte dans al boutique
+            carte.Afficher() #Affiche la carte en question
             numero +=1
         print('\n')
         print("Vous pouvez quitter la boutique en tappant 'q', l'upgrade avec 'u', la rafraichir avec 'r' ou acheter une carte en entrant son numéro")
 
-    def AffMain(self):
+    def AffMain(self): #Fonction affichage main
         print(f"    Main {self.pseudo}:")
         print("    ", end="")
         for carte in self.main.cartes:
             carte.Afficher()
         print('\n')
 
-    def AffVendre(self):
+    def AffVendre(self): #Fonction affichage menu vente
         print ("Choisissez le numéro de la carte que vous souhaitez vendre, ou tapez autre chose pour quitter\n\n")
         print("Les cartes dans votre main:\n")
         self.main.Afficher()
@@ -207,5 +206,5 @@ class Joueur:
         for carte in self.combatants:
             carte.Afficher()
     
-    def AffStats(self):
+    def AffStats(self): #Fonction affichage stats personnages
         print(f"{self.pseudo}({self.pv}/{self.pv_max}) argent:{self.argent}/{self.argent_max}\n")

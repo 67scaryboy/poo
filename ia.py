@@ -4,11 +4,11 @@ class IA(Joueur):
     def __init__(self, argent_max, argent, pseudo):
         super().__init__(argent_max, argent, pseudo)
 
-    def IndexMeilleurTier(self):
+    def IndexMeilleurTier(self): #Fonction servant a l'ia a trouver la meilleure carte a acheter
         res = 0
 
         if self.boutique.cartes:
-            meilleur_tier = self.boutique.cartes[0].tier
+            meilleur_tier = self.boutique.cartes[0].tier #Compare les tiers de chaque carte de la boutique
 
             if meilleur_tier == self.boutique.tier:#meilleur tier possible trouvé
                 return res
@@ -25,7 +25,7 @@ class IA(Joueur):
         
         return res
 
-    def AcheterMeilleursTiers(self):
+    def AcheterMeilleursTiers(self): # Fonction permettant à l'ia d'acheter la meilleure carte possible
         while self.argent >= self.boutique.prix_refresh:
             if self.boutique.cartes:
                 i_meil_tier = self.IndexMeilleurTier()
@@ -41,7 +41,7 @@ class IA(Joueur):
             else:
                 self.RafraichirBoutique()
     
-    def DeployerCarte(self):
+    def DeployerCarte(self): #Fonction si le board est plein, pour remplacer les plus vieille carte (a améliorer pour rendre l'ia plus forte)
         if len(self.combatants) == 4:
             self.VendreCarte(1)
         

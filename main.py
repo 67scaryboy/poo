@@ -22,7 +22,7 @@ class Main:
 
     def Ajout_carte(self, carte):
         if len(self.cartes) < self.__NbCartesMax:
-            self.__Cartes.append(deepcopy(carte))
+            self.__Cartes.append(deepcopy(carte)) #Ajout une copie de la carte (sinon c'est la vraie carte et on la modifie)
 
     #Méthodes liées à l'affichage---------------------------------------------------------------------
 
