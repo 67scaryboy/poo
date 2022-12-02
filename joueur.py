@@ -184,8 +184,11 @@ class Joueur:
     def AffBoutique(self):
         print(f"    Boutique tier {self.boutique.tier} {self.pseudo} ({self.boutique.prix_upgrade} pour upgrade)")
         print("    ", end="")
+        numero = 1
         for carte in self.boutique.cartes:
+            print(numero, end="")
             carte.Afficher()
+            numero +=1
         print('\n')
         print("Vous pouvez quitter la boutique en tappant 'q', l'upgrade avec 'u', la rafraichir avec 'r' ou acheter une carte en entrant son numéro")
 
