@@ -54,7 +54,7 @@ class Boutique:
     def Rafraichir(self): #Changer les cartes proposées en boutique
         self.__cartes = []
 
-        for i in range (0,5,1):
+        for i in range (5):
             #randomisation du tier de la carte à tirer
             temp = random.randint(0,self.__tier - 1)
 
