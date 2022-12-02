@@ -16,7 +16,7 @@ class Races(Enum):
 idcartes = {
     "GEANT": 0, "MAGENOIR": 1, "GOBELIN": 2 ,"LOUP" : 3 , "FEUFOLLET" : 4 , "GARDE" : 5 ,
     "ASSASSIN" : 6 , "PRETRE" : 7 , "FANTOME" : 8 , "TORTUE" : 9 , "DRAGON" : 10 ,
-    "HEROS" : 11 , "ROIDEMON" : 12, "VIRUS" : 13
+    "HEROS" : 11 , "ROIDEMON" : 12, "VIRUS" : 13,  "SANGLIER" : 14
     }
 
 #Listes de cartes par tier
@@ -29,7 +29,7 @@ Carte(3, "Loup", 2, 3,{'provocation': False, 'bouclier divin': False, 'toxicite'
 Carte(4, "Feu follet", 4, 1,{'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False}, 1, 1),
 Carte(5, "Garde de la ville", 4, 3,{'provocation': True, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False}, 3, 2),
 Carte(6, "Assassin", 2, 1,{'provocation': False, 'bouclier divin': False, 'toxicite': True, 'furie des vents': False, 'cri de guerre': False}, 3, 2),
-Carte(7, "Haut prêtre", 5, 4,{'provocation': False, 'bouclier divin': True, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False}, 3, 3),
+Carte(7, "Haut prêtre", 5, 4,{'provocation': False, 'bouclier divin': True, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 3, 3),
 Carte(8, "Fantome", 4, 4,{'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': True, 'cri de guerre': False}, 1, 3),
 Carte(9, "Tortue géante", 7, 2,{'provocation': True, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': True}, 2, 3),
 Carte(10, "Dragon sauvage", 6, 7,{'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False}, 1, 4),

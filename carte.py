@@ -85,6 +85,11 @@ class Carte():
                     if mob.race == 2: #tous les autres bêtes de l'équipe de combat
                         mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
 
+            elif self.__id == 7: #Haut prêtre
+                for mob in combatants:
+                    if mob.race == 3: #tous les autres humains de l'équipe de combat
+                        mob.atk_combat = mob.pv_combat + 1 #gagnent 1 point d'attaque
+
             elif self.__id == 9: #Tortue Géante
                 for mob in combatants: #tous les autres combatants
                     mob.pv_combat = mob.pv_combat + 1 #gagnent 1 Pv
