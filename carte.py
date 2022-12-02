@@ -83,12 +83,12 @@ class Carte():
             elif self.__id == 3: #Loup
                 for mob in combatants:
                     if mob.race == 2: #tous les autres bêtes de l'équipe de combat
-                        mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
+                        mob.atk_combat = mob.atk_combat + 2 #gagnent 2 point d'attaque
 
             elif self.__id == 7: #Haut prêtre
                 for mob in combatants:
                     if mob.race == 3: #tous les autres humains de l'équipe de combat
-                        mob.atk_combat = mob.pv_combat + 1 #gagnent 1 point d'attaque
+                        mob.atk_combat = mob.pv_combat + 2 #gagnent 2 Pv
 
             elif self.__id == 9: #Tortue Géante
                 for mob in combatants: #tous les autres combatants
@@ -99,10 +99,16 @@ class Carte():
                     n = random.randint(0,len(combatants)-1)
                     combatants[n].__effet['bouclier divin'] = True #donne bouclier divin à un random
             
-            elif self.__id == 11: #Roi Démon
+            elif self.__id == 12: #Roi Démon
                 if len(combatants) > 0:
                     n = random.randint(0,len(combatants)-1)
                     combatants[n].__effet['toxicite'] = True #donne toxicité à un random
+            
+            elif self.__id == 17: #Paysan
+                for mob in combatants:
+                    if mob.race == 3: #tous les autres humains de l'équipe de combat
+                        mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
+                        mob.pv_combat = mob.pv_combat + 1 # et un point de Pv
     
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
