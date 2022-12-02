@@ -6,8 +6,14 @@ class Boutique:
         self.__tier_max = 5 #le tier maximal de la boutique
         self.__prix_upgrade = 5 #le prix pour monter le niveau de la taverne
         self.__cartes = [] #les cartes disponibles à l'achat
+        self.__prix_refresh = 1
     
     #Getteurs et setteurs-------------------------------------------------------------------------------
+
+    def GetPrixRefresh(self):
+        return self.__prix_refresh
+
+    prix_refresh = property(GetPrixRefresh)
 
     def GetCartes(self):
         return self.__cartes

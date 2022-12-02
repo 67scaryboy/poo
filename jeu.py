@@ -72,7 +72,7 @@ def Principal():
             j1.ActionPoser()
             
         elif entree == 'c':
-            ia1.preparation()
+            ia1.Preparation()
 
             #---- combat ----
 
