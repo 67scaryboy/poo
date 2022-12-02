@@ -115,7 +115,7 @@ class Carte():
             elif self.__id == 7: #Haut prêtre
                 for mob in combatants:
                     if mob.race == 3: #tous les autres humains de l'équipe de combat
-                        mob.atk_combat = mob.pv_combat + 2 #gagnent 2 Pv
+                        mob.atk_combat = mob.atk_combat + 2 #gagnent 2 Pv
 
             elif self.__id == 9: #Tortue Géante
                 for mob in combatants: #tous les autres combatants
