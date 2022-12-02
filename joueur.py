@@ -186,7 +186,7 @@ class Joueur:
         print("    ", end="")
         numero = 1
         for carte in self.boutique.cartes:
-            print(numero, end="")
+            print(f"{numero} ", end="")
             carte.Afficher()
             numero +=1
         print('\n')
