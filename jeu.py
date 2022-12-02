@@ -60,22 +60,24 @@ def Principal():
     #initialise les listes de cartes
     catalogue.UpdateTierList()
 
-    #Affrontement j1 contre ia
+    #Prépare l'affrontement de j1 contre ia
     terrain = Champ_de_bataille(j1,ia1)
 
     #initialise les boutiques
     j1.boutique.Rafraichir()
     ia1.boutique.Rafraichir()
 
-    #Prototype de code:
+    #boucle principale de jeu
     while j1.pv > 0 and ia1.pv > 0:
-        print("\n" * 100) #Clear de l'écran sauvage, pratique si le clear dessous marche pas
+        print("\n" * 100) #Clear de l'écran sauvage, pratique si le clear suivant ne fonctionne pas
         os.system("cls||clear") #Efface le terminal
 
+        #affichage des statistiques des joueurs
         j1.AffStats()
         ia1.AffStats()
 
-        entree = input("b) Ouvrir la boutique\np) Poser des cartes\nv) Vendre\nc) Combatre\ni) Infromation \nq) Quitter\n--> ")
+        #infos joueur
+        entree = input("b) Ouvrir la boutique\np) Poser des cartes\nv) Vendre\nc) Combatre\nq) Quitter\n--> ")
 
         if entree == 'b':
             j1.AffBoutique()
