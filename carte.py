@@ -106,7 +106,7 @@ class Carte():
             
             elif self.__id == 17: #Paysan
                 for mob in combatants:
-                    if mob.race == 3: #tous les autres humains de l'équipe de combat
+                    if mob.id == 17: #tous les paysans de l'équipe de combat
                         mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
                         mob.pv_combat = mob.pv_combat + 1 # et un point de Pv
     
