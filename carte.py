@@ -80,14 +80,21 @@ class Carte():
                 self.__pv_combat = 0 #mourir
             else: #sinon
                 self.__pv_combat -= adversaire.GetAtkCombat() #prendre des dégats
-        
-        if adversaire.effet['bouclier divin'] == True: #si la cible a bouclier divin
+        if self.__pv_combat <= 0: # si la carte meurt
+            if self.__effet['represailles'] and adversaire.effet['toxicite']: #que la carte avait représailles et est tuée par toxicité
+                adversaire.pv_combat = 0 #tuer l'ennemi
+
+        if adversaire.effet['bouclier divin'] == True: #si la cible a bouclier divin 
             adversaire.SetEffet(1,False) #l'enlever
         else: #sinon
             if self.__effet['toxicite'] == True: #si l'attaquant a toxicité
                 adversaire.SetPvCombat(0)  #tuer la cible
             else: #sinon
                 adversaire.SetPvCombat(adversaire.pv_combat - self.__atk_combat) #lui faire prendre des dégats
+        if adversaire.pv_combat <= 0: # si l'ennemi meurt
+            if adversaire.effet['represailles'] and self.__effet['toxicite']: #qu'il avait représailles et est tuée par toxicité
+                self.__pv_combat = 0 #tuer l'ennemi
+            
     
     def CriDeGuerre(self,joueur):
         combatants = joueur.combatants
@@ -126,7 +133,7 @@ class Carte():
             
             elif self.__id == 14: #Sanglier
                 if len(combatants) < 3:
-                    combatants.append(deepcopy(self))
+                    combatants.append(deepcopy(self)) #invoque un autre sanglier
             
             elif self.__id == 17: #Paysan
                 for mob in combatants:
@@ -143,6 +150,7 @@ class Carte():
                     self.SetEffet('bouclier divin', liste_effets['bouclier divin'])
                     self.SetEffet('toxicite', liste_effets['toxicite'])
                     self.SetEffet('furie des vents', liste_effets['furie des vents'])
+                    self.SetEffet('represailles', liste_effets['represailles'])
                     self.race = combatants[n].race
                     self.id = combatants[n].id
                     self.nom = combatants[n].nom + '(métamorphe)'
@@ -156,19 +164,24 @@ class Carte():
         jaune = '\033[93m'
         gris = '\033[0m'
         bleu = '\033[34m'
+        violet = '\033[35m'
         provoc = gris
         shield = gris
         toxi = gris
         fury = gris
         cdg = ''
-        if self.__effet['provocation'] == True:
+        repre = ''
+        if self.__effet['provocation']:
             provoc = rouge
-        if self.__effet['bouclier divin'] == True:
+        if self.__effet['bouclier divin']:
             shield = jaune
-        if self.__effet['toxicite'] == True:
+        if self.__effet['toxicite']:
             toxi = vert
-        if self.__effet['furie des vents'] == True:
+        if self.__effet['furie des vents']:
             fury = bleu
-        if self.__effet['cri de guerre'] == True:
+        if self.__effet['cri de guerre']:
             cdg = '✜'
-        print(f"{shield}({gris}{provoc}{self.__nom}{gris}{cdg} {self.__pv_combat}PV {toxi}{self.__atk_combat}{gris}{fury}ATK{gris}{shield}){gris} | ", end='')
+        if self.__effet['represailles']:
+            repre = '☠'
+
+        print(f"{shield}({violet}{repre} {gris}{provoc}{self.__nom}{gris}{cdg} {self.__pv_combat}PV {toxi}{self.__atk_combat}{gris}{fury}ATK{gris}{shield}){gris} | ", end='')
