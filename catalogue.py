@@ -1,6 +1,7 @@
 from enum import Enum
 from carte import Carte
 
+#Initialisation des liste différents tiers (pour la boutique)
 liste_tier_1 = []
 liste_tier_2 = []
 liste_tier_3 = []
@@ -13,7 +14,7 @@ class Races(Enum):
     ANIMEAUX=2
     HUMAINS=3
 
-idcartes = {
+idcartes = { #Pas utilisé pour le moment
     "GNOLL": 0, "MAGENOIR": 1, "GOBELIN": 2 ,"LOUP" : 3 , "FEUFOLLET" : 4 , "GARDE" : 5 ,
     "ASSASSIN" : 6 , "PRETRE" : 7 , "FANTOME" : 8 , "TORTUE" : 9 , "DRAGON" : 10 ,
     "HEROS" : 11 , "ROIDEMON" : 12, "VIRUS" : 13,  "SANGLIER" : 14, "SCORPION" : 15, 

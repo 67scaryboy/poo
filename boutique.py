@@ -61,6 +61,6 @@ class Boutique:
             #choix aléatoire de la carte du tier donné
             self.__cartes.append(catalogue.liste_tiers[temp][random.randint(0,len(catalogue.liste_tiers[temp])-1)])
     
-    def Ameliorer(self):
+    def Ameliorer(self): #Fonction amélioration appelée par le joueur
         self.tier += 1
         self.prix_upgrade = 5
