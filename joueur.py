@@ -91,7 +91,7 @@ class Joueur:
             aff_msg("Opération impossible, argent insuffisant (3 pour un achat !)")
 
     def UpBoutique(self):
-        if self.argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max:
+        if self.argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max - 1:
             self.argent -= self.boutique.prix_upgrade
             self.boutique.Ameliorer()
             self.boutique.Rafraichir()
