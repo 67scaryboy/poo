@@ -49,8 +49,8 @@ def Info(): #Manuel utilisateur en jeu
     print("    - Bouclier divin : Les parenthèses autour de la carte apparaissent en jaune.")
     print("    - Toxicité : L’attaque de la carte apparait en vert.")
     print("    - Furie des vents : Le mot ATK de la carte apparait en bleu.")
-    print("    - Cri de guerre : Un symbole spécial apparait sur la carte (✜).")
-    print("    - Représailles : Ajout d’un crâne précédant le nom.")
+    print("    - Cri de guerre : Un symbole spécial apparait sur la carte (✜ ).")
+    print("    - Représailles : Ajout d’un crâne précédant le nom (☠ ).")
 
 def Principal():
     #Initialise les joueurs
