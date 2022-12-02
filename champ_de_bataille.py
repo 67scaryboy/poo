@@ -95,6 +95,9 @@ class Champ_de_bataille():
 
         deuxieme_att = 0 #pour gerer la furie des vents
 
+        print("---===  [EQUIPES]  ===---")
+        self.AffCombat(team_j, team_ia)
+
         while (team_j and team_ia):
 
             print("---===  [COMBAT]  ===---")
