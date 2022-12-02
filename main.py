@@ -27,5 +27,8 @@ class Main:
     #Méthodes liées à l'affichage---------------------------------------------------------------------
 
     def Afficher(self):
+        numero = 1
         for carte in self.__Cartes:
+            print(numero, end="")
             carte.Afficher()
+            numero +=1
