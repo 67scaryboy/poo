@@ -1,4 +1,5 @@
 import random
+from copy import deepcopy
 
 PRIX_CARTE = 3
 
@@ -56,7 +57,18 @@ class Carte():
     def GetId(self):
         return self.__id
     
-    id = property(GetId)
+    def SetId(self, valeur):
+        self.__id = valeur
+    
+    id = property(GetId, SetId)
+
+    def GetNom(self):
+        return self.__nom
+    
+    def SetNom(self, valeur):
+        self.__nom = valeur
+    
+    nom = property(GetNom, SetNom)
 
     #Méthodes------------------------------------------------------------------------------------------
 
@@ -112,6 +124,10 @@ class Carte():
                     n = random.randint(0,len(combatants)-1)
                     combatants[n].__effet['toxicite'] = True #donne toxicité à un random
             
+            elif self.__id == 14: #Sanglier
+                if len(combatants) < 3:
+                    combatants.append(deepcopy(self))
+            
             elif self.__id == 17: #Paysan
                 for mob in combatants:
                     if mob.id == 17: #tous les paysans de l'équipe de combat
@@ -128,6 +144,8 @@ class Carte():
                     self.SetEffet('toxicite', liste_effets['toxicite'])
                     self.SetEffet('furie des vents', liste_effets['furie des vents'])
                     self.race = combatants[n].race
+                    self.id = combatants[n].id
+                    self.nom = combatants[n].nom + '(métamorphe)'
                     self.pv_combat = combatants[n].pv_combat #devient la copie conforme du serviteur à sa gauche 
     
     #Méthodes liées à l'affichage-------------------------------------------------------------------

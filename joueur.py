@@ -108,7 +108,7 @@ class Joueur:
             # Ajouter la fonction "affichage jeu"
     
     def PoserCarte(self,numcarte):
-        if numcarte > len(self.main.cartes) or numcarte < 0:
+        if numcarte > len(self.main.cartes) or numcarte <= 0:
             aff_msg ("La carte que tu essaie de poser n'existe pas")
 
         elif len(self.combatants) == 4:
