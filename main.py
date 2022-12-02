@@ -29,6 +29,6 @@ class Main:
     def Afficher(self):
         numero = 1
         for carte in self.__Cartes:
-            print(numero, end="")
+            print(f"{numero} ", end="")
             carte.Afficher()
             numero +=1
