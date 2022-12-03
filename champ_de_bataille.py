@@ -24,16 +24,6 @@ class Champ_de_bataille():
         self.__joueur.argent = self.__joueur.argent_max
         self.__ia.argent = self.__ia.argent_max
 
-    def AffCombat(self, team_j, team_ia):   
-        print("Mobs coté joueur:")
-        for mobs in team_j:
-            mobs.Afficher()
-        print("\n")
-        print("Mobs coté IA:")
-        for mobs in team_ia:
-            mobs.Afficher()
-        print("\n")
-
     def DegatsPerdant(self, team_j, team_ia):
         degats = 0
         
@@ -59,6 +49,13 @@ class Champ_de_bataille():
 
         if place == -1: #si aucune carte n'a provocation
                 place = random.randint(0,len(team_def) -1) #une carte est choisie aléatoirement
+        at = 'allié'
+        ci = 'ennemi'
+        if tour_du_joueur == 0:
+            at ='ennemi'
+            ci = 'allié'
+
+        print(f"{team_atk[j_atk._num_attaquant].nom} {at} attaque {team_def[j_deff._num_attaquant].nom} {ci}")
 
         team_atk[j_atk.num_attaquant].Attaquer(team_def[place]) #la carte attaque
         
@@ -78,7 +75,7 @@ class Champ_de_bataille():
             
             deuxieme_att = 0
         
-        else:# gestion du windfurry ici-----------------------------------------------------------------------------
+        else:# gestion du windfurry ici
             if (team_atk[j_atk.num_attaquant].effet['furie des vents'] == True) and (deuxieme_att == 0): #si la carte a furie des vents et attaqué une seule fois
                 tour_du_joueur = (tour_du_joueur + 1) % 2 #empecher le changement de joueur
                 deuxieme_att = 1 #et empecher une troisième attaque
@@ -100,9 +97,6 @@ class Champ_de_bataille():
 
         while (team_j and team_ia):
 
-            print("---===  [COMBAT]  ===---")
-            self.AffCombat(team_j, team_ia)
-
             if tour_du_joueur:
                 deuxieme_att, tour_du_joueur = self.LancerAttaque(self.__joueur, self.__ia, team_j, team_ia, deuxieme_att, tour_du_joueur)
 
@@ -115,3 +109,15 @@ class Champ_de_bataille():
             self.AffCombat(team_j, team_ia)
 
         self.DegatsPerdant(team_j, team_ia)
+    
+    #Méthodes liées à l'affichage--------------------------------------------------------------------------------
+
+    def AffCombat(self, team_j, team_ia):   
+        print("Mobs coté joueur:")
+        for mobs in team_j:
+            mobs.Afficher()
+        print("\n")
+        print("Mobs coté IA:")
+        for mobs in team_ia:
+            mobs.Afficher()
+        print("\n")

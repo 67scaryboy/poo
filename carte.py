@@ -80,9 +80,9 @@ class Carte():
                 self.__pv_combat = 0 #mourir
             else: #sinon
                 self.__pv_combat -= adversaire.GetAtkCombat() #prendre des dégats
-        if self.__pv_combat <= 0: # si la carte meurt
-            if self.__effet['represailles'] and adversaire.effet['toxicite']: #que la carte avait représailles et est tuée par toxicité
-                adversaire.pv_combat = 0 #tuer l'ennemi
+            if self.__pv_combat <= 0: # si la carte meurt
+                if self.__effet['represailles'] and adversaire.effet['toxicite']: #que la carte avait représailles et est tuée par toxicité
+                    adversaire.pv_combat = 0 #tuer l'ennemi
 
         if adversaire.effet['bouclier divin'] == True: #si la cible a bouclier divin 
             adversaire.SetEffet(1,False) #l'enlever
@@ -153,7 +153,9 @@ class Carte():
                     self.SetEffet('represailles', liste_effets['represailles'])
                     self.race = combatants[n].race
                     self.id = combatants[n].id
-                    self.nom = combatants[n].nom + '(métamorphe)'
+                    self.nom = combatants[n].nom
+                    if '(métamorphe)' not in self.nom:#empècher les (métamorhe)(métamorphe)
+                        self.nom += '(métamorphe)'
                     self.pv_combat = combatants[n].pv_combat #devient la copie conforme du serviteur à sa gauche 
     
     #Méthodes liées à l'affichage-------------------------------------------------------------------

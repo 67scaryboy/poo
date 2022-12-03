@@ -1,4 +1,4 @@
-import carte, boutique, main
+import carte, boutique, main, catalogue
 from message import *
 
 class Joueur:
@@ -167,30 +167,20 @@ class Joueur:
         print ("Choisissez le numéro de la carte que vous souhaitez poser, ou tapez autre chose pour quitter\n\n")
 
         print("Les cartes dans votre main:\n")
-        self.main.Afficher()
+        catalogue.VisualiserListe(self.main.cartes)
 
         print ("\nVos cartes sur le terrain:\n")
-        for carte in self.combatants:
-            carte.Afficher()
+        catalogue.VisualiserListe(self.combatants)
+            
 
     def AffCombatants(self): #Fonction affichage combatants
         print(f"    Combatants {self.pseudo}:")
-        print("    ", end="")
-        for carte in self.combatants:
-            carte.Afficher() #Affiche la carte combatant en question
-        print('\n')
+        catalogue.VisualiserListe(self.combatants)
 
     def AffBoutique(self): #Fonction affichage boutique
         print(f"    Boutique tier {self.boutique.tier} {self.pseudo} ({self.boutique.prix_upgrade} pour upgrade)")
         print('')
-        """
-        print("    ", end="")
-        numero = 1
-        for carte in self.boutique.cartes:
-            print(f"{numero} ", end="") #Affiche le numéro de carte dans al boutique
-            carte.Afficher() #Affiche la carte en question
-            numero +=1"""
-        self.boutique.VisualiserBoutique()
+        catalogue.VisualiserListe(self.boutique.cartes)
         print('')
         print("Vous pouvez quitter la boutique en tappant 'q', l'upgrade avec 'u', la rafraichir avec 'r' ou acheter une carte en entrant son numéro")
         
@@ -198,17 +188,15 @@ class Joueur:
     def AffMain(self): #Fonction affichage main
         print(f"    Main {self.pseudo}:")
         print("    ", end="")
-        for carte in self.main.cartes:
-            carte.Afficher()
+        catalogue.VisualiserListe(self.main.cartes)
         print('\n')
 
     def AffVendre(self): #Fonction affichage menu vente
         print ("Choisissez le numéro de la carte que vous souhaitez vendre, ou tapez autre chose pour quitter\n\n")
         print("Les cartes dans votre main:\n")
-        self.main.Afficher()
+        catalogue.VisualiserListe(self.main.cartes)
         print ("\nVos cartes sur le terrain:\n")
-        for carte in self.combatants:
-            carte.Afficher()
+        catalogue.VisualiserListe(self.combatants)
     
     def AffStats(self): #Fonction affichage stats personnages
         print(f"{self.pseudo}({self.pv}/{self.pv_max}) argent:{self.argent}/{self.argent_max}\n")
