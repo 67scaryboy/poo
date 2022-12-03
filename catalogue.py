@@ -130,7 +130,7 @@ def VisualiserListe(cartes):
             print("  ║ Invoque Sanglier║    ",end='')
         elif carte.id == 17: #Paysans
             print("  ║ Paysans +1/+1   ║    ",end='')
-        elif carte.id == 19: #Métamorphe
+        elif carte.id == 18: #Métamorphe
             print("  ║ Copie gauche    ║    ",end='')
         else:
             print("  ║                 ║    ",end='')
