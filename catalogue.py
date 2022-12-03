@@ -123,9 +123,9 @@ def VisualiserListe(cartes):
         elif carte.id == 9: #Tortue Géante
             print("  ║ Tous +2 Pv      ║    ",end='')
         elif carte.id == 11: #Héros
-            print("  ║ Hazard Bouclier ║    ",end='')
+            print("  ║ Hasard Bouclier ║    ",end='')
         elif carte.id == 12: #Roi démon
-            print("  ║ Hazard Toxicité ║    ",end='')
+            print("  ║ Hasard Toxicité ║    ",end='')
         elif carte.id == 14: #Sanglier
             print("  ║ Invoque Sanglier║    ",enf='')
         elif carte.id == 17: #Paysans
