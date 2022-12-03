@@ -76,12 +76,12 @@ def Visualiser(carte):
 
     if liste_effets['toxicite']:
 
-        print(f"║ {vert}Toxicité{gris}         ║")
+        print(f"║ {vert}Toxicité{gris}        ║")
     else:
         print("║                 ║")
 
     if liste_effets['bouclier divin']:
-        print(f"║ {jaune}Bouclier Divin{gris}  ║")
+        print(f"║ {jaune}Bouclier divin{gris}  ║")
     else:
         print("║                 ║")
 

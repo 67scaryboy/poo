@@ -180,17 +180,21 @@ class Joueur:
             carte.Afficher() #Affiche la carte combatant en question
         print('\n')
 
-    def AffBoutique(self): #Fonction assichage boutique
+    def AffBoutique(self): #Fonction affichage boutique
         print(f"    Boutique tier {self.boutique.tier} {self.pseudo} ({self.boutique.prix_upgrade} pour upgrade)")
+        print('')
+        """
         print("    ", end="")
         numero = 1
         for carte in self.boutique.cartes:
             print(f"{numero} ", end="") #Affiche le numéro de carte dans al boutique
             carte.Afficher() #Affiche la carte en question
-            numero +=1
-        print('\n')
+            numero +=1"""
+        self.boutique.VisualiserBoutique()
+        print('')
         print("Vous pouvez quitter la boutique en tappant 'q', l'upgrade avec 'u', la rafraichir avec 'r' ou acheter une carte en entrant son numéro")
-
+        
+    
     def AffMain(self): #Fonction affichage main
         print(f"    Main {self.pseudo}:")
         print("    ", end="")
