@@ -1,19 +1,19 @@
 from message import *
 
 def EventHandler(entree, j1, ia1, terrain):
-    if entree == 'b':
+    if entree == 'b': #Boutique
         j1.AffBoutique()
         j1.ActionBoutique()
 
-    elif entree == 'p':
+    elif entree == 'p': #Poser
         j1.AffPoser()
         j1.ActionPoser()
         
-    elif entree =='i':
+    elif entree =='i': #Info
         Info()
         input("--------- appuyez pour passer ---------")
 
-    elif entree == 'c':
+    elif entree == 'c': #Combat
         ia1.Preparation()
 
         #---- combat ----
@@ -30,7 +30,7 @@ def EventHandler(entree, j1, ia1, terrain):
 
         input("--------- appuyez pour passer ---------")
 
-    elif entree == 'v':
+    elif entree == 'v': # Vendre
         j1.AffVendre()
         j1.ActionVendre()
 

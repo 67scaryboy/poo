@@ -71,7 +71,7 @@ def VisualiserListe(cartes):
         print(f"{n} ╔═{name:═<16}╗    ", end = '') #nom de la carte
         n +=1
     print('')
-    for carte in cartes:
+    for carte in cartes: # Affichage générique des effets de cartes stylés
         print("  ║                 ║    ", end ='')
     print('')
     for carte in cartes:
@@ -111,7 +111,7 @@ def VisualiserListe(cartes):
             print("  ║                 ║    ",end ='')
     print('')
 
-    for carte in cartes:
+    for carte in cartes: #Affichage générique des cris de guerre stylés des cartes
         if carte.id == 1: #Mage noir
             print("  ║ Humains +1 Atq  ║    ",end='')
         elif carte.id == 2: #Gobelin
