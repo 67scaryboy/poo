@@ -114,10 +114,8 @@ class Champ_de_bataille():
 
     def AffCombat(self, team_j, team_ia):   
         print("Mobs coté joueur:")
-        for mobs in team_j:
-            mobs.Afficher()
+        VisualiserListe(team_j)
         print("\n")
         print("Mobs coté IA:")
-        for mobs in team_ia:
-            mobs.Afficher()
+        VisualiserListe(team_ia)
         print("\n")
