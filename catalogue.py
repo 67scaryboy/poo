@@ -127,7 +127,7 @@ def VisualiserListe(cartes):
         elif carte.id == 12: #Roi démon
             print("  ║ Hasard Toxicité ║    ",end='')
         elif carte.id == 14: #Sanglier
-            print("  ║ Invoque Sanglier║    ",enf='')
+            print("  ║ Invoque Sanglier║    ",end='')
         elif carte.id == 17: #Paysans
             print("  ║ Paysans +1/+1   ║    ",end='')
         elif carte.id == 19: #Métamorphe
