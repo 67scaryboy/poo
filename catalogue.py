@@ -136,7 +136,7 @@ def VisualiserListe(cartes):
             print("  ║                 ║    ",end='')
     print('')
     for carte in cartes: #indicateur de la race et stats
-        atk = jaune + str(carte.pv_combat) +gris
+        atk = jaune + str(carte.atk_combat) +gris
         pv =  rouge + str(carte.pv_combat) +gris
         if carte.race == 0:
             print(f"  ╚{atk:═<11}═════════════{pv:═>11}╝    ",end='')
