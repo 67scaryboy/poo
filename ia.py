@@ -41,7 +41,7 @@ class IA(Joueur):
             else:
                 self.RafraichirBoutique()
     
-    def DeployerCarte(self): #Fonction si le board est plein, pour remplacer les plus vieille carte (a améliorer pour rendre l'ia plus forte)
+    def DeployerCarte(self): #Fonction si le board est plein, pour remplacer les plus vieille carte (a améliorer pour rendre l'ia plus forte en changeant les cartes de plus bas tier)
         if len(self.combatants) == 4:
             self.VendreCarte(1)
         
