@@ -55,7 +55,7 @@ class Champ_de_bataille():
             at ='ennemi'
             ci = 'allié'
 
-        print(f"{team_atk[j_atk._num_attaquant].nom} {at} attaque {team_def[j_deff._num_attaquant].nom} {ci}")
+        print(f"{team_atk[j_atk._num_attaquant].nom} {at} attaque {team_def[place].nom} {ci}")
 
         team_atk[j_atk.num_attaquant].Attaquer(team_def[place]) #la carte attaque
         
