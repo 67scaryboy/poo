@@ -1,14 +1,23 @@
 from message import *
 
 def EventHandler(entree, j1, ia1, terrain):
+    os.system("cls||clear")
     if entree == 'b': #Boutique
-        j1.AffBoutique()
-        j1.ActionBoutique()
+        j1.AffStats()
+        ia1.AffStats()
 
+        j1.AffBoutique()
+        sortie = j1.ActionBoutique()
+        if sortie != 'q':
+            EventHandler(entree, j1, ia1, terrain)
     elif entree == 'p': #Poser
+        j1.AffStats()
+        ia1.AffStats()
+
         j1.AffPoser()
-        j1.ActionPoser()
-        
+        sortie = j1.ActionPoser()
+        if sortie != 'q':
+            EventHandler(entree, j1, ia1, terrain)
     elif entree =='i': #Info
         Info()
         input("--------- appuyez pour passer ---------")
@@ -31,9 +40,13 @@ def EventHandler(entree, j1, ia1, terrain):
         input("--------- appuyez pour passer ---------")
 
     elif entree == 'v': # Vendre
-        j1.AffVendre()
-        j1.ActionVendre()
+        j1.AffStats()
+        ia1.AffStats()
 
+        j1.AffVendre()
+        sortie = j1.ActionVendre()
+        if sortie != 'q':
+            EventHandler(entree, j1, ia1, terrain)
     elif entree == 'q':
         return False
     

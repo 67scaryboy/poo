@@ -1,4 +1,5 @@
 import carte, boutique, main, catalogue
+from time import sleep
 from message import *
 
 class Joueur:
@@ -86,9 +87,11 @@ class Joueur:
 
         elif (len(self.main.cartes) == self.main.nb_cartes_max):
             aff_msg("Opération impossible, main pleine (6 cartes maximum !")
+            sleep(1) #voir un input
 
-        elif (self.argent >= 3):
+        elif (self.argent <= 3):
             aff_msg("Opération impossible, argent insuffisant (3 pour un achat !)")
+            sleep(1) #meme chose
 
     def UpBoutique(self): #Amélioration de la boutique
         if self.argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max - 1:
@@ -121,6 +124,7 @@ class Joueur:
     def VendreCarte(self, numcarte): #Vendre une carte depuis le terrain
         if numcarte > len(self.combatants):
             aff_msg ("La carte que tu essaie de poser n'existe pas")
+            sleep(1)
             exit(2)
         del self.combatants[numcarte - 1]
         self.argent = self.argent + 1
@@ -139,6 +143,7 @@ class Joueur:
         else:
             if nb in range (1, len(self.boutique.cartes) + 1):
                 self.Acheter(nb)
+        return entree
 
     def ActionPoser(self):
         entree = input()
@@ -149,6 +154,7 @@ class Joueur:
             pass
         else:
             self.PoserCarte(nb)
+        return entree
 
     def ActionVendre(self):
         entree = input()
@@ -160,6 +166,7 @@ class Joueur:
         else:
             if nb > 0 and len(self.combatants) > nb - 1:
                 self.VendreCarte(nb)
+        return entree
     
     #Méthodes liées à l'affichage---------------------------------------------------------------------------------------------
 
