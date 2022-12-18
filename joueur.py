@@ -17,88 +17,88 @@ class Joueur:
     #Geteurs et Seteurs---------------------------------------------------------------------
 
     def SetNumAttaquant(self, valeur):
-        """Setteur de _num_attaquant"""
+        """Setter de _num_attaquant"""
 
         self._num_attaquant = valeur
     
     def GetNumAttaquant(self):
-        """Getteur de _num_attaquant"""
+        """Getter de _num_attaquant"""
 
         return self._num_attaquant
 
     num_attaquant = property(GetNumAttaquant, SetNumAttaquant)
 
     def SetArgentMax(self, valeur):
-        """Setteur de _argent_max"""
+        """Setter de _argent_max"""
 
         self._argent_max = valeur
     
     def GetArgentMax(self):
-        """Getteur de _argent_max"""
+        """Getter de _argent_max"""
 
         return self._argent_max
 
     argent_max = property(GetArgentMax, SetArgentMax)
 
     def SetArgent(self, valeur):
-        """Setteur de _argent"""
+        """Setter de _argent"""
 
         self._argent = valeur
 
     def GetArgent(self):
-        """Getteur de _argent"""
+        """Getter de _argent"""
 
         return self._argent
 
     argent = property(GetArgent, SetArgent)
 
     def GetBoutique(self):
-        """Getteur de _boutique"""
+        """Getter de _boutique"""
 
         return self._boutique
 
     boutique = property(GetBoutique)
 
     def GetMain(self):
-        """Getteur de _main"""
+        """Getter de _main"""
 
         return self._main
 
     main = property(GetMain)
     
     def GetCombattants(self):
-        """Getteur de _combatants"""
+        """Getter de _combatants"""
 
         return self._combattants
 
     combattants = property(GetCombattants)
     
     def GetPV(self):
-        """Getteur de _pv"""
+        """Getter de _pv"""
 
         return self._pv
     
     def SetPV(self, nouveaux_pv):
-        """Setteur de _pv"""
+        """Setter de _pv"""
 
         self._pv = nouveaux_pv
 
     pv = property(GetPV, SetPV)
 
     def GetPVMax(self):
-        """Getteur de _pv_max"""
+        """Getter de _pv_max"""
 
         return self._pv_max
 
     def SetPVMax(self, nouveaux_pv_max):
-        """Setteur de _pv_max"""
+        """Setter de _pv_max"""
 
         self._pv_max = nouveaux_pv_max
 
     pv_max = property(GetPVMax, SetPVMax)
 
     def GetPseudo(self):
-        """Getteur de _pseudo"""
+        """Getter de _pseudo"""
 
         return self._pseudo
 

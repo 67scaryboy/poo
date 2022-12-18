@@ -4,12 +4,18 @@ class IA(Joueur):#IA est une classe fille de Joueur
     def __init__(self, argent_max, argent, pseudo):
         super().__init__(argent_max, argent, pseudo)
 
-    #Méthodes suplémentaires propre à la classe IA--------------------------------------------------------------------------
+    #Méthodes suplémentaires propres à la classe IA--------------------------------------------------------------------------
 
     def IndexMeilleurTier(self): 
-        """Fonction servant a l'ia a trouver la meilleure carte a acheter"""
+        """
+        Fonction servant à l'ia pour trouver la meilleure carte à acheter
+        
+        Returns:
+            res (int): Index de la meilleure carte dans la boutique
+        """
 
-        res = 0
+        res = 0 #index de la carte du plus haut tier dans la boutique
+
         if self.boutique.cartes:
             meilleur_tier = self.boutique.cartes[0].tier #Compare les tiers de chaque carte de la boutique
 
@@ -26,6 +32,27 @@ class IA(Joueur):#IA est une classe fille de Joueur
         else:
             print("La fonction ne doit pas être appelée: la boutique est vide")
         
+        return res
+
+    @staticmethod
+    def IndexPireTier(cartes): 
+        """
+        Fonction servant à l'ia pour trouver la pire carte dans une liste
+        
+        Returns:
+            res (int): Index de la pire carte dans la liste
+        """
+
+        res = 0 #index de la carte du plus bas tier dans la liste
+
+        if cartes:
+            pire_tier = cartes[0].tier #Compare les tiers de chaque carte de la boutique
+
+            for i in range(1, len(cartes)):
+                if cartes[i].tier < pire_tier:
+                    pire_tier = cartes[i].tier
+                    res = i
+
         return res
 
     def AcheterMeilleursTiers(self): 
@@ -47,9 +74,10 @@ class IA(Joueur):#IA est une classe fille de Joueur
                 self.RafraichirBoutique()
     
     def DeployerCarte(self):
-        """Fonction pour remplacer les plus vieilles cartes si le board est plein"""
+        """Fonction pour remplacer les cartes de plus faible tier si le board est plein"""
+
         if len(self.combattants) == 4:
-            self.VendreCarte(1)
+            self.VendreCarte(self.IndexPireTier(self.combattants))
         
         self.PoserCarte(1)
             
