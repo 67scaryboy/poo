@@ -48,7 +48,7 @@ class IA(Joueur):#IA est une classe fille de Joueur
     
     def DeployerCarte(self):
         """Fonction pour remplacer les plus vieilles cartes si le board est plein"""
-        if len(self.combatants) == 4:
+        if len(self.combattants) == 4:
             self.VendreCarte(1)
         
         self.PoserCarte(1)
