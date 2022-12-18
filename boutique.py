@@ -1,6 +1,8 @@
 import carte, random, catalogue
 
 class Boutique:
+    """Classe de la boutique des cartes en jeu"""
+
     def __init__(self):
         """constructeur de la classe Boutique"""
 

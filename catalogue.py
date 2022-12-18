@@ -1,7 +1,7 @@
 from enum import Enum
-from carte import Carte
+from carte import Carte, idcartes
 
-#Initialisation des liste différents tiers (pour la boutique)
+#Initialisation des liste des différents tiers (pour la boutique)
 liste_tier_1 = []
 liste_tier_2 = []
 liste_tier_3 = []
@@ -9,19 +9,14 @@ liste_tier_4 = []
 liste_tiers = [liste_tier_1, liste_tier_2, liste_tier_3, liste_tier_4]
 
 class Races(Enum):
+    """Classe deffinissant les races des cartes"""
+
     NONDEFINIS=0
     MONSTRES=1
     ANIMEAUX=2
     HUMAINS=3
 
-idcartes = { #Pas utilisé pour le moment
-    "GNOLL": 0, "MAGENOIR": 1, "GOBELIN": 2 ,"LOUP" : 3 , "FEUFOLLET" : 4 , "GARDE" : 5 ,
-    "ASSASSIN" : 6 , "PRETRE" : 7 , "FANTOME" : 8 , "TORTUE" : 9 , "DRAGON" : 10 ,
-    "HEROS" : 11 , "ROIDEMON" : 12, "VIRUS" : 13,  "SANGLIER" : 14, "SCORPION" : 15, 
-    "T-REX" : 16, "PAYSAN" : 17, "METAMORPHE" : 18
-    }
-
-#Listes de cartes par tier
+#Listes des cartes par tier
 #id, nom, pv, atk, effet, race, tier
 catalogue = [
 Carte(0, "Gnoll", 2, 2, {'provocation': True, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False, 'represailles':False}, 1, 1),
@@ -46,7 +41,9 @@ Carte(18, "Métamorphe", 1, 1, {'provocation': False, 'bouclier divin': False, '
 Carte(19, "Mangouste", 2, 3, {'provocation': False, 'bouclier divin': False, 'toxicite': False, 'furie des vents': False, 'cri de guerre': False,'represailles':True}, 2, 2)
 ]
 
-def UpdateTierList(): #Classe le catalogue dans les tiers lists
+def UpdateTierList():
+    """Range les cartes du catalogue dans les tier lists"""
+
     for carte in catalogue:
         try:
             liste_tiers[carte.tier - 1].append(carte)
@@ -54,56 +51,64 @@ def UpdateTierList(): #Classe le catalogue dans les tiers lists
             print ("La carte ", carte, " du catalogue appartient a un tier non définis (<1 ou >4)")
             exit(1)
 
-
-# Affichage classe de liste de cartes
-
 def VisualiserListe(cartes):
-    rouge = '\033[91m' #codes couleurs
+    """Affichage concret d'une liste de cartes"""
+
+    #codes couleurs
+    rouge = '\033[91m'
     vert = '\033[92m'
     jaune = '\033[93m'
     gris = '\033[0m'
     bleu = '\033[34m'
     violet = '\033[35m'
     n = 1
+
     for carte in cartes:
-        name = carte.nom
-        name = name[0:16:1]
+        name = carte.nom[0:16]
         print(f"{n} ╔═{name:═<16}╗    ", end = '') #nom de la carte
         n +=1
     print('')
-    for carte in cartes: # Affichage générique des effets de cartes stylés
+
+    #Affichage des effets de cartes
+    for carte in cartes:
         print("  ║                 ║    ", end ='')
     print('')
+
     for carte in cartes:
         if carte.effet['provocation']:
             print(f"  ║ {rouge}Provocation{gris}     ║    ",end='')
         else:
             print("  ║                 ║    ",end ='')
     print('')
+
     for carte in cartes:
         if carte.effet['toxicite']:
             print(f"  ║ {vert}Toxicitée{gris}       ║    ",end='')
         else:
             print("  ║                 ║    ",end ='')
     print('')
+
     for carte in cartes:
         if carte.effet['bouclier divin']:
             print(f"  ║ {jaune}Bouclier divin{gris}  ║    ",end='')
         else:
             print("  ║                 ║    ",end ='')
     print('')
+
     for carte in cartes:
         if carte.effet['furie des vents']:
             print(f"  ║ {bleu}Furie des vents{gris} ║    ",end='')
         else:
             print("  ║                 ║    ",end ='')
     print('')
+
     for carte in cartes:
         if carte.effet['represailles']:
             print(f"  ║ {violet}Représailles{gris}    ║    ",end='')
         else:
             print("  ║                 ║    ",end ='')
     print('')
+
     for carte in cartes:
         if carte.effet['cri de guerre']:
             print(f"  ║ Cri de guerre : ║    ",end='')
@@ -111,31 +116,34 @@ def VisualiserListe(cartes):
             print("  ║                 ║    ",end ='')
     print('')
 
-    for carte in cartes: #Affichage générique des cris de guerre stylés des cartes
-        if carte.id == 1: #Mage noir
+    #Affichage générique des cris de guerre stylés des cartes
+    for carte in cartes: 
+        if carte.id == idcartes["MAGENOIR"]:
             print("  ║ Humains +1 Atq  ║    ",end='')
-        elif carte.id == 2: #Gobelin
+        elif carte.id == idcartes["GOBELIN"]:
             print("  ║ Joueur +1 Or    ║    ",end='')
-        elif carte.id == 3: #Loup
+        elif carte.id == idcartes["LOUP"]:
             print("  ║ Bêtes +1 Atq    ║    ",end='')
-        elif carte.id == 7: #Haut prêtre
+        elif carte.id == idcartes["HAUTPRETRE"]:
             print("  ║ Humains +2 Pv   ║    ",end='')
-        elif carte.id == 9: #Tortue Géante
+        elif carte.id == idcartes["TORTUEGEANTE"]:
             print("  ║ Tous +2 Pv      ║    ",end='')
-        elif carte.id == 11: #Héros
+        elif carte.id == idcartes["HEROS"]:
             print("  ║ Hasard Bouclier ║    ",end='')
-        elif carte.id == 12: #Roi démon
+        elif carte.id == idcartes["ROIDEMON"]:
             print("  ║ Hasard Toxicité ║    ",end='')
-        elif carte.id == 14: #Sanglier
+        elif carte.id == idcartes["SANGLIER"]:
             print("  ║ Invoque Sanglier║    ",end='')
-        elif carte.id == 17: #Paysans
+        elif carte.id == idcartes["PAYSAN"]:
             print("  ║ Paysans +1/+1   ║    ",end='')
-        elif carte.id == 18: #Métamorphe
+        elif carte.id == idcartes["METAMORPHE"]:
             print("  ║ Copie gauche    ║    ",end='')
         else:
             print("  ║                 ║    ",end='')
     print('')
-    for carte in cartes: #indicateur de la race et stats
+
+    #Indicateur de la race et des stats
+    for carte in cartes: 
         atk = jaune + str(carte.atk_combat) +gris
         pv =  rouge + str(carte.pv_combat) +gris
         if carte.race == 0:
@@ -147,89 +155,3 @@ def VisualiserListe(cartes):
         elif carte.race == 3:
             print(f"  ╚{atk:═<11}═══Humains═══{pv:═>11}╝    ",end='')
     print('')
-
-
-#Je garde au cas où
-"""
-def Visualiser(carte):
-    rouge = '\033[91m' #codes couleurs
-    vert = '\033[92m'
-    jaune = '\033[93m'
-    gris = '\033[0m'
-    bleu = '\033[34m'
-    violet = '\033[35m'
-
-    name = carte.nom
-    liste_effets = carte.effet
-    atk = jaune + str(carte.atk_combat) + gris
-    pv = rouge + str(carte.pv_combat) + gris
-
-    print(f"╔═{name:═<16}╗")
-    print("║                 ║")
-    if liste_effets['provocation']:
-        print(f"║ {rouge}Provocation{gris}     ║")
-    else:
-        print("║                 ║")
-
-    if liste_effets['toxicite']:
-
-        print(f"║ {vert}Toxicité{gris}        ║")
-    else:
-        print("║                 ║")
-
-    if liste_effets['bouclier divin']:
-        print(f"║ {jaune}Bouclier divin{gris}  ║")
-    else:
-        print("║                 ║")
-
-    if liste_effets['furie des vents']:
-        print(f"║ {bleu}Furie des vents{gris} ║")
-    else:
-        print("║                 ║")
-
-    if liste_effets['represailles']:
-        print(f"║ {violet}Représailles{gris}    ║")
-    else:
-        print("║                 ║")    
-
-    if liste_effets['cri de guerre']:
-        print("║ Cri de guerre : ║")
-    else:
-        print("║                 ║")
-
-    if carte.id == 1: #Mage noir
-        print("║ Humains +1 Atq  ║")
-    elif carte.id == 2: #Gobelin
-        print("║ Joueur +1 Or    ║")
-    elif carte.id == 3: #Loup
-        print("║ Bêtes +1 Atq    ║")
-    elif carte.id == 7: #Haut prêtre
-        print("║ Humains +2 Pv   ║")
-    elif carte.id == 9: #Tortue Géante
-        print("║ Tous +2 Pv      ║")
-    elif carte.id == 11: #Héros
-        print("║ Hazard Bouclier ║")
-    elif carte.id == 12: #Roi démon
-        print("║ Hazard Toxicité ║")
-    elif carte.id == 14: #Sanglier
-        print("║ Invoque Sanglier║")
-    elif carte.id == 17: #Paysans
-        print("║ Paysans +1/+1   ║")
-    elif carte.id == 19:
-        print("║ Copie gauche    ║")
-
-    else:
-        print("║                 ║")
-
-    #Indicateur de la Race
-    if carte.race == 0:
-        print(f"╚{atk:═<11}═════════════{pv:═>11}╝")
-    elif carte.race == 1:
-        print(f"╚{atk:═<11}═══Monstre═══{pv:═>11}╝")
-    elif carte.race == 2:
-        print(f"╚{atk:═<11}════Bêtes════{pv:═>11}╝")
-    elif carte.race == 3:
-        print(f"╚{atk:═<11}═══Humains═══{pv:═>11}╝")
-    """
-    
-        

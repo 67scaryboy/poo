@@ -1,10 +1,20 @@
 import random
 from copy import deepcopy
 
+idcartes = {
+    "GNOLL": 0, "MAGENOIR": 1, "GOBELIN": 2 ,"LOUP" : 3 , "FEUFOLLET" : 4 , "GARDE" : 5 ,
+    "ASSASSIN" : 6 , "HAUTPRETRE" : 7 , "FANTOME" : 8 , "TORTUEGEANTE" : 9 , "DRAGON" : 10 ,
+    "HEROS" : 11 , "ROIDEMON" : 12, "VIRUS" : 13,  "SANGLIER" : 14, "SCORPION" : 15, 
+    "T-REX" : 16, "PAYSAN" : 17, "METAMORPHE" : 18
+    }
+"""enumère les ids des cartes"""
+
 PRIX_CARTE = 3
 """prix d'une carte dans la boutique"""
 
 class Carte():
+    """Classe des cartes en jeu"""
+
     def __init__(self, id, nom, pv, atk, effet, race, tier):
         """constructeur de la classe Carte"""
 
@@ -101,7 +111,8 @@ class Carte():
 
     #Méthodes------------------------------------------------------------------------------------------
 
-    def GestionAttaque(self, attaquant, cible):
+    @staticmethod
+    def GestionAttaque(attaquant, cible):
         """Gestion des effets et PV lors d'une attaque"""
 
         if attaquant.__effet['bouclier divin'] == True: #si l'attaquant a bouclier divin
@@ -127,52 +138,54 @@ class Carte():
         self.GestionAttaque(adversaire, self)
             
     
-    def CriDeGuerre(self,joueur):
+    def CriDeGuerre(self, joueur):
+        """résoud l'effet du cri de guerre des combatants d'un joueur"""
+
         combatants = joueur.combatants
         if self.__effet['cri de guerre'] == True: #si la carte a un cri de guerre
-            if self.__id == 1: #Mage noir
+            if self.__id == idcartes["MAGENOIR"]:
                 for mob in combatants:
                     if mob.race == 3: #tous les autres humains de l'équipe de combat
                         mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
 
-            elif self.__id == 2: #Gobelin
+            elif self.__id == idcartes["GOBELIN"]:
                 joueur.argent = joueur.argent +1 #le joueur gagne une pièce
             
-            elif self.__id == 3: #Loup
+            elif self.__id == idcartes["LOUP"]:
                 for mob in combatants:
                     if mob.race == 2: #tous les autres bêtes de l'équipe de combat
                         mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
 
-            elif self.__id == 7: #Haut prêtre
+            elif self.__id == idcartes["HAUTPRETRE"]:
                 for mob in combatants:
                     if mob.race == 3: #tous les autres humains de l'équipe de combat
                         mob.pv_combat = mob.pv_combat + 2 #gagnent 2 Pv
 
-            elif self.__id == 9: #Tortue Géante
+            elif self.__id == idcartes["TORTUEGEANTE"]:
                 for mob in combatants: #tous les autres combatants
                     mob.pv_combat = mob.pv_combat + 2 #gagnent 2 Pv
             
-            elif self.__id == 11: #Heros
+            elif self.__id == idcartes["HEROS"]:
                 if len(combatants) > 0:
                     n = random.randint(0,len(combatants)-1)
                     combatants[n].__effet['bouclier divin'] = True #donne bouclier divin à un random
             
-            elif self.__id == 12: #Roi Démon
+            elif self.__id == idcartes["ROIDEMON"]:
                 if len(combatants) > 0:
                     n = random.randint(0,len(combatants)-1)
                     combatants[n].__effet['toxicite'] = True #donne toxicité à un random
             
-            elif self.__id == 14: #Sanglier
+            elif self.__id == idcartes["SANGLIER"]:
                 if len(combatants) < 3:
                     combatants.append(deepcopy(self)) #invoque un autre sanglier
             
-            elif self.__id == 17: #Paysan
+            elif self.__id == idcartes["PAYSAN"]:
                 for mob in combatants:
-                    if mob.id == 17: #tous les paysans de l'équipe de combat
+                    if mob.id == idcartes["PAYSAN"]: #tous les paysans de l'équipe de combat
                         mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
                         mob.pv_combat = mob.pv_combat + 1 # et un point de Pv
             
-            elif self.__id == 18: #Métamorphe
+            elif self.__id == idcartes["METAMORPHE"]:
                 if len(combatants) > 0: #si il y a d'autres serviteurs
                     n = len(combatants) - 1
                     liste_effets = combatants[n].GetEffet()
@@ -192,19 +205,25 @@ class Carte():
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
     def Afficher(self):
-        rouge = '\033[91m' #codes couleurs
+        """Affichage d'une carte"""
+
+        #codes couleurs
+        rouge = '\033[91m'
         vert = '\033[92m'
         jaune = '\033[93m'
         gris = '\033[0m'
         bleu = '\033[34m'
         violet = '\033[35m'
+
         provoc = gris
         shield = gris
         toxi = gris
         fury = gris
         cdg = ''
         repre = ''
-        if self.__effet['provocation']: #application des codes couleurs en fonction  des effets des cartes 
+
+        #application des codes couleurs en fonction  des effets des cartes
+        if self.__effet['provocation']:
             provoc = rouge
         if self.__effet['bouclier divin']:
             shield = jaune
