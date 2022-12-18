@@ -116,7 +116,7 @@ class Carte():
         """Gestion des effets et PV lors d'une attaque"""
 
         if attaquant.__effet['bouclier divin'] == True: #si l'attaquant a bouclier divin
-            attaquant.SetEffet(1,False) #l'enlever
+            attaquant.SetEffet('bouclier divin',False) #l'enlever
 
         else:
             if cible.__effet['toxicite'] == True: #si la cible a toxicité
