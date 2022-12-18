@@ -160,7 +160,7 @@ class Joueur:
             del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
     
     def VendreCarte(self, numcarte): 
-        """Vendre une carte depuis le terrain"""
+        """Vendre une carte depuis le terrain (commence à 1)"""
 
         if numcarte > len(self.combattants): #si le numéro est incorect
             aff_msg ("La carte que tu essaie de poser n'existe pas") #message d'erreur

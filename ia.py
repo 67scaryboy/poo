@@ -74,10 +74,10 @@ class IA(Joueur):#IA est une classe fille de Joueur
                 self.RafraichirBoutique()
     
     def DeployerCarte(self):
-        """Fonction pour remplacer les cartes de plus faible tier si le board est plein"""
+        """Fonction pour poser les nouvelles cartes de l'ia en privilégiant les hauts tiers"""
 
         if len(self.combattants) == 4:
-            self.VendreCarte(self.IndexPireTier(self.combattants))
+            self.VendreCarte(self.IndexPireTier(self.combattants) + 1)
         
         self.PoserCarte(1)
             
