@@ -56,7 +56,7 @@ class IA(Joueur):#IA est une classe fille de Joueur
         return res
 
     def AcheterMeilleursTiers(self): 
-        """Fonction permettant à l'ia d'acheter la meilleure carte possible"""
+        """Fonction permettant à l'ia d'acheter la meilleure carte possible dans la boutique"""
 
         while self.argent >= self.boutique.prix_refresh:
             if self.boutique.cartes:
@@ -91,15 +91,3 @@ class IA(Joueur):#IA est une classe fille de Joueur
             self.boutique.Rafraichir()
 
         self.AcheterMeilleursTiers()
-
-        # while self.argent >= carte.PRIX_CARTE and len(self.combattants) < 4:
-        #     self.Acheter(1)
-        #     self.PoserCarte(1)
-
-        # while len(self.combattants) == 4 and len(self.main.cartes) < 6 and self.argent >= carte.PRIX_CARTE: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
-        #     self.VendreCarte(1) 
-        #     self.Acheter(1)
-        #     self.PoserCarte(1)
-
-        # if self.argent > 0:
-        #     self.RafraichirBoutique()

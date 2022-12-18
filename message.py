@@ -2,10 +2,14 @@ import time
 import os
 
 def aff_msg(msg):
+    """Affiche un message à l'écran assez longtemps pour le lire"""
+
     print(msg)
     time.sleep(1)
 
-def Info(): #Manuel utilisateur en jeu
+def Info():
+    """Manuel utilisateur en jeu"""
+    
     rouge = '\033[91m'
     vert = '\033[92m'
     jaune = '\033[93m'

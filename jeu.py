@@ -5,6 +5,8 @@ import catalogue, os
 from event import *
 
 def Principal():
+    """fonction principale du jeu"""
+
     #Initialise les joueurs
     j1 = Joueur(3, 3, "Joueur")
     ia1 = IA(3, 3, "IA")
@@ -20,6 +22,7 @@ def Principal():
     ia1.boutique.Rafraichir()
 
     running = True
+
     #boucle principale de jeu
     while running:
         print("\n" * 100) #Clear de l'écran sauvage, pratique si le clear suivant ne fonctionne pas
@@ -27,7 +30,6 @@ def Principal():
 
         #affichage des statistiques des joueurs
         j1.AffStats()
-
         ia1.AffStats()
 
         #choix joueur

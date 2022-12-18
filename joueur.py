@@ -3,6 +3,8 @@ from time import sleep
 from message import *
 
 class Joueur:
+    """constructeur de la classe Joueur"""
+
     def __init__(self, argent_max, argent, pseudo):
         self._pv_max = 20                    #PV actuels du joueur
         self._pv = self._pv_max              #PV maximus du joueur
@@ -117,11 +119,11 @@ class Joueur:
 
         elif (len(self.main.cartes) == self.main.nb_cartes_max):
             aff_msg("Opération impossible, main pleine (6 cartes maximum !")
-            sleep(1) #pour laisser le temps de lire
+            sleep(1) #laisse le temps de lire
 
         elif (self.argent <= 3):
             aff_msg("Opération impossible, argent insuffisant (3 pour un achat !)")
-            sleep(1) #meme chose
+            sleep(1) #laisse le temps de lire
 
     def UpBoutique(self): 
         """Amélioration de la boutique"""
@@ -211,6 +213,8 @@ class Joueur:
     #Méthodes liées à l'affichage---------------------------------------------------------------------------------------------
 
     def AffPoser(self):
+        """Affichage des cartes en main et sur le board"""
+
         print ("Choisissez le numéro de la carte que vous souhaitez poser, ou tapez autre chose pour quitter\n\n")
 
         print("Les cartes dans votre main:\n")
@@ -220,11 +224,15 @@ class Joueur:
         catalogue.VisualiserListe(self.combattants)
             
 
-    def Affcombattants(self): #Fonction affichage combattants
+    def Affcombattants(self):
+        """Affichage des combattants"""
+
         print(f"    combattants {self.pseudo}:")
         catalogue.VisualiserListe(self.combattants)
 
-    def AffBoutique(self): #Fonction affichage boutique
+    def AffBoutique(self):
+        """Affichage de la boutique"""
+
         print(f"    Boutique tier {self.boutique.tier} {self.pseudo} ({self.boutique.prix_upgrade} pour upgrade)")
         print('')
         catalogue.VisualiserListe(self.boutique.cartes)
@@ -232,13 +240,17 @@ class Joueur:
         print("Vous pouvez quitter la boutique en tappant 'q', l'upgrade avec 'u', la rafraichir avec 'r' ou acheter une carte en entrant son numéro")
         
     
-    def AffMain(self): #Fonction affichage main
+    def AffMain(self):
+        """Affichage de la main"""
+
         print(f"    Main {self.pseudo}:")
         print("    ", end="")
         catalogue.VisualiserListe(self.main.cartes)
         print('\n')
 
-    def AffVendre(self): #Fonction affichage menu vente
+    def AffVendre(self):
+        """Affichage du menu de vente de cartes sur le board"""
+
         rouge = '\033[91m'
         gris = '\033[0m'
         print (f"Choisissez le numéro de la carte que vous souhaitez {rouge}vendre{gris}, ou tapez autre chose pour quitter\n\n")
@@ -248,5 +260,7 @@ class Joueur:
         print ("\n\nVos cartes sur le terrain:\n")
         catalogue.VisualiserListe(self.combattants)
     
-    def AffStats(self): #Fonction affichage stats personnages
+    def AffStats(self):
+        """Affichage des statistiques du personnage"""
+
         print(f"{self.pseudo}({self.pv}/{self.pv_max}) argent:{self.argent}/{self.argent_max}\n")
