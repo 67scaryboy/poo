@@ -4,15 +4,15 @@ from message import *
 
 class Joueur:
     def __init__(self, argent_max, argent, pseudo):
-        self._pv_max = 20
-        self._pv = self._pv_max
-        self._main = main.Main() #Main du joueur
-        self._argent_max = argent_max #Pièces max disponibles (dépassable, uniquement pour le compte des tours)
-        self._argent = argent #Pièces disponibles
-        self._pseudo = pseudo #Nom du joueur
+        self._pv_max = 20                    #PV actuels du joueur
+        self._pv = self._pv_max              #PV maximus du joueur
+        self._main = main.Main()             #Main du joueur
+        self._argent_max = argent_max        #Pièces max disponibles (dépassable, uniquement pour le compte des tours)
+        self._argent = argent                #Pièces disponibles
+        self._pseudo = pseudo                #Nom du joueur
         self._boutique = boutique.Boutique() #Boutique (propre au joueur)
-        self._combatants = [] #Cartes posées
-        self._num_attaquant = 0 #Index du combatant en train d'attaquer (utile pour le combat)
+        self._combatants = []                #Cartes posées
+        self._num_attaquant = 0              #Index du combatant en train d'attaquer (utile pour le combat)
 
     #Geteurs et Seteurs---------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ class Joueur:
 
         elif (len(self.main.cartes) == self.main.nb_cartes_max):
             aff_msg("Opération impossible, main pleine (6 cartes maximum !")
-            sleep(1) #voir un input
+            sleep(1) #pour laisser le temps de lire
 
         elif (self.argent <= 3):
             aff_msg("Opération impossible, argent insuffisant (3 pour un achat !)")

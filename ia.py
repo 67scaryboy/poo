@@ -1,8 +1,10 @@
 from joueur import *
 
-class IA(Joueur):
+class IA(Joueur):#IA est une classe fille de Joueur
     def __init__(self, argent_max, argent, pseudo):
         super().__init__(argent_max, argent, pseudo)
+
+    #Méthodes suplémentaires propre à la classe IA--------------------------------------------------------------------------
 
     def IndexMeilleurTier(self): #Fonction servant a l'ia a trouver la meilleure carte a acheter
         res = 0

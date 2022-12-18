@@ -3,8 +3,8 @@ from copy import deepcopy
 
 class Main:
     def __init__(self):
-        self.__Cartes = []
-        self.__NbCartesMax = 6
+        self.__Cartes = []      #Liste des cartes dans la main
+        self.__NbCartesMax = 6  #Nombre maximum possible de cartes dans la main
     
     #Geteurs et Seteurs-----------------------------------------------------------------------------
     

@@ -6,11 +6,11 @@ class Boutique:
     def __init__(self):
         """constructeur de la classe Boutique"""
 
-        self.__tier = 1 #le tier maximal des cartes dans la taverne
-        self.__tier_max = 5 #le tier maximal de la boutique
-        self.__prix_upgrade = 5 #le prix pour monter le niveau de la taverne
-        self.__cartes = [] #les cartes disponibles à l'achat
-        self.__prix_refresh = 1 #le prix pour rafraichir les cartes de la boutique
+        self.__tier = 1          #le tier maximal des cartes dans la taverne
+        self.__tier_max = 5      #le tier maximal de la boutique
+        self.__prix_upgrade = 5  #le prix pour monter le niveau de la taverne
+        self.__cartes = []       #les cartes disponibles à l'achat
+        self.__prix_refresh = 1  #le prix pour rafraichir les cartes de la boutique
     
     #Getters et setters-------------------------------------------------------------------------------
 
