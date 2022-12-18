@@ -2,98 +2,129 @@ import random
 from copy import deepcopy
 
 PRIX_CARTE = 3
+"""prix d'une carte dans la boutique"""
 
 class Carte():
     def __init__(self, id, nom, pv, atk, effet, race, tier):
+        """constructeur de la classe Carte"""
+
         self.__id = id                    #id de la carte
         self.__nom = nom                  #nom de la carte
         self.__pv = pv                    #PV de base de la carte
-        self.__pv_combat = self.__pv        #PV effectifs de la carte
-        self.__atk = atk                  #Attaque du perso
-        self.__atk_combat = self.__atk      #Attaque effective de la carte
-        self.__effet = effet              #Effet particulier
-        self.__race = race                #Race
-        self.__tier = tier                #Tier de la boutique dans lequel il est achetable
+        self.__pv_combat = self.__pv      #PV effectifs de la carte
+        self.__atk = atk                  #Attaque de la carte
+        self.__atk_combat = self.__atk    #Attaque effective de la carte
+        self.__effet = effet              #Effet de la carte
+        self.__race = race                #Race de la carte
+        self.__tier = tier                #Tier de la carte
 
     #Geteurs et Seteurs-----------------------------------------------------------------------
 
     def GetTier(self):
+        """getter de __tier"""
+
         return self.__tier
 
     tier = property(GetTier)
     
     def GetEffet(self):
+        """getter de __effet"""
+
         return self.__effet
     
     def SetEffet(self,name,valeur):
+        """setter de __effet"""
+
         self.__effet[name] = valeur
 
     effet = property(GetEffet, SetEffet)
     
     def GetPvCombat(self):
+        """getter de __pv_combat"""
+
         return self.__pv_combat
 
-    def SetPvCombat(self, valeur):  
+    def SetPvCombat(self, valeur):
+        """setter de __pv_combat"""
+
         self.__pv_combat = valeur
 
     pv_combat = property(GetPvCombat, SetPvCombat)
     
     def GetAtkCombat(self):
+        """getter de __atk_combat"""
+
         return self.__atk_combat
     
     def SetAtkCombat(self, valeur):
+        """setter de __atk_combat"""
+
         self.__atk_combat = valeur
 
     atk_combat = property(GetAtkCombat, SetAtkCombat)
     
     def GetRace(self):
+        """getter de __race"""
+
         return self.__race
     
     def SetRace(self, valeur):
+        """setter de __race"""
+
         self.__race = valeur
 
     race = property(GetRace, SetRace)
 
     def GetId(self):
+        """getter de __id"""
+
         return self.__id
     
     def SetId(self, valeur):
+        """setter de __id"""
+
         self.__id = valeur
     
     id = property(GetId, SetId)
 
     def GetNom(self):
+        """getter de __nom"""
+
         return self.__nom
     
     def SetNom(self, valeur):
+        """setter de __nom"""
+
         self.__nom = valeur
     
     nom = property(GetNom, SetNom)
 
     #Méthodes------------------------------------------------------------------------------------------
 
-    def Attaquer(self, adversaire): #Fait attaquer cette carte
-        if self.__effet['bouclier divin'] == True: #si l'attaquant a bouclier divin
-            self.__effet['bouclier divin'] = False #l'enlever
-        else: #sinon
-            if adversaire.effet['toxicite'] == True: #si la cible a toxicité
-                self.__pv_combat = 0 #mourir
-            else: #sinon
-                self.__pv_combat -= adversaire.GetAtkCombat() #prendre des dégats
-            if self.__pv_combat <= 0: # si la carte meurt
-                if self.__effet['represailles'] and adversaire.effet['toxicite']: #que la carte avait représailles et est tuée par toxicité
-                    adversaire.pv_combat = 0 #tuer l'ennemi
+    def GestionAttaque(self, attaquant, cible):
+        """Gestion des effets et PV lors d'une attaque"""
 
-        if adversaire.effet['bouclier divin'] == True: #si la cible a bouclier divin 
-            adversaire.SetEffet(1,False) #l'enlever
-        else: #sinon
-            if self.__effet['toxicite'] == True: #si l'attaquant a toxicité
-                adversaire.SetPvCombat(0)  #tuer la cible
-            else: #sinon
-                adversaire.SetPvCombat(adversaire.pv_combat - self.__atk_combat) #lui faire prendre des dégats
-        if adversaire.pv_combat <= 0: # si l'ennemi meurt
-            if adversaire.effet['represailles'] and self.__effet['toxicite']: #qu'il avait représailles et est tuée par toxicité
-                self.__pv_combat = 0 #tuer l'ennemi
+        if attaquant.__effet['bouclier divin'] == True: #si l'attaquant a bouclier divin
+            attaquant.SetEffet(1,False) #l'enlever
+
+        else:
+            if cible.__effet['toxicite'] == True: #si la cible a toxicité
+                attaquant.__pv_combat = 0 #mourir
+            else:
+                attaquant.pv_combat -= cible.atk_combat #prendre des dégats
+
+            if attaquant.__pv_combat <= 0: # si la carte meurt
+                if attaquant.__effet['represailles'] and cible.effet['toxicite']: #si la carte a représailles et est tuée par toxicité
+                    cible.pv_combat = 0 #tuer la cible
+
+    def Attaquer(self, adversaire):
+        """Fait attaquer la carte en gérant les PV et effets"""
+
+        #gestion de l'attaquant
+        self.GestionAttaque(self, adversaire)
+
+        #gestion de l'adversaire
+        self.GestionAttaque(adversaire, self)
             
     
     def CriDeGuerre(self,joueur):
