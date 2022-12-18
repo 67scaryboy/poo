@@ -23,13 +23,3 @@ class Main:
     def Ajout_carte(self, carte):
         if len(self.cartes) < self.__NbCartesMax:
             self.__Cartes.append(deepcopy(carte)) #Ajout une copie de la carte (sinon c'est la vraie carte et on la modifie)
-
-    #Méthodes liées à l'affichage---------------------------------------------------------------------
-    """
-    def Afficher(self):
-        numero = 1
-        for carte in self.__Cartes:
-            print(f"{numero} ", end="")
-            carte.Afficher()
-            numero +=1
-    """

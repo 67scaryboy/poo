@@ -42,7 +42,7 @@ class IA(Joueur):
                 self.RafraichirBoutique()
     
     def DeployerCarte(self): #Fonction si le board est plein, pour remplacer les plus vieille carte (a améliorer pour rendre l'ia plus forte en changeant les cartes de plus bas tier)
-        if len(self.combatants) == 4:
+        if len(self.combattants) == 4:
             self.VendreCarte(1)
         
         self.PoserCarte(1)
@@ -57,11 +57,11 @@ class IA(Joueur):
 
         self.AcheterMeilleursTiers()
 
-        # while self.argent >= carte.PRIX_CARTE and len(self.combatants) < 4:
+        # while self.argent >= carte.PRIX_CARTE and len(self.combattants) < 4:
         #     self.Acheter(1)
         #     self.PoserCarte(1)
 
-        # while len(self.combatants) == 4 and len(self.main.cartes) < 6 and self.argent >= carte.PRIX_CARTE: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
+        # while len(self.combattants) == 4 and len(self.main.cartes) < 6 and self.argent >= carte.PRIX_CARTE: #Si a deja le max de carte et la thune, vend la plus vieille et en rachete et pose une
         #     self.VendreCarte(1) 
         #     self.Acheter(1)
         #     self.PoserCarte(1)

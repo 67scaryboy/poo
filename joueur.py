@@ -11,8 +11,8 @@ class Joueur:
         self._argent = argent #Pièces disponibles
         self._pseudo = pseudo #Nom du joueur
         self._boutique = boutique.Boutique() #Boutique (propre au joueur)
-        self._combatants = [] #Cartes posées
-        self._num_attaquant = 0 #Index du combatant en train d'attaquer (utile pour le combat)
+        self._combattants = [] #Cartes posées
+        self._num_attaquant = 0 #Index du combattant en train d'attaquer (utile pour le combat)
 
     #Geteurs et Seteurs---------------------------------------------------------------------
 
@@ -50,10 +50,10 @@ class Joueur:
 
     main = property(GetMain)
     
-    def GetCombatants(self):
-        return self._combatants
+    def GetCombattants(self):
+        return self._combattants
 
-    combatants = property(GetCombatants)
+    combattants = property(GetCombattants)
     
     def GetPV(self):
         return self._pv
@@ -113,20 +113,20 @@ class Joueur:
         if numcarte > len(self.main.cartes) or numcarte <= 0:
             aff_msg ("La carte que tu essaie de poser n'existe pas")
 
-        elif len(self.combatants) == 4:
+        elif len(self.combattants) == 4:
             aff_msg("Opération impossible, nombre maximum de sbire atteint (4 max !)")
         
         else:
             self.main.cartes[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
-            self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
+            self.combattants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
             del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
     
     def VendreCarte(self, numcarte): #Vendre une carte depuis le terrain
-        if numcarte > len(self.combatants):
+        if numcarte > len(self.combattants):
             aff_msg ("La carte que tu essaie de poser n'existe pas")
             sleep(1)
             exit(2)
-        del self.combatants[numcarte - 1]
+        del self.combattants[numcarte - 1]
         self.argent = self.argent + 1
 
     def ActionBoutique(self): 
@@ -164,7 +164,7 @@ class Joueur:
         except:
             pass
         else:
-            if nb > 0 and len(self.combatants) > nb - 1:
+            if nb > 0 and len(self.combattants) > nb - 1:
                 self.VendreCarte(nb)
         return entree
     
@@ -177,12 +177,12 @@ class Joueur:
         catalogue.VisualiserListe(self.main.cartes)
 
         print ("\nVos cartes sur le terrain:\n")
-        catalogue.VisualiserListe(self.combatants)
+        catalogue.VisualiserListe(self.combattants)
             
 
-    def AffCombatants(self): #Fonction affichage combatants
-        print(f"    Combatants {self.pseudo}:")
-        catalogue.VisualiserListe(self.combatants)
+    def Affcombattants(self): #Fonction affichage combattants
+        print(f"    combattants {self.pseudo}:")
+        catalogue.VisualiserListe(self.combattants)
 
     def AffBoutique(self): #Fonction affichage boutique
         print(f"    Boutique tier {self.boutique.tier} {self.pseudo} ({self.boutique.prix_upgrade} pour upgrade)")
@@ -203,7 +203,7 @@ class Joueur:
         print("Les cartes dans votre main:\n")
         catalogue.VisualiserListe(self.main.cartes)
         print ("\nVos cartes sur le terrain:\n")
-        catalogue.VisualiserListe(self.combatants)
+        catalogue.VisualiserListe(self.combattants)
     
     def AffStats(self): #Fonction affichage stats personnages
         print(f"{self.pseudo}({self.pv}/{self.pv_max}) argent:{self.argent}/{self.argent_max}\n")

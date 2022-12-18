@@ -139,12 +139,12 @@ class Carte():
             
     
     def CriDeGuerre(self, joueur):
-        """résoud l'effet du cri de guerre des combatants d'un joueur"""
+        """résoud l'effet du cri de guerre des combattants d'un joueur"""
 
-        combatants = joueur.combatants
+        combattants = joueur.combattants
         if self.__effet['cri de guerre'] == True: #si la carte a un cri de guerre
             if self.__id == idcartes["MAGENOIR"]:
-                for mob in combatants:
+                for mob in combattants:
                     if mob.race == 3: #tous les autres humains de l'équipe de combat
                         mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
 
@@ -152,55 +152,55 @@ class Carte():
                 joueur.argent = joueur.argent +1 #le joueur gagne une pièce
             
             elif self.__id == idcartes["LOUP"]:
-                for mob in combatants:
+                for mob in combattants:
                     if mob.race == 2: #tous les autres bêtes de l'équipe de combat
                         mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
 
             elif self.__id == idcartes["HAUTPRETRE"]:
-                for mob in combatants:
+                for mob in combattants:
                     if mob.race == 3: #tous les autres humains de l'équipe de combat
                         mob.pv_combat = mob.pv_combat + 2 #gagnent 2 Pv
 
             elif self.__id == idcartes["TORTUEGEANTE"]:
-                for mob in combatants: #tous les autres combatants
+                for mob in combattants: #tous les autres combattants
                     mob.pv_combat = mob.pv_combat + 2 #gagnent 2 Pv
             
             elif self.__id == idcartes["HEROS"]:
-                if len(combatants) > 0:
-                    n = random.randint(0,len(combatants)-1)
-                    combatants[n].__effet['bouclier divin'] = True #donne bouclier divin à un random
+                if len(combattants) > 0:
+                    n = random.randint(0,len(combattants)-1)
+                    combattants[n].__effet['bouclier divin'] = True #donne bouclier divin à un random
             
             elif self.__id == idcartes["ROIDEMON"]:
-                if len(combatants) > 0:
-                    n = random.randint(0,len(combatants)-1)
-                    combatants[n].__effet['toxicite'] = True #donne toxicité à un random
+                if len(combattants) > 0:
+                    n = random.randint(0,len(combattants)-1)
+                    combattants[n].__effet['toxicite'] = True #donne toxicité à un random
             
             elif self.__id == idcartes["SANGLIER"]:
-                if len(combatants) < 3:
-                    combatants.append(deepcopy(self)) #invoque un autre sanglier
+                if len(combattants) < 3:
+                    combattants.append(deepcopy(self)) #invoque un autre sanglier
             
             elif self.__id == idcartes["PAYSAN"]:
-                for mob in combatants:
+                for mob in combattants:
                     if mob.id == idcartes["PAYSAN"]: #tous les paysans de l'équipe de combat
                         mob.atk_combat = mob.atk_combat + 1 #gagnent 1 point d'attaque
                         mob.pv_combat = mob.pv_combat + 1 # et un point de Pv
             
             elif self.__id == idcartes["METAMORPHE"]:
-                if len(combatants) > 0: #si il y a d'autres serviteurs
-                    n = len(combatants) - 1
-                    liste_effets = combatants[n].GetEffet()
-                    self.atk_combat  = combatants[n].atk_combat
+                if len(combattants) > 0: #si il y a d'autres serviteurs
+                    n = len(combattants) - 1
+                    liste_effets = combattants[n].GetEffet()
+                    self.atk_combat  = combattants[n].atk_combat
                     self.SetEffet('provocation', liste_effets['provocation'])
                     self.SetEffet('bouclier divin', liste_effets['bouclier divin'])
                     self.SetEffet('toxicite', liste_effets['toxicite'])
                     self.SetEffet('furie des vents', liste_effets['furie des vents'])
                     self.SetEffet('represailles', liste_effets['represailles'])
-                    self.race = combatants[n].race
-                    self.id = combatants[n].id
-                    self.nom = combatants[n].nom
+                    self.race = combattants[n].race
+                    self.id = combattants[n].id
+                    self.nom = combattants[n].nom
                     if '(métamorphe)' not in self.nom:#empècher les (métamorhe)(métamorphe)
                         self.nom += '(métamorphe)'
-                    self.pv_combat = combatants[n].pv_combat #devient la copie conforme du serviteur à sa gauche 
+                    self.pv_combat = combattants[n].pv_combat #devient la copie conforme du serviteur à sa gauche 
     
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
