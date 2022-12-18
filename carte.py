@@ -5,7 +5,7 @@ idcartes = {
     "GNOLL": 0, "MAGENOIR": 1, "GOBELIN": 2 ,"LOUP" : 3 , "FEUFOLLET" : 4 , "GARDE" : 5 ,
     "ASSASSIN" : 6 , "HAUTPRETRE" : 7 , "FANTOME" : 8 , "TORTUEGEANTE" : 9 , "DRAGON" : 10 ,
     "HEROS" : 11 , "ROIDEMON" : 12, "VIRUS" : 13,  "SANGLIER" : 14, "SCORPION" : 15, 
-    "T-REX" : 16, "PAYSAN" : 17, "METAMORPHE" : 18
+    "T-REX" : 16, "PAYSAN" : 17, "METAMORPHE" : 18, "MANGOUSTE" : 19
     }
 """enumère les ids des cartes"""
 
@@ -204,8 +204,9 @@ class Carte():
     
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
+     
     def Afficher(self):
-        """Affichage d'une carte"""
+        """Ancienne méthode d'affichage format (nom xxPV xxATK)"""
 
         #codes couleurs
         rouge = '\033[91m'

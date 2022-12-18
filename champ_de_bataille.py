@@ -14,7 +14,7 @@ class Champ_de_bataille():
     #Méthodes-----------------------------------------------------------------------------------------
 
     def MajBoutique(self):
-        """met les boutiques à jour pour les débuts de tour"""
+        """Réduit les prix pour améliorer la boutique en début de tour"""
 
         if self.__joueur.boutique.prix_upgrade > 1:
             self.__joueur.boutique.prix_upgrade -= 1
@@ -23,7 +23,7 @@ class Champ_de_bataille():
             self.__ia.boutique.prix_upgrade -= 1
 
     def MajArgent(self):
-        """met l'argent des joueurs à jour pour les débuts de tour"""
+        """Augmente la quantité d'argent donnée au début du tour"""
 
         if self.__joueur.argent_max < 10:
             self.__joueur.argent_max = self.__joueur.argent_max + 1
@@ -35,7 +35,7 @@ class Champ_de_bataille():
         self.__ia.argent = self.__ia.argent_max
 
     def DegatsPerdant(self, team_j, team_ia):
-        """applique les dommages aux joueurs en fin de tour"""
+        """Inflige des dégats en fonction des tiers des cartes survivantes""" 
 
         degats = 0
         

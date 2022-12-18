@@ -1,12 +1,15 @@
 from joueur import *
 
-class IA(Joueur):
+class IA(Joueur):#IA est une classe fille de Joueur
     def __init__(self, argent_max, argent, pseudo):
         super().__init__(argent_max, argent, pseudo)
 
-    def IndexMeilleurTier(self): #Fonction servant a l'ia a trouver la meilleure carte a acheter
-        res = 0
+    #Méthodes suplémentaires propre à la classe IA--------------------------------------------------------------------------
 
+    def IndexMeilleurTier(self): 
+        """Fonction servant a l'ia a trouver la meilleure carte a acheter"""
+
+        res = 0
         if self.boutique.cartes:
             meilleur_tier = self.boutique.cartes[0].tier #Compare les tiers de chaque carte de la boutique
 
@@ -25,7 +28,9 @@ class IA(Joueur):
         
         return res
 
-    def AcheterMeilleursTiers(self): # Fonction permettant à l'ia d'acheter la meilleure carte possible
+    def AcheterMeilleursTiers(self): 
+        """Fonction permettant à l'ia d'acheter la meilleure carte possible"""
+
         while self.argent >= self.boutique.prix_refresh:
             if self.boutique.cartes:
                 i_meil_tier = self.IndexMeilleurTier()
@@ -41,15 +46,17 @@ class IA(Joueur):
             else:
                 self.RafraichirBoutique()
     
-    def DeployerCarte(self): #Fonction si le board est plein, pour remplacer les plus vieille carte (a améliorer pour rendre l'ia plus forte en changeant les cartes de plus bas tier)
-        if len(self.combattants) == 4:
+    def DeployerCarte(self):
+        """Fonction pour remplacer les plus vieilles cartes si le board est plein"""
+        if len(self.combatants) == 4:
             self.VendreCarte(1)
         
         self.PoserCarte(1)
             
 
     def Preparation(self):
-        #IA upgrade la boutique s'il peut aussi acheter le même tour
+        """l'IA upgrade la boutique si elle peut aussi acheter le même tour"""
+
         if self.argent >= self.boutique.prix_upgrade + carte.PRIX_CARTE and self.boutique.tier < self.boutique.tier_max:
             self.argent -= self.boutique.prix_upgrade
             self.boutique.Ameliorer()
