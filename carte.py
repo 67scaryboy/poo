@@ -204,9 +204,9 @@ class Carte():
     
     #Méthodes liées à l'affichage-------------------------------------------------------------------
 
-    """Ancienne méthode d'affichage""" 
+     
     def Afficher(self):
-        """Affichage d'une carte"""
+        """Ancienne méthode d'affichage format (nom xxPV xxATK)"""
 
         #codes couleurs
         rouge = '\033[91m'

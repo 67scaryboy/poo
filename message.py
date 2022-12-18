@@ -6,6 +6,13 @@ def aff_msg(msg):
     time.sleep(1)
 
 def Info(): #Manuel utilisateur en jeu
+    rouge = '\033[91m'
+    vert = '\033[92m'
+    jaune = '\033[93m'
+    gris = '\033[0m'
+    bleu = '\033[34m'
+    violet = '\033[35m'
+
     print("\n" * 15)#Clear de l'écran sauvage, pratique si le clear suivant ne fonctionne pas
     os.system("cls||clear") #Efface le terminal
     print("Manuel utilisateur du jeu\n\n")
@@ -34,25 +41,18 @@ def Info(): #Manuel utilisateur en jeu
     print("\n")
     print("Les cartes et leurs effets :")
     print("Il existe dans le jeu une variété de cartes et d’effet associés. Chaque cartes possèdent des attributs qui sont communes aux autres cartes :")
-    print("    - Les PV (points de vie) : Lorsqu’ils atteignent 0, la carte ne peut plus attaquer ou se faire attaquer.")
-    print("    - L’ATK (attaque) représentent les dégâts infligés aux cartes adverses et au personnage adverse en cas de victoire.")
+    print(f"    - Les {rouge}PV{gris} (points de vie) : Lorsqu’ils atteignent 0, la carte ne peut plus attaquer ou se faire attaquer.")
+    print(f"    - L’{jaune}ATK{gris} (attaque) représentent les dégâts infligés aux cartes adverses et au personnage adverse en cas de victoire.")
     print("    - Les effets.")
     print("\n")
     print("Chaque carte peut posséder un ou plusieurs effets. Les effets existants sont :")
-    print("    - Provocation : Force les adversaire à attaquer en priorité cette carte. Si plusieurs cartes ont provocation, celle la plus à droite sur le terrain sera visée en priorité.")
-    print("    - Bouclier divin : La première fois que cette carte prend des dégâts pendant un combat, elle les ignore.")
-    print("    - Toxicité : Si cette carte inflige des dégâts à un autre carte, la tue, peu importe le nombre de PV restant.")
-    print("    - Furie des vents : Attaque deux fois d’affilée, sauf en cas de mort.")
-    print("    - Crie de guerre : Déclenche un effet lorsque posée sur le terrain par le joueur.")
-    print("    - Représailles : Si cette carte se fait tuer par une carte avec Toxicité, la tue également.")
+    print(f"    - {rouge}Provocation{gris} : Force les adversaire à attaquer en priorité cette carte. Si plusieurs cartes ont provocation, celle la plus à droite sur le terrain sera visée en priorité.")
+    print(f"    - {jaune}Bouclier divin{gris} : La première fois que cette carte prend des dégâts pendant un combat, elle les ignore.")
+    print(f"    - {vert}Toxicité{gris} : Si cette carte inflige des dégâts à un autre carte, la tue, peu importe le nombre de PV restant.")
+    print(f"    - {bleu}Furie des vents{gris} : Attaque deux fois d’affilée, sauf en cas de mort.")
+    print("    - Cri de guerre : Déclenche un effet lorsque posée sur le terrain par le joueur.")
+    print(f"    - {violet}Représailles{gris} : Si cette carte se fait tuer par une carte avec Toxicité, la tue également.")
     print("\n")
-    print("Chaque effet est indiqué en jeu grâce à un code couleur facilement reconnaissable :")
-    print("    - Provocation : L'effet est indiqué en rouge.")
-    print("    - Bouclier divin : L'effet est indiqé en jaune tant qu'il est actif.")
-    print("    - Toxicité : L'effet est indiqué en vert.")
-    print("    - Furie des vents : L'effet est indiqué en bleu.")
-    print("    - Cri de guerre : Le cri de guerre est inscrit sur la carte, ainsi qu'une courte description.")
-    print("    - Représailles : L'effet est indiqué en violet.")
 
 def AfficherVainqueur(j1, ia1):
     os.system("cls||clear")

@@ -9,11 +9,15 @@ class Main:
     #Geteurs et Seteurs-----------------------------------------------------------------------------
     
     def GetNbCartesmax(self):
+        """Getteur de __NbCartesMax"""
+
         return self.__NbCartesMax
 
     nb_cartes_max = property(GetNbCartesmax)
 
     def GetCartes(self):
+        """Getteur de __Cartes"""
+
         return self.__Cartes
     
     cartes = property(GetCartes)
@@ -21,15 +25,7 @@ class Main:
     #Méthodes----------------------------------------------------------------------------------------
 
     def Ajout_carte(self, carte):
+        """Ajout d"une carte à la main"""
+
         if len(self.cartes) < self.__NbCartesMax:
             self.__Cartes.append(deepcopy(carte)) #Ajout une copie de la carte (sinon c'est la vraie carte et on la modifie)
-
-    #Méthodes liées à l'affichage---------------------------------------------------------------------
-    """
-    def Afficher(self):
-        numero = 1
-        for carte in self.__Cartes:
-            print(f"{numero} ", end="")
-            carte.Afficher()
-            numero +=1
-    """

@@ -17,68 +17,98 @@ class Joueur:
     #Geteurs et Seteurs---------------------------------------------------------------------
 
     def SetNumAttaquant(self, valeur):
+        """Setteur de _num_attaquant"""
+
         self._num_attaquant = valeur
     
     def GetNumAttaquant(self):
+        """Getteur de _num_attaquant"""
+
         return self._num_attaquant
 
     num_attaquant = property(GetNumAttaquant, SetNumAttaquant)
 
     def SetArgentMax(self, valeur):
+        """Setteur de _argent_max"""
+
         self._argent_max = valeur
     
     def GetArgentMax(self):
+        """Getteur de _argent_max"""
+
         return self._argent_max
 
     argent_max = property(GetArgentMax, SetArgentMax)
 
     def SetArgent(self, valeur):
+        """Setteur de _argent"""
+
         self._argent = valeur
 
     def GetArgent(self):
+        """Getteur de _argent"""
+
         return self._argent
 
     argent = property(GetArgent, SetArgent)
 
     def GetBoutique(self):
+        """Getteur de _boutique"""
+
         return self._boutique
 
     boutique = property(GetBoutique)
 
     def GetMain(self):
+        """Getteur de _main"""
+
         return self._main
 
     main = property(GetMain)
     
     def GetCombatants(self):
+        """Getteur de _combatants"""
+
         return self._combatants
 
     combatants = property(GetCombatants)
     
     def GetPV(self):
+        """Getteur de _pv"""
+
         return self._pv
     
     def SetPV(self, nouveaux_pv):
+        """Setteur de _pv"""
+
         self._pv = nouveaux_pv
 
     pv = property(GetPV, SetPV)
 
     def GetPVMax(self):
+        """Getteur de _pv_max"""
+
         return self._pv_max
 
     def SetPVMax(self, nouveaux_pv_max):
+        """Setteur de _pv_max"""
+
         self._pv_max = nouveaux_pv_max
 
     pv_max = property(GetPVMax, SetPVMax)
 
     def GetPseudo(self):
+        """Getteur de _pseudo"""
+
         return self._pseudo
 
     pseudo = property(GetPseudo)
 
     #Méthodes---------------------------------------------------------------------------------------------------------
 
-    def Acheter(self, numcarte): #Acheter une carte
+    def Acheter(self, numcarte):
+        """Acheter une carte"""
+
         cartes_boutiques = self.boutique.cartes
         if (self.argent >= 3) and (len(self.main.cartes) < self.main.nb_cartes_max): #Si assez d'argent et de la place en main
             self.argent -= 3
@@ -93,7 +123,9 @@ class Joueur:
             aff_msg("Opération impossible, argent insuffisant (3 pour un achat !)")
             sleep(1) #meme chose
 
-    def UpBoutique(self): #Amélioration de la boutique
+    def UpBoutique(self): 
+        """Amélioration de la boutique"""
+
         if self.argent >= self.boutique.prix_upgrade and self.boutique.tier < self.boutique.tier_max - 1:
             self.argent -= self.boutique.prix_upgrade
             self.boutique.Ameliorer()
@@ -101,7 +133,9 @@ class Joueur:
         else:
             aff_msg("Opération impossible")
     
-    def RafraichirBoutique(self):  #Rafraichissement de la boutique
+    def RafraichirBoutique(self):  
+        """Rafraichissement de la boutique"""
+
         if self.argent > 0:
             self.boutique.Rafraichir()
             self.argent -= 1
@@ -109,45 +143,50 @@ class Joueur:
             aff_msg("Opération impossible")
 
     
-    def PoserCarte(self,numcarte): #PAsser une carte de la main aux combattant
-        if numcarte > len(self.main.cartes) or numcarte <= 0:
-            aff_msg ("La carte que tu essaie de poser n'existe pas")
+    def PoserCarte(self,numcarte):
+        """Passer une carte de la main aux combattants"""
 
-        elif len(self.combatants) == 4:
+        if numcarte > len(self.main.cartes) or numcarte <= 0: #si le numéro est incorect
+            aff_msg ("La carte que tu essaie de poser n'existe pas") #message d'erreur
+
+        elif len(self.combatants) == 4: #de même si le terrain est plein
             aff_msg("Opération impossible, nombre maximum de sbire atteint (4 max !)")
         
-        else:
+        else: #sinon
             self.main.cartes[numcarte-1].CriDeGuerre(self) #lancer le cri de guerre 
             self.combatants.append(self.main.cartes[numcarte-1]) #Ajoute à la droite des éléments placés sur le terain la carte choisie
             del self.main.cartes[numcarte-1] #Retire la carte choisie de la main
     
-    def VendreCarte(self, numcarte): #Vendre une carte depuis le terrain
-        if numcarte > len(self.combatants):
-            aff_msg ("La carte que tu essaie de poser n'existe pas")
+    def VendreCarte(self, numcarte): 
+        """Vendre une carte depuis le terrain"""
+
+        if numcarte > len(self.combatants): #si le numéro est incorect
+            aff_msg ("La carte que tu essaie de poser n'existe pas") #message d'erreur
             sleep(1)
             exit(2)
-        del self.combatants[numcarte - 1]
-        self.argent = self.argent + 1
+        del self.combatants[numcarte - 1] #sinon enlever la carte des combatants
+        self.argent = self.argent + 1 #et donner une pièce pour compenser
 
-    def ActionBoutique(self): 
-        entree = input()
+    def ActionBoutique(self):
+        """Gérer les actions possibles dans la boutique"""
 
-        #achat de carte avec son numéro
+        entree = input() #récupérer la valeur saisie
         try:
-            nb = int(entree)
+            nb = int(entree) #regarder si il s'agit d'un nombre
         except:
-            if entree == 'r':
+            if entree == 'r': #sauf si c'est un 'r', dans ce cas raffraichir la boutique
                 self.RafraichirBoutique()
-            elif entree == 'u':
+            elif entree == 'u': #ou un 'u', dans ce cas monter le tier de la boutique
                 self.UpBoutique()
         else:
-            if nb in range (1, len(self.boutique.cartes) + 1):
+            if nb in range (1, len(self.boutique.cartes) + 1): #vérifier que le nombre est une valeur convenable
                 self.Acheter(nb)
         return entree
 
     def ActionPoser(self):
-        entree = input()
+        """Gérer les transferts de la main au combatants"""
 
+        entree = input()
         try:
             nb = int(entree)
         except:
@@ -157,8 +196,9 @@ class Joueur:
         return entree
 
     def ActionVendre(self):
-        entree = input()
+        """Gérer les ventes de cartes"""
 
+        entree = input()
         try:
             nb = int(entree)
         except:
@@ -199,10 +239,13 @@ class Joueur:
         print('\n')
 
     def AffVendre(self): #Fonction affichage menu vente
-        print ("Choisissez le numéro de la carte que vous souhaitez vendre, ou tapez autre chose pour quitter\n\n")
-        print("Les cartes dans votre main:\n")
-        catalogue.VisualiserListe(self.main.cartes)
-        print ("\nVos cartes sur le terrain:\n")
+        rouge = '\033[91m'
+        gris = '\033[0m'
+        print (f"Choisissez le numéro de la carte que vous souhaitez {rouge}vendre{gris}, ou tapez autre chose pour quitter\n\n")
+        print("Vos cartes en main:\n")
+        for carte in self.main.cartes:
+            print(f"{carte.nom}, ", end = '')
+        print ("\n\nVos cartes sur le terrain:\n")
         catalogue.VisualiserListe(self.combatants)
     
     def AffStats(self): #Fonction affichage stats personnages

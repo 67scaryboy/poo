@@ -10,12 +10,16 @@ class Champ_de_bataille():
     #Méthodes-----------------------------------------------------------------------------------------
 
     def MajBoutique(self):
+        """Réduit les prix pour améliorer la boutique"""
+
         if self.__joueur.boutique.prix_upgrade > 1:
             self.__joueur.boutique.prix_upgrade -= 1
         if self.__ia.boutique.prix_upgrade > 1:
             self.__ia.boutique.prix_upgrade -= 1
 
     def MajArgent(self):
+        """Augmente la réserve d'argent donné au début du tour"""
+
         if self.__joueur.argent_max < 10:
             self.__joueur.argent_max = self.__joueur.argent_max + 1
         if self.__ia.argent_max < 10:
@@ -25,6 +29,8 @@ class Champ_de_bataille():
         self.__ia.argent = self.__ia.argent_max
 
     def DegatsPerdant(self, team_j, team_ia):
+        """Inflige des dégats en fonction des tiers des cartes survivantes""" 
+
         degats = 0
         
         if len(team_j) > 0: #victoire joueur
@@ -42,6 +48,8 @@ class Champ_de_bataille():
             pass #draw
 
     def LancerAttaque(self, j_atk, j_deff, team_atk, team_def, deuxieme_att, tour_du_joueur):
+        """Gère une attaque"""
+
         place = -1
         for i in range(len(team_def)):
             if team_def[i].effet['provocation'] == True: # la carte a provocation
@@ -85,6 +93,8 @@ class Champ_de_bataille():
         return (deuxieme_att, tour_du_joueur)
 
     def LancerCombat(self):
+        """Gère le combat en lançant les attaques les unes à la suite des autres"""
+        
         team_j = copy.deepcopy(self.__joueur.combatants)
         team_ia = copy.deepcopy(self.__ia.combatants)
 
@@ -113,16 +123,9 @@ class Champ_de_bataille():
     #Méthodes liées à l'affichage--------------------------------------------------------------------------------
 
     def AffCombat(self, team_j, team_ia):   
+        """Affiche les deux équipes"""
+
         print("Mobs coté joueur:")
-        
-        """
-        for mob in team_j:
-            mob.Afficher()
-        print("\n")
-        print("Mobs coté IA:")
-        for mob in team_ia:
-            mob.Afficher()        
-        """
         VisualiserListe(team_j)
         print("\n")
         print("Mobs coté IA:")
